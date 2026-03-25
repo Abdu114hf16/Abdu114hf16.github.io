@@ -362,11 +362,11 @@ ul {
 }
 
 .hero-photo img {
-  width: clamp(200px, 18vw, 260px);
-  height: clamp(280px, 26vw, 370px);
+  width: clamp(230px, 21vw, 300px);
+  height: clamp(320px, 30vw, 420px);
   object-fit: cover;
   object-position: center top;
-  border-radius: 140px;
+  border-radius: 160px;
   border: 2px solid var(--border-2);
   filter: grayscale(20%);
   transition: filter 0.3s;
@@ -380,7 +380,7 @@ ul {
   content: '';
   position: absolute;
   inset: -6px;
-  border-radius: 146px;
+  border-radius: 166px;
   border: 1px solid var(--accent-border);
   animation: spin 12s linear infinite;
   background: conic-gradient(
