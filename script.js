@@ -77,6 +77,20 @@ const sectionObserver = new IntersectionObserver(
 
 sections.forEach(section => sectionObserver.observe(section));
 
+// ── CARD data-href click (for cards that contain <a> tags) ─
+document.querySelectorAll('.project-card[data-href]').forEach(card => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', () => {
+    window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
+  });
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
+    }
+  });
+});
+
 // ── SMOOTH SCROLL polyfill for older Safari ───────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
