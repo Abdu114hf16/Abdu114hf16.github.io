@@ -1,7 +1,7 @@
 // ── NAV: scroll shadow + mobile toggle ────────────────────
-const navWrap  = document.querySelector('.nav-wrap');
+const navWrap = document.querySelector('.nav-wrap');
 const navToggle = document.querySelector('.nav-toggle');
-const navLinks  = document.querySelector('.nav-links');
+const navLinks = document.querySelector('.nav-links');
 
 window.addEventListener('scroll', () => {
   navWrap.classList.toggle('scrolled', window.scrollY > 40);
@@ -89,6 +89,17 @@ document.querySelectorAll('.project-card[data-href]').forEach(card => {
       window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
     }
   });
+});
+
+// ── BACK TO TOP button ───────────────────────────────────
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // ── SMOOTH SCROLL polyfill for older Safari ───────────────
