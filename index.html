@@ -4,14 +4,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdullah Alshammari — Data Science & BI</title>
+  <title>Abdullah Alshammari</title>
   <meta name="description"
     content="Abdullah Alshammari — CS Senior at King Saud University specializing in Data Science, Business Intelligence, and Machine Learning." />
   <meta name="author" content="Abdullah Alshammari" />
   <meta name="robots" content="index, follow" />
 
+  <!-- Apply saved theme / language before paint (no flash) -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('bp-theme') === 'dark')
+          document.documentElement.setAttribute('data-theme', 'dark');
+        if (localStorage.getItem('bp-lang') === 'ar') {
+          document.documentElement.setAttribute('lang', 'ar');
+          document.documentElement.setAttribute('dir', 'rtl');
+        }
+      } catch (e) { }
+    })();
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/struggle_icon.png" />
+  <link rel="apple-touch-icon" href="assets/struggle_icon.png" />
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Abdullah Alshammari — Data Science & BI" />
+  <meta property="og:title" content="Abdullah Alshammari — Data Science & AI" />
   <meta property="og:description"
     content="CS Senior at King Saud University specializing in Data Science, Business Intelligence, and Machine Learning." />
   <meta property="og:type" content="website" />
@@ -20,14 +38,14 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Abdullah Alshammari — Data Science & BI" />
+  <meta name="twitter:title" content="Abdullah Alshammari — Data Science & AI" />
   <meta name="twitter:description" content="CS Senior at KSU specializing in Data Science, BI, and Machine Learning." />
 
-  <!-- Fonts -->
+  <!-- Fonts: Brutalist Mono — Space Grotesk (display) + JetBrains Mono (mono/body) + IBM Plex Sans Arabic (RTL) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;700&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
@@ -39,15 +57,32 @@
   <header class="nav-wrap" id="top">
     <nav class="nav container">
       <a href="#hero" class="nav-logo">AA</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">CV</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
-      </ul>
+      <div class="nav-cluster">
+        <ul class="nav-links">
+          <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+          <li><a href="#about" data-i18n="nav_cv">CV</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+        <div class="nav-controls">
+          <button class="ctrl-btn ctrl-lang" id="langToggle" type="button" aria-label="Switch language">ع</button>
+          <button class="ctrl-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+          </button>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -57,14 +92,14 @@
     <section class="hero" id="hero">
       <div class="container hero-inner">
         <div class="hero-text">
-          <p class="hero-greeting">Hello, I'm</p>
-          <h1 class="hero-name">Abdullah<br />Alshammari</h1>
-          <p class="hero-tagline">CS Senior at King Saud University<br /><span class="accent">Data Science &amp;
-              BI</span> · Building Intelligent Data Solutions</p>
+          <p class="hero-greeting" data-i18n="hero_greeting">Hello, I'm</p>
+          <h1 class="hero-name" data-i18n="hero_name">Abdullah<br />Alshammari</h1>
+          <p class="hero-tagline"><span data-i18n="hero_tag1">First Honor Computer Science student at King Saud
+              University</span><br /><span class="accent" data-i18n="hero_tag2">Passionate about Data Science &amp;
+              Artificial Intelligence</span></p>
           <div class="hero-links">
             <a href="https://github.com/Abdu114hf16" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
               class="icon-link">
-              <!-- GitHub SVG -->
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path
@@ -73,7 +108,6 @@
             </a>
             <a href="https://linkedin.com/in/alshammaridev" target="_blank" rel="noopener noreferrer"
               aria-label="LinkedIn" class="icon-link">
-              <!-- LinkedIn SVG -->
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -81,8 +115,7 @@
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </a>
-            <a href="mailto:me@alshammari.dev" aria-label="Email" class="icon-link">
-              <!-- Mail SVG -->
+            <a href="mailto:abdullah.tecch@gmail.com" aria-label="Email" class="icon-link">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -90,7 +123,7 @@
               </svg>
             </a>
           </div>
-          <a href="#projects" class="btn-primary">View My Work</a>
+          <a href="#projects" class="btn-primary" data-i18n="hero_cta">View My Work</a>
         </div>
         <div class="hero-photo">
           <img src="assets/Personal.png" alt="Abdullah Alshammari" />
@@ -101,37 +134,35 @@
     <!-- ── ABOUT ──────────────────────────────────────────────── -->
     <section class="section" id="about">
       <div class="container">
-        <h2 class="section-title reveal">About</h2>
+        <h2 class="section-title reveal" data-i18n="about_title">About</h2>
         <div class="about-grid reveal">
-          <p class="about-text">
+          <p class="about-text" data-i18n="about_text">
             Senior Computer Science student at King Saud University with a strong foundation in
-            Artificial Intelligence, Machine Learning, and Business Intelligence. Proficient in
-            building solutions with various machine learning and statistical models, designing
-            Power BI reports and dashboards, and transforming raw data into actionable insights
-            that bridge the gap between data models and business needs. Seeking a
-            <span class="accent">Data Science, Data Analytics, or Business Intelligence internship</span>
-            to apply analytical problem-solving skills to real-world, data-driven decision-making.
+            Artificial Intelligence, Data Analytics, and Business Intelligence. Proficient in
+            building solutions with machine learning and statistical models, developing software,
+            answering questions and designing reports using Power BI that transform raw data into
+            actionable insights — bridging the gap between data models and business needs.
           </p>
           <ul class="about-meta">
             <li>
-              <span class="meta-label">University</span>
-              <span class="meta-value">King Saud University</span>
+              <span class="meta-label" data-i18n="m_university">University</span>
+              <span class="meta-value" data-i18n="m_university_v">King Saud University</span>
             </li>
             <li>
-              <span class="meta-label">GPA</span>
-              <span class="meta-value accent">4.85 / 5.0</span>
+              <span class="meta-label" data-i18n="m_gpa">GPA</span>
+              <span class="meta-value accent" data-i18n="m_gpa_v">4.85 / 5.0 · First Honor</span>
             </li>
             <li>
-              <span class="meta-label">Graduating</span>
+              <span class="meta-label" data-i18n="m_grad">Graduating</span>
               <span class="meta-value">2026</span>
             </li>
             <li>
-              <span class="meta-label">Location</span>
-              <span class="meta-value">Riyadh, Saudi Arabia</span>
+              <span class="meta-label" data-i18n="m_location">Location</span>
+              <span class="meta-value" data-i18n="m_location_v">Riyadh, Saudi Arabia · Ability to relocate</span>
             </li>
             <li>
-              <span class="meta-label">Languages</span>
-              <span class="meta-value">Arabic · English</span>
+              <span class="meta-label" data-i18n="m_languages">Languages</span>
+              <span class="meta-value" data-i18n="m_languages_v">Arabic · English</span>
             </li>
           </ul>
         </div>
@@ -141,10 +172,42 @@
     <!-- ── PROJECTS ───────────────────────────────────────────── -->
     <section class="section section-alt" id="projects">
       <div class="container">
-        <h2 class="section-title reveal">Featured Projects</h2>
+        <h2 class="section-title reveal" data-i18n="projects_title">Projects</h2>
         <div class="projects-grid">
 
-          <!-- Project 1 -->
+          <!-- Project 1 — Eventia (Graduation Project) -->
+          <a class="project-card reveal" href="https://github.com/Abdu114hf16" target="_blank"
+            rel="noopener noreferrer">
+            <div class="project-header">
+              <svg class="project-folder" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" aria-hidden="true">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+              </svg>
+              <span class="project-gh-link" aria-label="View on GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+              </span>
+            </div>
+            <h3 class="project-title">Eventia <span class="badge" data-i18n="p_eventia_badge">Graduation
+                Project</span></h3>
+            <p class="project-desc" data-i18n="p_eventia_desc">A centralized, role-based <span class="accent">digital
+                transformation</span> solution
+              covering the entire event lifecycle across multiple perspectives — Organizer, Attendee, Vendor, and Admin.
+              Built with Django and MySQL, featuring a Gemini-powered AI assistant, SCEGA licensing workflows, in-app
+              messaging, and analytics dashboards.</p>
+            <ul class="project-tags">
+              <li>Django</li>
+              <li>Python</li>
+              <li>MySQL</li>
+              <li>Gemini AI</li>
+              <li>Full-Stack</li>
+            </ul>
+          </a>
+
+          <!-- Project 2 — Commercial Flights Delays Analysis -->
           <a class="project-card reveal" href="https://github.com/Abdu114hf16/Commercial_Flights_Delays_Analysis"
             target="_blank" rel="noopener noreferrer">
             <div class="project-header">
@@ -160,11 +223,12 @@
                 </svg>
               </span>
             </div>
-            <h3 class="project-title">Commercial Flights Delays Analysis</h3>
-            <p class="project-desc">Business Intelligence &amp; Predictive Analytics solution analyzing commercial
-              flight delays using advanced Power BI ML capabilities — linear regression, clustering, time-series
-              forecasting, and anomaly detection — to optimize operational logistics and predict delay probabilities.
-            </p>
+            <h3 class="project-title" data-i18n="p_flights_t">Commercial Flights Delays Analysis</h3>
+            <p class="project-desc" data-i18n="p_flights_desc">Business Intelligence and Predictive Analytics solution
+              analyzing commercial flight delays, leveraging <span class="accent">advanced Power BI machine learning
+                capabilities</span> including
+              linear regression, clustering, time-series forecasting, and anomaly detection to optimize operational
+              logistics and predict delay probabilities.</p>
             <ul class="project-tags">
               <li>Power BI</li>
               <li>DAX</li>
@@ -174,7 +238,7 @@
             </ul>
           </a>
 
-          <!-- Project 2 -->
+          <!-- Project 3 — Optimizing Donors Outreach -->
           <a class="project-card reveal" href="https://github.com/Abdu114hf16/Optimizing_Donors_Outreach"
             target="_blank" rel="noopener noreferrer">
             <div class="project-header">
@@ -190,10 +254,11 @@
                 </svg>
               </span>
             </div>
-            <h3 class="project-title">Optimizing Donors Outreach</h3>
-            <p class="project-desc">Supervised ML project identifying the most likely charity donors through extensive
-              EDA and cross-validation, benchmarking multiple classifiers to select the optimal model and minimize
-              outreach costs.</p>
+            <h3 class="project-title" data-i18n="p_donors_t">Optimizing Donors Outreach</h3>
+            <p class="project-desc" data-i18n="p_donors_desc">Supervised Machine Learning project that identifies the
+              most likely charity donors through extensive EDA and cross-validation techniques, <span
+                class="accent">benchmarking multiple
+                classifiers</span> to select the optimal model and minimize outreach costs.</p>
             <ul class="project-tags">
               <li>Python</li>
               <li>scikit-learn</li>
@@ -204,54 +269,8 @@
             </ul>
           </a>
 
-          <!-- Project 3 — div because it contains <a> tags (can't nest <a> in <a>) -->
-          <div class="project-card reveal" data-href="https://github.com/Abdu114hf16/Naive_Bayes_SMS_Classifier"
-            role="link" tabindex="0" aria-label="SMS Spam Classifier on GitHub">
-            <div class="project-header">
-              <svg class="project-folder" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="1.5" aria-hidden="true">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-              </svg>
-              <div class="project-gh-links">
-                <a href="https://github.com/Abdu114hf16/Naive_Bayes_SMS_Classifier" target="_blank"
-                  rel="noopener noreferrer" aria-label="Phase 1 on GitHub" class="project-gh-link"
-                  onclick="event.stopPropagation()">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path
-                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  <span class="link-label">Phase 1</span>
-                </a>
-                <a href="https://github.com/Abdu114hf16/Ensemble_SMS_Classifier" target="_blank"
-                  rel="noopener noreferrer" aria-label="Phase 2 on GitHub" class="project-gh-link"
-                  onclick="event.stopPropagation()">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path
-                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  <span class="link-label">Phase 2</span>
-                </a>
-              </div>
-            </div>
-            <h3 class="project-title">SMS Spam Classifier <span class="badge">2 Phases</span></h3>
-            <p class="project-desc">Two-phase NLP spam classifier. Phase 1: tokenizing training data into a
-              term-by-document matrix for a Naive Bayes model. Phase 2: optimization and ensemble methods — achieving
-              <span class="accent">97.2% precision</span>.
-            </p>
-            <ul class="project-tags">
-              <li>Python</li>
-              <li>scikit-learn</li>
-              <li>NLP</li>
-              <li>Naive Bayes</li>
-              <li>Ensemble</li>
-              <li>Jupyter</li>
-            </ul>
-          </div>
-
-          <!-- Project 4 -->
-          <a class="project-card reveal" href="https://github.com/Abdu114hf16/boolean-search-engine"
+          <!-- Project 4 — SMS Spam Classifier -->
+          <a class="project-card reveal" href="https://github.com/Abdu114hf16/Naive_Bayes_SMS_Classifier"
             target="_blank" rel="noopener noreferrer">
             <div class="project-header">
               <svg class="project-folder" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -266,10 +285,43 @@
                 </svg>
               </span>
             </div>
-            <h3 class="project-title">Boolean Search Engine</h3>
-            <p class="project-desc">A high-performance Boolean search engine with inverted index, supporting AND/OR
-              queries, has been tested on over 200K+ news articles resulting in <span class="accent">microsecond
-                retrieval times</span>.</p>
+            <h3 class="project-title" data-i18n="p_sms_t">SMS Spam Classifier</h3>
+            <p class="project-desc" data-i18n="p_sms_desc">An <span class="accent">NLP spam-detection model</span>
+              classifying SMS messages as spam
+              or ham using Multinomial Naive Bayes on text features, evaluated on precision, recall, and F1.</p>
+            <ul class="project-tags">
+              <li>Python</li>
+              <li>scikit-learn</li>
+              <li>NLP</li>
+              <li>Naive Bayes</li>
+              <li>Jupyter</li>
+            </ul>
+          </a>
+
+        </div>
+
+        <div class="projects-grid projects-extra" id="moreProjects">
+
+          <!-- Project 5 — Boolean Search Engine -->
+          <a class="project-card reveal" href="https://github.com/Abdu114hf16/boolean-search-engine" target="_blank"
+            rel="noopener noreferrer">
+            <div class="project-header">
+              <svg class="project-folder" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" aria-hidden="true">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+              </svg>
+              <span class="project-gh-link" aria-label="View on GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+              </span>
+            </div>
+            <h3 class="project-title" data-i18n="p_boolean_t">Boolean Search Engine</h3>
+            <p class="project-desc" data-i18n="p_boolean_desc">A high-performance Boolean search engine built on an
+              inverted index, supporting AND/OR query operators. Tested on a corpus of over 200K news articles,
+              achieving microsecond-level retrieval times.</p>
             <ul class="project-tags">
               <li>Python</li>
               <li>NLTK</li>
@@ -279,7 +331,7 @@
             </ul>
           </a>
 
-          <!-- Project 5 -->
+          <!-- Project 6 — Interactive KSA Discovery -->
           <a class="project-card reveal" href="https://github.com/Abdu114hf16/interactive-ksa-discovery"
             target="_blank" rel="noopener noreferrer">
             <div class="project-header">
@@ -295,10 +347,11 @@
                 </svg>
               </span>
             </div>
-            <h3 class="project-title">Interactive KSA Discovery</h3>
-            <p class="project-desc">A full-stack interactive web platform for exploring Saudi Arabia's regions and
-              cultural heritage — featuring admin CRUD, image galleries, real-time search, dark mode, and responsive
-              RTL Arabic interface.</p>
+            <h3 class="project-title" data-i18n="p_ksa_t">Interactive KSA Discovery</h3>
+            <p class="project-desc" data-i18n="p_ksa_desc">A <span class="accent">full-stack interactive web
+                platform</span> for exploring Saudi
+              Arabia's regions and cultural heritage — featuring admin CRUD, image galleries, real-time search, dark
+              mode, and responsive RTL Arabic interface.</p>
             <ul class="project-tags">
               <li>PHP</li>
               <li>MySQL</li>
@@ -311,8 +364,16 @@
 
         </div>
         <div class="projects-more reveal">
-          <a href="https://github.com/Abdu114hf16" target="_blank" rel="noopener noreferrer" class="btn-outline">
-            View All Projects on GitHub
+          <button class="btn-outline" id="viewMoreBtn" type="button">
+            <span data-i18n="p_viewmore">View More</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <a href="https://github.com/Abdu114hf16" target="_blank" rel="noopener noreferrer" class="btn-outline"
+            id="browseGithub" style="display:none;">
+            <span data-i18n="p_browse">Browse GitHub</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="5" y1="12" x2="19" y2="12" />
@@ -326,7 +387,7 @@
     <!-- ── SKILLS ─────────────────────────────────────────────── -->
     <section class="section" id="skills">
       <div class="container">
-        <h2 class="section-title reveal">Technical Skills</h2>
+        <h2 class="section-title reveal" data-i18n="skills_title">Technical Skills</h2>
         <div class="skills-grid">
 
           <div class="skill-group reveal">
@@ -336,17 +397,17 @@
                 <polyline points="16 18 22 12 16 6" />
                 <polyline points="8 6 2 12 8 18" />
               </svg>
-              Programming Languages
+              <span data-i18n="s_prog">Programming Languages</span>
             </h3>
             <ul class="skill-tags">
               <li>Python</li>
-              <li>SQL</li>
               <li>Java</li>
               <li>C</li>
-              <li>JavaScript</li>
+              <li>SQL</li>
+              <li>CUDA</li>
               <li>HTML</li>
               <li>CSS</li>
-              <li>CUDA</li>
+              <li>JavaScript</li>
             </ul>
           </div>
 
@@ -357,21 +418,16 @@
                 <path
                   d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
               </svg>
-              Data Science &amp; ML
+              <span data-i18n="s_ds">Data Science &amp; BI</span>
             </h3>
             <ul class="skill-tags">
-              <li>Supervised ML</li>
-              <li>Unsupervised ML</li>
+              <li>Machine Learning</li>
               <li>Deep Learning</li>
-              <li>Classification</li>
-              <li>Clustering</li>
-              <li>Regression</li>
-              <li>EDA</li>
+              <li>Natural Language Processing (NLP)</li>
               <li>Optimization</li>
-              <li>Statistical Analysis</li>
+              <li>Exploratory Data Analysis (EDA)</li>
               <li>Predictive Analytics</li>
-              <li>Time-Series Analysis</li>
-              <li>NLP</li>
+              <li>Data Visualization</li>
               <li>scikit-learn</li>
               <li>PyTorch</li>
               <li>pandas</li>
@@ -389,16 +445,16 @@
                 <rect x="14" y="14" width="7" height="7" />
                 <rect x="3" y="14" width="7" height="7" />
               </svg>
-              Business Intelligence
+              <span data-i18n="s_tools">Tools</span>
             </h3>
             <ul class="skill-tags">
               <li>Power BI</li>
-              <li>DAX</li>
-              <li>Data Modeling</li>
-              <li>Data Cleaning</li>
-              <li>Data Transformation</li>
-              <li>Data Visualization</li>
-              <li>Data Collection</li>
+              <li>MySQL</li>
+              <li>Git / GitHub</li>
+              <li>Jupyter Notebook</li>
+              <li>MS Office</li>
+              <li>VS Code</li>
+              <li>Claude Code</li>
             </ul>
           </div>
 
@@ -410,15 +466,13 @@
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
                 <path d="M4.93 4.93a10 10 0 0 0 0 14.14" />
               </svg>
-              Tools &amp; Platforms
+              <span data-i18n="s_soft">Soft Skills</span>
             </h3>
             <ul class="skill-tags">
-              <li>Git / GitHub</li>
-              <li>Jupyter Notebook</li>
-              <li>VS Code</li>
-              <li>PyCharm</li>
-              <li>Eclipse</li>
-              <li>MS Office</li>
+              <li data-i18n="ss_problem">Problem-Solving</li>
+              <li data-i18n="ss_time">Time Management</li>
+              <li data-i18n="ss_team">Teamwork</li>
+              <li data-i18n="ss_learn">Continuous Learning</li>
             </ul>
           </div>
 
@@ -429,147 +483,131 @@
     <!-- ── CERTIFICATIONS ─────────────────────────────────────── -->
     <section class="section section-alt" id="certifications">
       <div class="container">
-        <h2 class="section-title reveal">Certifications</h2>
+        <h2 class="section-title reveal" data-i18n="certs_title">Certifications</h2>
         <div class="certs-grid">
 
           <a class="cert-card reveal" href="https://coursera.org/share/b4f3772ade9c05f85cf140091528ced5" target="_blank"
             rel="noopener noreferrer">
-            <div class="cert-card-inner">
-              <div class="cert-card-front">
-                <div class="cert-thumb">
-                  <img src="assets/ml_specialization-1.png" alt="Machine Learning Specialization certificate" />
-                </div>
-                <div class="cert-info">
-                  <h3 class="cert-title">Machine Learning Specialization</h3>
-                  <p class="cert-issuer">DeepLearning.AI &amp; Stanford University</p>
-                  <ul class="cert-topics">
-                    <li>Supervised Learning</li>
-                    <li>Unsupervised Learning</li>
-                    <li>Deep Learning</li>
-                    <li>Reinforcement Learning</li>
-                    <li>Decision Tree Learning</li>
-                    <li>Random Forest</li>
-                    <li>Transfer Learning</li>
-                    <li>Feature Engineering</li>
-                    <li>Data Preprocessing</li>
-                    <li>Model Evaluation</li>
-                    <li>Predictive Modeling</li>
-                    <li>Data Ethics</li>
-                    <li>TensorFlow</li>
-                    <li>scikit-learn</li>
-                    <li>NumPy</li>
-                    <li>Jupyter</li>
-                  </ul>
-                  <span class="cert-link-label">View Certificate ↗</span>
-                </div>
+            <div class="cert-thumb">
+              <img src="assets/ml_specialization-1.png" alt="Machine Learning Specialization certificate" />
+            </div>
+            <div class="cert-info">
+              <h3 class="cert-title">Machine Learning Specialization</h3>
+              <div class="cert-meta-row">
+                <p class="cert-issuer">DeepLearning.AI &amp; Stanford</p>
+                <span class="cert-date">Jan 2026</span>
               </div>
-              <div class="cert-card-back">
-                <img src="assets/ml_specialization-1.png" alt="Machine Learning Specialization certificate full" />
-              </div>
+              <ul class="cert-topics">
+                <li>Supervised Learning</li>
+                <li>Unsupervised Learning</li>
+                <li>Deep Learning</li>
+                <li>Reinforcement Learning</li>
+                <li>Decision Tree Learning</li>
+                <li>Random Forest</li>
+                <li>Transfer Learning</li>
+                <li>Feature Engineering</li>
+                <li>Data Preprocessing</li>
+                <li>Model Evaluation</li>
+                <li>Predictive Modeling</li>
+                <li>Data Ethics</li>
+                <li>TensorFlow</li>
+                <li>scikit-learn</li>
+                <li>NumPy</li>
+                <li>Jupyter</li>
+              </ul>
+              <span class="cert-link-label" data-i18n="cert_view">View Certificate ↗</span>
             </div>
           </a>
 
           <a class="cert-card reveal" href="https://coursera.org/share/e2e4fdf9382b0e83b6b830387cc7b381" target="_blank"
             rel="noopener noreferrer">
-            <div class="cert-card-inner">
-              <div class="cert-card-front">
-                <div class="cert-thumb">
-                  <img src="assets/google_data_analytics-1.png" alt="Google Data Analytics certificate" />
-                </div>
-                <div class="cert-info">
-                  <h3 class="cert-title">Google Data Analytics</h3>
-                  <p class="cert-issuer">Google — Professional Certificate</p>
-                  <ul class="cert-topics">
-                    <li>Data Analysis</li>
-                    <li>Data Manipulation</li>
-                    <li>Data Validation</li>
-                    <li>Data-Driven Decision-Making</li>
-                    <li>Data Ethics</li>
-                    <li>Data Security</li>
-                    <li>Data Structures</li>
-                    <li>Spreadsheet Software</li>
-                    <li>Stakeholder Communications</li>
-                    <li>R Programming</li>
-                    <li>Tidyverse</li>
-                    <li>ggplot2</li>
-                    <li>RMarkdown</li>
-                    <li>Dashboard</li>
-                  </ul>
-                  <span class="cert-link-label">View Certificate ↗</span>
-                </div>
+            <div class="cert-thumb">
+              <img src="assets/google_data_analytics-1.png" alt="Google Data Analytics Professional Certificate" />
+            </div>
+            <div class="cert-info">
+              <h3 class="cert-title">Data Analytics Professional Certificate</h3>
+              <div class="cert-meta-row">
+                <p class="cert-issuer">Google</p>
+                <span class="cert-date">Sep 2025</span>
               </div>
-              <div class="cert-card-back">
-                <img src="assets/google_data_analytics-1.png" alt="Google Data Analytics certificate full" />
-              </div>
+              <ul class="cert-topics">
+                <li>Data Analysis</li>
+                <li>Data Manipulation</li>
+                <li>Data Validation</li>
+                <li>Data-Driven Decision-Making</li>
+                <li>Data Ethics</li>
+                <li>Data Security</li>
+                <li>Data Structures</li>
+                <li>Spreadsheet Software</li>
+                <li>Stakeholder Communications</li>
+                <li>R Programming</li>
+                <li>Tidyverse</li>
+                <li>ggplot2</li>
+                <li>RMarkdown</li>
+                <li>Dashboard</li>
+              </ul>
+              <span class="cert-link-label" data-i18n="cert_view">View Certificate ↗</span>
             </div>
           </a>
 
           <a class="cert-card reveal" href="https://www.udacity.com/certificate/e/97af985c-03a5-11f1-b770-a384c7609781"
             target="_blank" rel="noopener noreferrer">
-            <div class="cert-card-inner">
-              <div class="cert-card-front">
-                <div class="cert-thumb">
-                  <img src="assets/bi_analytics-1.png" alt="Business Intelligence Analytics certificate" />
-                </div>
-                <div class="cert-info">
-                  <h3 class="cert-title">Business Intelligence Analytics</h3>
-                  <p class="cert-issuer">Udacity</p>
-                  <ul class="cert-topics">
-                    <li>Power BI</li>
-                    <li>Power Query</li>
-                    <li>DAX</li>
-                    <li>Data Cleaning</li>
-                    <li>Data Transformation</li>
-                    <li>Star Schemas</li>
-                    <li>Relational Data Models</li>
-                    <li>Descriptive Statistics</li>
-                    <li>Predictive Analytics</li>
-                    <li>Linear Regression</li>
-                    <li>Cluster Models</li>
-                    <li>Time-Series Forecasting</li>
-                    <li>Classification Models</li>
-                    <li>Advanced Data Visualizations</li>
-                    <li>Report Design</li>
-                  </ul>
-                  <span class="cert-link-label">View Certificate ↗</span>
-                </div>
+            <div class="cert-thumb">
+              <img src="assets/bi_analytics-1.png" alt="Business Intelligence Analytics Nanodegree certificate" />
+            </div>
+            <div class="cert-info">
+              <h3 class="cert-title">Business Intelligence Analytics Nanodegree</h3>
+              <div class="cert-meta-row">
+                <p class="cert-issuer">Udacity</p>
+                <span class="cert-date">Apr 2026</span>
               </div>
-              <div class="cert-card-back">
-                <img src="assets/bi_analytics-1.png" alt="Business Intelligence Analytics certificate full" />
-              </div>
+              <ul class="cert-topics">
+                <li>Power BI</li>
+                <li>Power Query</li>
+                <li>DAX</li>
+                <li>Data Cleaning</li>
+                <li>Data Transformation</li>
+                <li>Star Schemas</li>
+                <li>Relational Data Models</li>
+                <li>Descriptive Statistics</li>
+                <li>Predictive Analytics</li>
+                <li>Linear Regression</li>
+                <li>Cluster Models</li>
+                <li>Time-Series Forecasting</li>
+                <li>Classification Models</li>
+                <li>Advanced Data Visualizations</li>
+                <li>Report Design</li>
+              </ul>
+              <span class="cert-link-label" data-i18n="cert_view">View Certificate ↗</span>
             </div>
           </a>
 
           <a class="cert-card reveal" href="https://coursera.org/share/cfc0e4066f9145c48f14b177e8ca8941" target="_blank"
             rel="noopener noreferrer">
-            <div class="cert-card-inner">
-              <div class="cert-card-front">
-                <div class="cert-thumb">
-                  <img src="assets/ibm_cloud_computing-1.png" alt="IBM Cloud Computing certificate" />
-                </div>
-                <div class="cert-info">
-                  <h3 class="cert-title">IBM Cloud Computing</h3>
-                  <p class="cert-issuer">IBM</p>
-                  <ul class="cert-topics">
-                    <li>Cloud Computing</li>
-                    <li>Cloud Architecture</li>
-                    <li>Cloud Infrastructure</li>
-                    <li>Cloud Deployment</li>
-                    <li>Cloud Storage</li>
-                    <li>Cloud Security</li>
-                    <li>Cloud Platforms</li>
-                    <li>Virtual Machines</li>
-                    <li>Serverless Computing</li>
-                    <li>Microservices</li>
-                    <li>DevOps</li>
-                    <li>Emerging Technologies</li>
-                  </ul>
-                  <span class="cert-link-label">View Certificate ↗</span>
-                </div>
+            <div class="cert-thumb">
+              <img src="assets/ibm_cloud_computing-1.png" alt="Introduction to Cloud Computing certificate" />
+            </div>
+            <div class="cert-info">
+              <h3 class="cert-title">Introduction to Cloud Computing</h3>
+              <div class="cert-meta-row">
+                <p class="cert-issuer">IBM</p>
+                <span class="cert-date">Oct 2025</span>
               </div>
-              <div class="cert-card-back">
-                <img src="assets/ibm_cloud_computing-1.png" alt="IBM Cloud Computing certificate full" />
-              </div>
+              <ul class="cert-topics">
+                <li>Cloud Computing</li>
+                <li>Cloud Architecture</li>
+                <li>Cloud Infrastructure</li>
+                <li>Cloud Deployment</li>
+                <li>Cloud Storage</li>
+                <li>Cloud Security</li>
+                <li>Cloud Platforms</li>
+                <li>Virtual Machines</li>
+                <li>Serverless Computing</li>
+                <li>Microservices</li>
+                <li>DevOps</li>
+                <li>Emerging Technologies</li>
+              </ul>
+              <span class="cert-link-label" data-i18n="cert_view">View Certificate ↗</span>
             </div>
           </a>
 
@@ -580,20 +618,21 @@
     <!-- ── EDUCATION ──────────────────────────────────────────── -->
     <section class="section" id="education">
       <div class="container">
-        <h2 class="section-title reveal">Education</h2>
+        <h2 class="section-title reveal" data-i18n="edu_title">Education</h2>
         <div class="edu-card reveal">
           <div class="edu-left">
             <div class="edu-logo" aria-hidden="true">KSU</div>
           </div>
           <div class="edu-right">
             <div class="edu-header">
-              <h3 class="edu-institution">King Saud University</h3>
-              <span class="edu-location">Riyadh, Saudi Arabia</span>
+              <h3 class="edu-institution" data-i18n="edu_inst">King Saud University (KSU)</h3>
+              <span class="edu-location" data-i18n="edu_loc">Riyadh, Saudi Arabia</span>
             </div>
-            <p class="edu-degree">B.Sc. Computer Science</p>
+            <p class="edu-degree" data-i18n="edu_degree">Bachelor of Science in Computer Science</p>
             <div class="edu-meta">
-              <span class="edu-gpa">GPA: <strong class="accent">4.85 / 5.0</strong></span>
-              <span class="edu-grad">Expected Graduation: <strong>2026</strong></span>
+              <span class="edu-gpa"><span data-i18n="edu_gpa_l">GPA:</span> <strong class="accent">4.85 / 5.0</strong></span>
+              <span class="edu-honor" data-i18n="edu_honor">First Honor</span>
+              <span class="edu-grad"><span data-i18n="edu_grad_l">Expected Graduation:</span> <strong>2026</strong></span>
             </div>
           </div>
         </div>
@@ -603,13 +642,33 @@
     <!-- ── CONTACT ────────────────────────────────────────────── -->
     <section class="section section-alt" id="contact">
       <div class="container contact-inner reveal">
-        <p class="contact-overline">What's next?</p>
-        <h2 class="contact-heading">Get In Touch</h2>
-        <p class="contact-text">
-          I'm actively looking for a Data Science, Data Analytics, or Business Intelligence internship.
-          Whether you have a question, an opportunity, or just want to connect — my inbox is always open.
+        <p class="contact-overline" data-i18n="contact_overline">What's next?</p>
+        <h2 class="contact-heading" data-i18n="contact_heading">Get In Touch</h2>
+        <p class="contact-text" data-i18n="contact_text">
+          Have a question, an opportunity, or simply want to connect? My inbox is always open —
+          here's where to find me.
         </p>
-        <a href="mailto:me@alshammari.dev" class="btn-primary btn-large">Say Hello</a>
+        <ul class="contact-methods">
+          <li>
+            <span class="cm-label" data-i18n="cm_email">Email</span>
+            <a href="mailto:abdullah.tecch@gmail.com">abdullah.tecch@gmail.com</a>
+          </li>
+          <li>
+            <span class="cm-label" data-i18n="cm_phone">Phone</span>
+            <a href="tel:+966538845755">0538845755</a>
+          </li>
+          <li>
+            <span class="cm-label" data-i18n="cm_linkedin">LinkedIn</span>
+            <a href="https://linkedin.com/in/alshammaridev" target="_blank"
+              rel="noopener noreferrer">linkedin.com/in/alshammaridev</a>
+          </li>
+          <li>
+            <span class="cm-label" data-i18n="cm_github">GitHub</span>
+            <a href="https://github.com/Abdu114hf16" target="_blank"
+              rel="noopener noreferrer">github.com/Abdu114hf16</a>
+          </li>
+        </ul>
+        <a href="mailto:abdullah.tecch@gmail.com" class="btn-primary btn-large" data-i18n="contact_cta">Reach Out</a>
       </div>
     </section>
 
@@ -634,7 +693,7 @@
             <circle cx="4" cy="4" r="2" />
           </svg>
         </a>
-        <a href="mailto:me@alshammari.dev" aria-label="Email">
+        <a href="mailto:abdullah.tecch@gmail.com" aria-label="Email">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -643,7 +702,7 @@
         </a>
       </div>
       <p class="footer-copy">
-        <span class="mono">Designed &amp; built by Abdullah Alshammari</span>
+        <span class="mono" data-i18n="footer_copy">Designed &amp; built by Abdullah Alshammari</span>
       </p>
     </div>
   </footer>
