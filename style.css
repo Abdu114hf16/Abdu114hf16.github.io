@@ -1,5 +1,5 @@
 /* =====================================================================
-   Abdullah Alshammari — Portfolio
+   Abdullah Alshammari - Portfolio
    Style: BRUTALIST MONO
    Space Grotesk (display) · JetBrains Mono (mono/body)
    Black ink on paper · thick rules · hard offset shadows · acid accent
@@ -749,7 +749,7 @@ h1, h2, h3 { font-family: var(--fd); font-weight: 700; line-height: 1.02; letter
   .ctrl-lang { font-size: 16px; }
   .nav-toggle { display: flex; }
 
-  /* full-width dropdown — clean show/hide, layered above page content */
+  /* full-width dropdown - clean show/hide, layered above page content */
   .nav-links {
     position: absolute;
     top: 64px; left: 0; right: 0;
@@ -815,12 +815,12 @@ h1, h2, h3 { font-family: var(--fd); font-weight: 700; line-height: 1.02; letter
    Goal: easy on the eyes. Surfaces are layered warm-charcoals, borders
    are a soft mid-grey (NOT bone-white), shadows are deep/quiet, and text
    is a warm off-white rather than pure white. The brutalist character is
-   carried by the borders, squares and accent — not by glare.
+   carried by the borders, squares and accent - not by glare.
    ------------------------------------------------------------------- */
 [data-theme="dark"] {
   --paper:   #1f1d19;   /* cards & raised surfaces (slightly elevated) */
   --paper-2: #17150f;   /* page / alt sections (recede behind cards)   */
-  --ink:     #e8e3d7;   /* warm off-white text — comfortable contrast  */
+  --ink:     #e8e3d7;   /* warm off-white text - comfortable contrast  */
   --muted:   #9d978a;   /* secondary text                              */
   --accent:  #f2c93b;   /* a touch calmer than the light-mode yellow   */
   --accent-ink: #17150f;
@@ -863,7 +863,7 @@ h1, h2, h3 { font-family: var(--fd); font-weight: 700; line-height: 1.02; letter
 
 /* ── ARABIC / RTL ────────────────────────────────────────────────────
    Body text → Cairo (clean, highly legible). Headings → Noto Kufi Arabic
-   (geometric, blocky — keeps the brutalist character in Arabic).
+   (geometric, blocky - keeps the brutalist character in Arabic).
    ------------------------------------------------------------------- */
 [dir="rtl"] body,
 [dir="rtl"] body * {
@@ -879,7 +879,7 @@ h1, h2, h3 { font-family: var(--fd); font-weight: 700; line-height: 1.02; letter
   font-family: 'Noto Kufi Arabic', 'Cairo', sans-serif;
 }
 /* Arabic script is cursive: letter-spacing breaks glyph joining, and
-   uppercase is a no-op — neutralise both in RTL. */
+   uppercase is a no-op - neutralise both in RTL. */
 [dir="rtl"] * { letter-spacing: normal !important; }
 [dir="rtl"] .hero-greeting,
 [dir="rtl"] .section-title,
