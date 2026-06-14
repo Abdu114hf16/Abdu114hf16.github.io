@@ -739,23 +739,39 @@ h1, h2, h3 { font-family: var(--fd); font-weight: 700; line-height: 1.02; letter
 }
 
 @media (max-width: 680px) {
+  .container { padding-inline: 20px; }
+
+  /* tidy top bar: shorter, evenly-spaced controls */
+  .nav { height: 64px; }
+  .nav-cluster { gap: 8px; }
+  .nav-logo { width: 44px; height: 44px; font-size: 18px; }
+  .ctrl-btn, .nav-toggle { width: 44px; height: 44px; }
+  .ctrl-lang { font-size: 16px; }
   .nav-toggle { display: flex; }
+
+  /* full-width dropdown — clean show/hide, layered above page content */
   .nav-links {
     position: absolute;
-    top: 72px; left: 0; right: 0;
+    top: 64px; left: 0; right: 0;
     flex-direction: column;
     align-items: stretch;
-    gap: 0;
+    gap: 4px;
     background: var(--paper);
     border-bottom: var(--line-3);
-    padding: 8px;
-    transform: translateY(-150%);
-    transition: transform 0.3s var(--ease);
-    z-index: -1;
+    box-shadow: 0 16px 24px -12px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+    z-index: 50;
   }
-  .nav-links.open { transform: translateY(0); }
-  .nav-links a { padding: 14px; border: 2px solid transparent; }
-  .nav-links a.active { border-color: var(--ink); }
+  .nav-links.open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-links a { display: block; padding: 14px 12px; border: 2px solid transparent; font-size: 14px; }
+  .nav-links a:hover,
+  .nav-links a.active { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+  .nav-links a.nav-cta { background: var(--ink); color: var(--paper); text-align: center; border-color: var(--ink); }
+  .nav-links a.nav-cta:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
   .section { padding: 72px 0; }
   .section-title { margin-bottom: 38px; }
   .edu-card { grid-template-columns: 1fr; }
