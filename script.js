@@ -139,6 +139,7 @@ if (themeToggle) {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem(THEME_KEY, 'dark');
     }
+    track('Theme toggle', { theme: isDark ? 'light' : 'dark' });
   });
 }
 
@@ -250,6 +251,7 @@ if (langToggle) {
   langToggle.addEventListener('click', () => {
     const isArabic = document.documentElement.getAttribute('lang') === 'ar';
     setLang(isArabic ? 'en' : 'ar');
+    track('Language toggle', { language: isArabic ? 'en' : 'ar' });
   });
 }
 
@@ -260,3 +262,69 @@ if (localStorage.getItem(LANG_KEY) === 'ar') {
 } else if (langToggle) {
   langToggle.textContent = 'ع';
 }
+
+// ── ANALYTICS: custom events (Umami) ──────────────────────
+// Lightweight, language-stable instrumentation. `track` is a safe no-op
+// if the (deferred, ad-block-able) Umami script hasn't loaded.
+function track(name, data) {
+  try { if (window.umami && typeof window.umami.track === 'function') window.umami.track(name, data); }
+  catch (e) { /* never let analytics break the page */ }
+}
+
+// Stable English labels keyed off the GitHub URL, so EN/AR clicks group together.
+const PROJECT_NAMES = {
+  Commercial_Flights_Delays_Analysis: 'Commercial Flights Delays Analysis',
+  Optimizing_Donors_Outreach: 'Optimizing Donors Outreach',
+  Naive_Bayes_SMS_Classifier: 'SMS Spam Classifier',
+  'boolean-search-engine': 'Boolean Search Engine',
+  'interactive-ksa-discovery': 'Interactive KSA Discovery',
+};
+function projectName(href) {
+  for (const key in PROJECT_NAMES) if (href.indexOf(key) !== -1) return PROJECT_NAMES[key];
+  return 'Eventia'; // the only card that links to the profile root
+}
+function network(href) {
+  if (href.indexOf('mailto:') === 0) return 'Email';
+  if (href.indexOf('tel:') === 0) return 'Phone';
+  if (href.indexOf('linkedin') !== -1) return 'LinkedIn';
+  if (href.indexOf('github') !== -1) return 'GitHub';
+  return 'Other';
+}
+
+// One delegated listener handles every click-based event.
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('a, button');
+  if (!el) return;
+  const href = el.getAttribute('href') || '';
+
+  const proj = e.target.closest('.project-card');
+  if (proj) { track('Project click', { project: projectName(proj.getAttribute('href') || '') }); return; }
+
+  const cert = e.target.closest('.cert-card');
+  if (cert) {
+    const t = cert.querySelector('.cert-title');
+    track('Certificate click', { certificate: t ? t.textContent.trim() : 'unknown' });
+    return;
+  }
+
+  if (e.target.closest('.contact-methods')) { track('Contact click', { method: network(href) }); return; }
+  if (el.matches('[data-i18n="contact_cta"]')) { track('CTA: Reach Out'); return; }
+  if (el.matches('[data-i18n="hero_cta"]'))    { track('CTA: View My Work'); return; }
+  if (el.id === 'viewMoreBtn')  { track('View more projects'); return; }
+  if (el.id === 'browseGithub') { track('Browse GitHub'); return; }
+  if (e.target.closest('.hero-links'))   { track('Social click', { network: network(href), area: 'hero' });   return; }
+  if (e.target.closest('.footer-links')) { track('Social click', { network: network(href), area: 'footer' }); return; }
+  if (e.target.closest('.nav-links'))    { track('Nav click', { to: href.replace('#', '') || 'home' });       return; }
+});
+
+// Scroll depth — fires each threshold once.
+const _depths = [25, 50, 75, 100];
+const _seen = new Set();
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  if (max <= 0) return;
+  const pct = (window.scrollY / max) * 100;
+  for (const d of _depths) {
+    if (pct >= d && !_seen.has(d)) { _seen.add(d); track('Scroll depth', { percent: d }); }
+  }
+}, { passive: true });
