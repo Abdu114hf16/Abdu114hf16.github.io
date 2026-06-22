@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Abdullah Alshammari</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="top">
+    <header>
+        <nav role="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>PROJECTS</h1>
+            <p class="subtitle">Hands-on work across Data Science, Business Intelligence, and Software Development -
+                each with a quick summary and a full write-up.</p>
+        </section>
+
+        <section>
+            <div class="projects-grid">
+
+                <!-- ════════════════════════════════════════════════════════════════
+                     To add a project: copy ONE <article class="proj"> block below,
+                     update its fields, and create a matching page in blog/ (use
+                     blog/_template.html as the starting point).
+                     ════════════════════════════════════════════════════════════════ -->
+
+                <article class="proj">
+                    <div class="proj-head">
+                        <h3>Medical Insurance Cost Prediction</h3>
+                        <span class="proj-badge">Featured</span>
+                    </div>
+                    <p><span class="proj-label problem">Problem</span>Insurers must price premiums accurately and still
+                        be able to explain every quote to customers and regulators.</p>
+                    <p><span class="proj-label solution">Solution</span>A CRISP-DM regression project that predicts
+                        annual medical cost (<span class="highlight">R&sup2; &asymp; 0.91</span>) and explains each
+                        prediction with SHAP values.</p>
+                    <ul class="tech-tags">
+                        <li>Python</li>
+                        <li>scikit-learn</li>
+                        <li>SHAP</li>
+                        <li>statsmodels</li>
+                    </ul>
+                    <a class="proj-link" href="blog/medical-cost-prediction.html">Read the full journey <span
+                            class="arr">&rarr;</span></a>
+                </article>
+
+                <article class="proj">
+                    <div class="proj-head">
+                        <h3>Eventia</h3>
+                        <span class="proj-badge">Graduation</span>
+                    </div>
+                    <p><span class="proj-label problem">Problem</span>Organizers, attendees, vendors and admins juggle
+                        fragmented tools across the entire event lifecycle.</p>
+                    <p><span class="proj-label solution">Solution</span>A centralized, role-based platform with a Gemini-powered
+                        AI assistant, SCEGA licensing workflows, in-app messaging and analytics dashboards.</p>
+                    <ul class="tech-tags">
+                        <li>Django</li>
+                        <li>Python</li>
+                        <li>MySQL</li>
+                        <li>Gemini AI</li>
+                    </ul>
+                    <a class="proj-link" href="blog/eventia.html">Read the full journey <span class="arr">&rarr;</span></a>
+                </article>
+
+                <article class="proj">
+                    <div class="proj-head">
+                        <h3>Commercial Flights Delays Analysis</h3>
+                    </div>
+                    <p><span class="proj-label problem">Problem</span>Flight delays are costly and hard to anticipate for
+                        airlines and passengers alike.</p>
+                    <p><span class="proj-label solution">Solution</span>A Power BI BI + predictive solution - regression,
+                        clustering, time-series forecasting and anomaly detection - that predicts delay probability and
+                        optimizes logistics.</p>
+                    <ul class="tech-tags">
+                        <li>Power BI</li>
+                        <li>DAX</li>
+                        <li>Predictive Analytics</li>
+                    </ul>
+                    <a class="proj-link" href="blog/commercial-flights-delays.html">Read the full journey <span
+                            class="arr">&rarr;</span></a>
+                </article>
+
+                <article class="proj">
+                    <div class="proj-head">
+                        <h3>Optimizing Donors Outreach</h3>
+                    </div>
+                    <p><span class="proj-label problem">Problem</span>Charities waste outreach budget contacting unlikely
+                        donors.</p>
+                    <p><span class="proj-label solution">Solution</span>A supervised ML pipeline - deep EDA plus cross-validated
+                        model selection - that flags the most likely donors and minimizes outreach cost.</p>
+                    <ul class="tech-tags">
+                        <li>Python</li>
+                        <li>scikit-learn</li>
+                        <li>pandas</li>
+                        <li>NumPy</li>
+                    </ul>
+                    <a class="proj-link" href="blog/optimizing-donors-outreach.html">Read the full journey <span
+                            class="arr">&rarr;</span></a>
+                </article>
+
+                <article class="proj">
+                    <div class="proj-head">
+                        <h3>SMS Spam Classifier</h3>
+                    </div>
+                    <p><span class="proj-label problem">Problem</span>Spam messages clutter inboxes and put users at risk.</p>
+                    <p><span class="proj-label solution">Solution</span>An NLP classifier using Multinomial Naive Bayes that
+                        labels SMS as spam or ham, reaching <span class="highlight">97.2% precision</span>.</p>
+                    <ul class="tech-tags">
+                        <li>Python</li>
+                        <li>scikit-learn</li>
+                        <li>NLP</li>
+                    </ul>
+                    <a class="proj-link" href="blog/sms-spam-classifier.html">Read the full journey <span
+                            class="arr">&rarr;</span></a>
+                </article>
+
+                <article class="proj">
+                    <div class="proj-head">
+                        <h3>Boolean Search Engine</h3>
+                    </div>
+                    <p><span class="proj-label problem">Problem</span>Searching huge text corpora with logical queries needs to
+                        be fast.</p>
+                    <p><span class="proj-label solution">Solution</span>A high-performance Boolean engine on an inverted index
+                        (AND/OR), tested on 200K+ articles at <span class="highlight">microsecond retrieval</span>.</p>
+                    <ul class="tech-tags">
+                        <li>Python</li>
+                        <li>NLTK</li>
+                        <li>Information Retrieval</li>
+                    </ul>
+                    <a class="proj-link" href="blog/boolean-search-engine.html">Read the full journey <span
+                            class="arr">&rarr;</span></a>
+                </article>
+
+                <article class="proj">
+                    <div class="proj-head">
+                        <h3>Interactive KSA Discovery</h3>
+                    </div>
+                    <p><span class="proj-label problem">Problem</span>Exploring Saudi regions and heritage is scattered across
+                        sources.</p>
+                    <p><span class="proj-label solution">Solution</span>A full-stack platform with admin CRUD, image galleries,
+                        real-time search, dark mode and a responsive RTL Arabic UI.</p>
+                    <ul class="tech-tags">
+                        <li>PHP</li>
+                        <li>MySQL</li>
+                        <li>JavaScript</li>
+                    </ul>
+                    <a class="proj-link" href="blog/interactive-ksa-discovery.html">Read the full journey <span
+                            class="arr">&rarr;</span></a>
+                </article>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>More on GitHub</h2>
+            <p>View additional projects and source code on my <a href="https://github.com/Abdu114hf16">GitHub
+                    profile</a>.</p>
+        </section>
+    </main>
+    <footer>
+        <p class="footer-credit">&copy; Designed &amp; built by Abdullah Alshammari</p>
+    </footer>
+
+    <button id="backToTopFab" aria-label="Back to top" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="6 11 12 5 18 11"></polyline>
+        </svg>
+    </button>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

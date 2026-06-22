@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Insurance Cost Prediction - Abdullah Alshammari</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body id="top">
+    <header>
+        <nav role="navigation">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">CV</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <p><a class="blog-back" href="../projects.html">&larr; Back to Projects</a></p>
+            <h1>What Makes Medical Insurance Expensive?</h1>
+            <p class="subtitle">Predicting annual medical cost and explaining every quote with machine learning.</p>
+        </section>
+
+        <section>
+            <img class="blog-shot" src="../visuals/mcp_preview_interaction.png"
+                alt="Annual charges versus BMI, split by smoking status">
+        </section>
+
+        <section>
+            <h2>Problem</h2>
+            <p>Insurers need to price premiums that cover expected medical costs without overcharging customers. But a
+                price is only defensible if it can be explained - to the customer who pays it and to the regulator who
+                reviews it. So the challenge is twofold: predict a person's annual medical cost accurately, and explain
+                how each prediction was reached.</p>
+
+            <h2>Solution</h2>
+            <p>Using the public insurance dataset (1,300+ records with age, sex, BMI, children, smoking status and
+                region), I built a linear regression model and explained its predictions with SHAP values. The whole
+                project follows the CRISP-DM process, from business understanding through to a deployable model.</p>
+
+            <h2>Tech Stack</h2>
+            <ul class="tech-tags">
+                <li>Python</li>
+                <li>scikit-learn</li>
+                <li>statsmodels</li>
+                <li>SHAP</li>
+                <li>pandas</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>The Questions I Asked</h2>
+
+            <p><strong>1. Can we predict annual cost well enough to price premiums?</strong><br>
+                Yes. A linear model with the right features reached an R&sup2; of about 0.91 and a typical error
+                (RMSE) near $4,100 - comfortably past the 0.80 target I set at the start.</p>
+
+            <p><strong>2. What drives medical cost the most?</strong><br>
+                Smoking - but not on its own. The combination of smoking and a high BMI dominates everything else,
+                followed by age. The chart below ranks how much each factor pushes a prediction up or down.</p>
+
+            <img class="blog-shot" src="../visuals/mcp_preview_shap.png"
+                alt="SHAP feature importance for predicted medical cost">
+
+            <p><strong>3. Does BMI affect everyone equally?</strong><br>
+                No - and this was the key insight. For non-smokers, BMI barely moves the bill. For smokers, a higher
+                BMI raises cost sharply (see the title chart). Capturing this interaction is what lifted the model from
+                0.81 to 0.91.</p>
+
+            <p><strong>4. Can we explain a single customer's quote?</strong><br>
+                Yes. SHAP breaks any individual prediction into the exact dollar contribution of each attribute, so an
+                insurer can point to precisely why one person's estimate is higher than another's.</p>
+        </section>
+
+        <section>
+            <h2>Takeaway</h2>
+            <p>A simple, transparent model beat a more complex Random Forest here (0.91 vs 0.88). When a decision has to
+                be explained, an interpretable model that you can defend is worth more than a black box that you
+                cannot.</p>
+        </section>
+
+        <section>
+            <h2>Source</h2>
+            <p><a href="https://github.com/Abdu114hf16/medical-insurance-cost-prediction">View the code on GitHub
+                    &rarr;</a></p>
+        </section>
+    </main>
+    <footer>
+        <p class="footer-credit">&copy; Designed &amp; built by Abdullah Alshammari</p>
+    </footer>
+
+    <button id="backToTopFab" aria-label="Back to top" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="6 11 12 5 18 11"></polyline>
+        </svg>
+    </button>
+
+    <script src="../scripts.js"></script>
+</body>
+
+</html>
