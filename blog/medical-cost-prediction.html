@@ -23,71 +23,108 @@
         <section>
             <p><a class="blog-back" href="../projects.html">&larr; Back to Projects</a></p>
             <h1>What Makes Medical Insurance Expensive?</h1>
-            <p class="subtitle">Predicting annual medical cost and explaining every quote with machine learning.</p>
+            <p class="subtitle">What shapes an annual insurance bill, and why two customers can be priced so
+                differently.</p>
+            <img class="blog-hero" src="../heroes/MIC.webp"
+                alt="Medical insurance cost prediction project banner">
         </section>
 
         <section>
-            <img class="blog-shot" src="../visuals/mcp_preview_interaction.png"
-                alt="Annual charges versus BMI, split by smoking status">
+            <h2>Introduction</h2>
+            <p>Every premium has to balance two needs. It must cover the cost a customer is likely to incur, and it must
+                be explainable when that customer, or a regulator, asks why the number is what it is. This project looks
+                at both sides using a public dataset of medical charges, following the CRISP-DM process from business
+                understanding through to a working model.</p>
         </section>
 
         <section>
             <h2>Problem</h2>
-            <p>Insurers need to price premiums that cover expected medical costs without overcharging customers. But a
-                price is only defensible if it can be explained - to the customer who pays it and to the regulator who
-                reviews it. So the challenge is twofold: predict a person's annual medical cost accurately, and explain
-                how each prediction was reached.</p>
+            <p>Insurers need to price premiums that cover expected medical costs without overcharging customers. A price
+                is only useful, though, if it can be justified to the person who pays it and to the regulator who
+                reviews it. The goal is therefore twofold: predict annual cost accurately, and explain how every
+                prediction was reached.</p>
 
             <h2>Solution</h2>
-            <p>Using the public insurance dataset (1,300+ records with age, sex, BMI, children, smoking status and
-                region), I built a linear regression model and explained its predictions with SHAP values. The whole
-                project follows the CRISP-DM process, from business understanding through to a deployable model.</p>
+            <p>The public insurance dataset holds 1,300 records with age, sex, BMI, number of children, smoking status
+                and region. A linear regression model predicts the annual cost, and SHAP values explain each prediction
+                by attributing it back to the customer attributes that drove it.</p>
 
             <h2>Tech Stack</h2>
-            <ul class="tech-tags">
+            <ul class="tech-stack">
                 <li>Python</li>
                 <li>scikit-learn</li>
                 <li>statsmodels</li>
                 <li>SHAP</li>
                 <li>pandas</li>
+                <li>Jupyter Notebook</li>
+                <li>VS Code</li>
             </ul>
         </section>
 
         <section>
-            <h2>The Questions I Asked</h2>
+            <h2>Answering Business Questions with Data</h2>
 
-            <p><strong>1. Can we predict annual cost well enough to price premiums?</strong><br>
-                Yes. A linear model with the right features reached an R&sup2; of about 0.91 and a typical error
-                (RMSE) near $4,100 - comfortably past the 0.80 target I set at the start.</p>
+            <p><strong>1. Can annual cost be predicted accurately enough to set premiums?</strong><br>
+                Yes. A linear model that captures the right factors explains about 91% of the variation in annual cost,
+                with a typical error of roughly $4,100 per customer. That is accurate enough to support real pricing
+                decisions.</p>
 
             <p><strong>2. What drives medical cost the most?</strong><br>
-                Smoking - but not on its own. The combination of smoking and a high BMI dominates everything else,
-                followed by age. The chart below ranks how much each factor pushes a prediction up or down.</p>
+                Smoking, but rarely on its own. The combination of smoking and a high BMI outweighs every other factor,
+                followed by age. The chart below ranks how much each factor pushes a prediction up or down, in dollars.
+            </p>
 
             <img class="blog-shot" src="../visuals/mcp_preview_shap.png"
-                alt="SHAP feature importance for predicted medical cost">
+                alt="Feature importance for predicted medical cost">
 
-            <p><strong>3. Does BMI affect everyone equally?</strong><br>
-                No - and this was the key insight. For non-smokers, BMI barely moves the bill. For smokers, a higher
-                BMI raises cost sharply (see the title chart). Capturing this interaction is what lifted the model from
-                0.81 to 0.91.</p>
+            <p><strong>3. How does cost change with age, and does smoking shift it?</strong><br>
+                Cost rises steadily with age for everyone, yet smokers sit on a far higher band at every age. A young
+                smoker can be charged more than an older non-smoker. Age matters, and smoking matters more.</p>
 
-            <p><strong>4. Can we explain a single customer's quote?</strong><br>
-                Yes. SHAP breaks any individual prediction into the exact dollar contribution of each attribute, so an
-                insurer can point to precisely why one person's estimate is higher than another's.</p>
+            <img class="blog-shot" src="../visuals/mcp_preview_age.png"
+                alt="Annual charges versus age, split by smoking status">
+
+            <p><strong>4. Does BMI affect everyone equally?</strong><br>
+                No, and this was the most valuable insight. For non-smokers, BMI barely moves the bill. For smokers, a
+                higher BMI raises it sharply. Capturing that interaction is what lifted the model from 81% to 91% of the
+                variation explained.</p>
+
+            <img class="blog-shot" src="../visuals/mcp_preview_interaction.png"
+                alt="Annual charges versus BMI, split by smoking status">
+
+            <p><strong>5. Can a single customer's price be explained?</strong><br>
+                Yes. Shapley values break any individual estimate into the exact dollar contribution of each attribute,
+                so a specific price can be defended line by line to a customer or a regulator.</p>
         </section>
 
         <section>
             <h2>Takeaway</h2>
-            <p>A simple, transparent model beat a more complex Random Forest here (0.91 vs 0.88). When a decision has to
-                be explained, an interpretable model that you can defend is worth more than a black box that you
-                cannot.</p>
+            <p>The simple, transparent model explained 91% of the variation in cost, while a more complex Random Forest
+                explained 88%. In other words, R&sup2; of 0.91 means the model accounts for 91 percent of why bills
+                differ from one customer to the next, and the linear model did this slightly better while staying easy
+                to read. When a price has to be justified, a model you can explain is worth more than a black box that
+                scores no higher.</p>
         </section>
 
         <section>
             <h2>Source</h2>
-            <p><a href="https://github.com/Abdu114hf16/medical-insurance-cost-prediction">View the code on GitHub
-                    &rarr;</a></p>
+            <p>Everything below lives in the public repository:</p>
+            <ul class="repo-list">
+                <li><img class="repo-ico" src="../visuals/ico-notebook.svg" alt=""
+                        onerror="this.style.display='none'"><span><strong>medical-cost-prediction.ipynb</strong> the
+                        full CRISP-DM notebook, from EDA to the saved model.</span></li>
+                <li><img class="repo-ico" src="../visuals/ico-data.svg" alt=""
+                        onerror="this.style.display='none'"><span><strong>data/insurance.csv</strong> the dataset, 1,338
+                        records.</span></li>
+                <li><img class="repo-ico" src="../visuals/ico-model.svg" alt=""
+                        onerror="this.style.display='none'"><span><strong>medical_cost_model.joblib</strong> the trained
+                        model, ready to reuse.</span></li>
+                <li><img class="repo-ico" src="../visuals/ico-readme.svg" alt=""
+                        onerror="this.style.display='none'"><span><strong>README.md</strong> motivation, results and
+                        how to run it.</span></li>
+            </ul>
+            <p><a href="https://github.com/Abdu114hf16/medical-insurance-cost-prediction" target="_blank"
+                    rel="noopener">View the code on GitHub &rarr;</a></p>
         </section>
     </main>
     <footer>
