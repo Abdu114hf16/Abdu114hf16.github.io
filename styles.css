@@ -419,6 +419,7 @@ th {
 }
 
 .proj {
+    position: relative;
     background: #ffffff;
     border: 1px solid #e8e8e8;
     border-radius: 10px;
@@ -502,6 +503,16 @@ th {
 .proj-link:hover { text-decoration: none; }
 .proj-link:hover .arr { transform: translateX(4px); }
 
+/* Stretched link: make the whole card clickable via the existing link */
+.proj-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+}
+
+.proj { cursor: pointer; }
+
 @media (max-width: 40em) {
     .projects-grid { grid-template-columns: 1fr; }
 }
@@ -541,8 +552,8 @@ th {
     box-shadow: 0 10px 28px rgba(16, 24, 40, .14), 0 2px 6px rgba(16, 24, 40, .08);
 }
 
-/* Blog lede (subtitle restyle: clean, non-italic, editorial) */
-.blog-lede {
+/* Lede (subtitle restyle: clean, non-italic, editorial) */
+.lede {
     font-style: normal;
     font-weight: 500;
     font-size: 1.18rem;
