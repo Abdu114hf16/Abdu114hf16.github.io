@@ -585,22 +585,31 @@ a.project-row:hover {
 .pr-title { display: block; font-size: 1.18rem; font-weight: 700; color: #1a1a1a; margin-bottom: .2rem; }
 .pr-desc { display: block; font-size: .95rem; color: #586472; line-height: 1.45; margin-bottom: .55rem; }
 
-/* Tech-stack line with a colored type chip up front */
-.pr-stack { display: block; font-size: .82rem; color: #8a94a0; line-height: 1.5; }
+/* Tech-stack chips with a colored type chip up front */
+.pr-stack { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; }
+
+.pr-tag {
+    font-size: .78rem;
+    font-weight: 600;
+    color: #243b53;
+    background: #f4f8fb;
+    border: 1px solid #d6e4f0;
+    border-left: 3px solid #2e86ab;
+    border-radius: 6px;
+    padding: .3rem .65rem;
+}
+
 .pr-type {
-    display: inline-block;
-    font-size: .66rem;
+    font-size: .7rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: .05em;
-    padding: .16rem .5rem;
-    border-radius: 4px;
-    margin-right: .55rem;
-    vertical-align: 1px;
+    letter-spacing: .04em;
+    padding: .3rem .6rem;
+    border-radius: 6px;
 }
-.pr-type.ml { background: #eaf3f8; color: #1d6a8f; }
-.pr-type.ba { background: #fdf0e6; color: #b5651d; }
-.pr-type.web { background: #eef0fb; color: #4a4fb0; }
+.pr-type.ml { background: #1d6a8f; color: #fff; }
+.pr-type.ba { background: #b5651d; color: #fff; }
+.pr-type.web { background: #4a4fb0; color: #fff; }
 
 .pr-arr { flex: 0 0 auto; align-self: center; color: #2e86ab; font-size: 1.15rem; transition: transform .15s ease; }
 a.project-row:hover .pr-arr { transform: translateX(5px); }
