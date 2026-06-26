@@ -799,6 +799,17 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
 }
 .lightbox-close:hover { opacity: 1; }
 
+/* Contact form success banner */
+.form-success {
+    background: #eef9f4;
+    border: 1px solid #bfe8d4;
+    color: #1d6a4f;
+    padding: .85rem 1.1rem;
+    border-radius: 8px;
+    margin-bottom: 1.1rem;
+    font-weight: 500;
+}
+
 .blog-placeholder {
     background: #fafafa;
     border: 1px dashed #ccc;

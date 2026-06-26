@@ -85,3 +85,12 @@ if (blockquote) {
         if (e.key === "Escape" && overlay.classList.contains("open")) close();
     });
 })();
+
+// Contact form: show success banner after a redirect back with ?sent=1
+(function () {
+    var banner = document.getElementById("formSuccess");
+    if (banner && /[?&]sent=1/.test(window.location.search)) {
+        banner.hidden = false;
+        banner.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+})();
