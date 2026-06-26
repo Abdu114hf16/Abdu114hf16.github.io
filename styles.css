@@ -684,7 +684,7 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
     display: inline-flex;
     align-items: center;
     gap: .5rem;
-    background: #24292f;
+    background: #159588;
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
@@ -693,7 +693,7 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
     border-radius: 8px;
     transition: background .15s ease;
 }
-.repo-link:hover { background: #1b1f24; text-decoration: none; }
+.repo-link:hover { background: #11796e; text-decoration: none; }
 .repo-link .gh-ico { width: 18px; height: 18px; filter: brightness(0) invert(1); }
 
 .blog-shot {
