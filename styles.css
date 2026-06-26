@@ -632,11 +632,15 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
     margin-bottom: 1.5rem;
 }
 
+/* Section headers: highlighter-marker style */
 .blog-article h2 {
-    margin-top: 2.2rem;
-    padding-top: 1.4rem;
-    border-top: 1px solid #f0f0f0;
+    display: inline-block;
+    margin: 2.4rem 0 .8rem;
+    line-height: 1.55;
+    background: linear-gradient(transparent 62%, #ffe49f 62%);
+    padding: 0 .25rem;
 }
+.blog-article h2:first-of-type { margin-top: 1.6rem; }
 
 .blog-article > p + ul,
 .blog-article ul + p { margin-top: .6rem; }
