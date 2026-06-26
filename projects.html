@@ -22,150 +22,117 @@
     <main>
         <section>
             <h1>PROJECTS</h1>
-            <p class="subtitle lede">Hands-on work across Data Science, Business Intelligence, and Software Development,
-                each with a quick summary and a full write-up.</p>
+            <p class="subtitle lede">Hands-on work across machine learning, business analytics and web development.
+                Filter by field or type, and open any project for the full write-up.</p>
         </section>
 
         <section>
-            <div class="projects-grid">
+            <div class="filters">
+                <div class="filter-group" data-filter="field">
+                    <span class="flabel">Field</span>
+                    <button class="filter-btn active" data-value="all">All</button>
+                    <button class="filter-btn" data-value="ml">Machine Learning</button>
+                    <button class="filter-btn" data-value="ba">Business Analytics</button>
+                    <button class="filter-btn" data-value="web">Web Development</button>
+                </div>
+                <div class="filter-group" data-filter="origin">
+                    <span class="flabel">Type</span>
+                    <button class="filter-btn active" data-value="all">All</button>
+                    <button class="filter-btn" data-value="academic">Academic</button>
+                    <button class="filter-btn" data-value="personal">Personal</button>
+                </div>
+            </div>
 
-                <!-- ════════════════════════════════════════════════════════════════
-                     To add a project: copy ONE <article class="proj"> block below,
-                     update its fields, and create a matching page in blog/ (use
-                     blog/_template.html as the starting point).
-                     ════════════════════════════════════════════════════════════════ -->
+            <!-- ════════════════════════════════════════════════════════════════
+                 To add a project: copy ONE <a class="project-row"> block below,
+                 set data-field (ml | ba | web) and data-origin (academic |
+                 personal), update the chip class + text, and create a matching
+                 page in blog/ (use blog/_template.html as the starting point).
+                 ════════════════════════════════════════════════════════════════ -->
 
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>Medical Insurance Cost Prediction</h3>
-                        <span class="proj-badge">Featured</span>
-                    </div>
-                    <p><span class="proj-label problem">Problem</span>Insurers must price premiums accurately and still
-                        be able to explain every quote to customers and regulators.</p>
-                    <p><span class="proj-label solution">Solution</span>A CRISP-DM regression project that predicts
-                        annual medical cost (<span class="highlight">R&sup2; &asymp; 0.91</span>) and explains each
-                        prediction with SHAP values.</p>
-                    <ul class="tech-tags">
-                        <li>Python</li>
-                        <li>scikit-learn</li>
-                        <li>SHAP</li>
-                        <li>statsmodels</li>
-                    </ul>
-                    <a class="proj-link" href="blog/medical-cost-prediction.html">Read the full journey <span
-                            class="arr">&rarr;</span></a>
-                </article>
+            <div class="project-list">
 
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>Eventia</h3>
-                        <span class="proj-badge">Graduation</span>
-                    </div>
-                    <p><span class="proj-label problem">Problem</span>Organizers, attendees, vendors and admins juggle
-                        fragmented tools across the entire event lifecycle.</p>
-                    <p><span class="proj-label solution">Solution</span>A centralized, role-based platform with a Gemini-powered
-                        AI assistant, SCEGA licensing workflows, in-app messaging and analytics dashboards.</p>
-                    <ul class="tech-tags">
-                        <li>Django</li>
-                        <li>Python</li>
-                        <li>MySQL</li>
-                        <li>Gemini AI</li>
-                    </ul>
-                    <a class="proj-link" href="blog/eventia.html">Read the full journey <span class="arr">&rarr;</span></a>
-                </article>
+                <a class="project-row" href="blog/medical-cost-prediction.html" data-field="ml" data-origin="personal">
+                    <span class="pr-field ml">ML</span>
+                    <span class="pr-main">
+                        <span class="pr-title">Medical Insurance Cost Prediction</span>
+                        <span class="pr-desc">Predicts annual medical cost and explains every quote with SHAP
+                            (R&sup2; &asymp; 0.91).</span>
+                    </span>
+                    <span class="pr-meta"><span class="pr-origin">Personal</span><span class="pr-arr">&rarr;</span></span>
+                </a>
 
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>Commercial Flights Delays Analysis</h3>
-                    </div>
-                    <p><span class="proj-label problem">Problem</span>Flight delays are costly and hard to anticipate for
-                        airlines and passengers alike.</p>
-                    <p><span class="proj-label solution">Solution</span>A Power BI BI + predictive solution - regression,
-                        clustering, time-series forecasting and anomaly detection - that predicts delay probability and
-                        optimizes logistics.</p>
-                    <ul class="tech-tags">
-                        <li>Power BI</li>
-                        <li>DAX</li>
-                        <li>Predictive Analytics</li>
-                    </ul>
-                    <a class="proj-link" href="blog/commercial-flights-delays.html">Read the full journey <span
-                            class="arr">&rarr;</span></a>
-                </article>
+                <a class="project-row" href="blog/eventia.html" data-field="web" data-origin="academic">
+                    <span class="pr-field web">Web</span>
+                    <span class="pr-main">
+                        <span class="pr-title">Eventia</span>
+                        <span class="pr-desc">A centralized, role-based event platform with a Gemini-powered AI
+                            assistant and analytics dashboards.</span>
+                    </span>
+                    <span class="pr-meta"><span class="pr-origin">Academic</span><span class="pr-arr">&rarr;</span></span>
+                </a>
 
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>Optimizing Donors Outreach</h3>
-                    </div>
-                    <p><span class="proj-label problem">Problem</span>Charities waste outreach budget contacting unlikely
-                        donors.</p>
-                    <p><span class="proj-label solution">Solution</span>A supervised ML pipeline - deep EDA plus cross-validated
-                        model selection - that flags the most likely donors and minimizes outreach cost.</p>
-                    <ul class="tech-tags">
-                        <li>Python</li>
-                        <li>scikit-learn</li>
-                        <li>pandas</li>
-                        <li>NumPy</li>
-                    </ul>
-                    <a class="proj-link" href="blog/optimizing-donors-outreach.html">Read the full journey <span
-                            class="arr">&rarr;</span></a>
-                </article>
+                <a class="project-row" href="blog/commercial-flights-delays.html" data-field="ba"
+                    data-origin="academic">
+                    <span class="pr-field ba">Analytics</span>
+                    <span class="pr-main">
+                        <span class="pr-title">Commercial Flights Delays Analysis</span>
+                        <span class="pr-desc">A Power BI solution that forecasts delay probability and optimizes
+                            operational logistics.</span>
+                    </span>
+                    <span class="pr-meta"><span class="pr-origin">Academic</span><span class="pr-arr">&rarr;</span></span>
+                </a>
 
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>SMS Spam Classifier</h3>
-                    </div>
-                    <p><span class="proj-label problem">Problem</span>Spam messages clutter inboxes and put users at risk.</p>
-                    <p><span class="proj-label solution">Solution</span>An NLP classifier using Multinomial Naive Bayes that
-                        labels SMS as spam or ham, reaching <span class="highlight">97.2% precision</span>.</p>
-                    <ul class="tech-tags">
-                        <li>Python</li>
-                        <li>scikit-learn</li>
-                        <li>NLP</li>
-                    </ul>
-                    <a class="proj-link" href="blog/sms-spam-classifier.html">Read the full journey <span
-                            class="arr">&rarr;</span></a>
-                </article>
+                <a class="project-row" href="blog/optimizing-donors-outreach.html" data-field="ml"
+                    data-origin="personal">
+                    <span class="pr-field ml">ML</span>
+                    <span class="pr-main">
+                        <span class="pr-title">Optimizing Donors Outreach</span>
+                        <span class="pr-desc">A machine learning pipeline that flags the most likely donors and cuts
+                            outreach cost.</span>
+                    </span>
+                    <span class="pr-meta"><span class="pr-origin">Personal</span><span class="pr-arr">&rarr;</span></span>
+                </a>
 
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>Boolean Search Engine</h3>
-                    </div>
-                    <p><span class="proj-label problem">Problem</span>Searching huge text corpora with logical queries needs to
-                        be fast.</p>
-                    <p><span class="proj-label solution">Solution</span>A high-performance Boolean engine on an inverted index
-                        (AND/OR), tested on 200K+ articles at <span class="highlight">microsecond retrieval</span>.</p>
-                    <ul class="tech-tags">
-                        <li>Python</li>
-                        <li>NLTK</li>
-                        <li>Information Retrieval</li>
-                    </ul>
-                    <a class="proj-link" href="blog/boolean-search-engine.html">Read the full journey <span
-                            class="arr">&rarr;</span></a>
-                </article>
+                <a class="project-row" href="blog/sms-spam-classifier.html" data-field="ml" data-origin="personal">
+                    <span class="pr-field ml">ML</span>
+                    <span class="pr-main">
+                        <span class="pr-title">SMS Spam Classifier</span>
+                        <span class="pr-desc">An NLP model that tells spam from ham at 97.2% precision.</span>
+                    </span>
+                    <span class="pr-meta"><span class="pr-origin">Personal</span><span class="pr-arr">&rarr;</span></span>
+                </a>
 
-                <article class="proj">
-                    <div class="proj-head">
-                        <h3>Interactive KSA Discovery</h3>
-                    </div>
-                    <p><span class="proj-label problem">Problem</span>Exploring Saudi regions and heritage is scattered across
-                        sources.</p>
-                    <p><span class="proj-label solution">Solution</span>A full-stack platform with admin CRUD, image galleries,
-                        real-time search, dark mode and a responsive RTL Arabic UI.</p>
-                    <ul class="tech-tags">
-                        <li>PHP</li>
-                        <li>MySQL</li>
-                        <li>JavaScript</li>
-                    </ul>
-                    <a class="proj-link" href="blog/interactive-ksa-discovery.html">Read the full journey <span
-                            class="arr">&rarr;</span></a>
-                </article>
+                <a class="project-row" href="blog/boolean-search-engine.html" data-field="ml" data-origin="academic">
+                    <span class="pr-field ml">ML</span>
+                    <span class="pr-main">
+                        <span class="pr-title">Boolean Search Engine</span>
+                        <span class="pr-desc">High-performance Boolean retrieval over 200K+ articles at microsecond
+                            speed.</span>
+                    </span>
+                    <span class="pr-meta"><span class="pr-origin">Academic</span><span class="pr-arr">&rarr;</span></span>
+                </a>
+
+                <a class="project-row" href="blog/interactive-ksa-discovery.html" data-field="web"
+                    data-origin="academic">
+                    <span class="pr-field web">Web</span>
+                    <span class="pr-main">
+                        <span class="pr-title">Interactive KSA Discovery</span>
+                        <span class="pr-desc">A full-stack platform for exploring Saudi regions and heritage, with a
+                            responsive RTL Arabic UI.</span>
+                    </span>
+                    <span class="pr-meta"><span class="pr-origin">Academic</span><span class="pr-arr">&rarr;</span></span>
+                </a>
 
             </div>
+
+            <p class="no-results" hidden>No projects match these filters.</p>
         </section>
 
         <section>
             <h2>More on GitHub</h2>
-            <p>View additional projects and source code on my <a href="https://github.com/Abdu114hf16" target="_blank" rel="noopener">GitHub
-                    profile</a>.</p>
+            <p>View additional projects and source code on my <a href="https://github.com/Abdu114hf16" target="_blank"
+                    rel="noopener">GitHub profile</a>.</p>
         </section>
     </main>
     <footer>
@@ -181,6 +148,34 @@
     </button>
 
     <script src="scripts.js"></script>
+    <script>
+        (function () {
+            const rows = document.querySelectorAll('.project-row');
+            const noResults = document.querySelector('.no-results');
+            const state = { field: 'all', origin: 'all' };
+            function apply() {
+                let visible = 0;
+                rows.forEach(function (r) {
+                    const ok = (state.field === 'all' || r.dataset.field === state.field)
+                        && (state.origin === 'all' || r.dataset.origin === state.origin);
+                    r.classList.toggle('hidden', !ok);
+                    if (ok) visible++;
+                });
+                if (noResults) noResults.hidden = visible !== 0;
+            }
+            document.querySelectorAll('.filter-group').forEach(function (group) {
+                const key = group.dataset.filter;
+                group.querySelectorAll('.filter-btn').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        group.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+                        btn.classList.add('active');
+                        state[key] = btn.dataset.value;
+                        apply();
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
