@@ -20,24 +20,20 @@
         </nav>
     </header>
     <main>
-        <section>
+        <article class="blog-article">
             <p><a class="blog-back" href="../projects.html">&larr; Back to Projects</a></p>
             <h1>What Makes Medical Insurance Expensive?</h1>
             <p class="subtitle lede">What shapes an annual insurance bill, and why two customers can be priced so
                 differently.</p>
             <img class="blog-hero" src="../heroes/MIC.webp"
                 alt="Medical insurance cost prediction project banner">
-        </section>
 
-        <section>
             <h2>Introduction</h2>
             <p>Every premium has to balance two needs. It must cover the cost a customer is likely to incur, and it must
                 be explainable when that customer, or a regulator, asks why the number is what it is. This project looks
                 at both sides using a public dataset of medical charges, following the CRISP-DM process from business
                 understanding through to a working model.</p>
-        </section>
 
-        <section>
             <h2>Problem</h2>
             <p>Insurers need to price premiums that cover expected medical costs without overcharging customers. A price
                 is only useful, though, if it can be justified to the person who pays it and to the regulator who
@@ -59,9 +55,7 @@
                 <li>Jupyter Notebook</li>
                 <li>VS Code</li>
             </ul>
-        </section>
 
-        <section>
             <h2>Answering Business Questions with Data</h2>
 
             <p><strong>1. Can annual cost be predicted accurately enough to set premiums?</strong><br>
@@ -95,18 +89,28 @@
             <p><strong>5. Can a single customer's price be explained?</strong><br>
                 Yes. Shapley values break any individual estimate into the exact dollar contribution of each attribute,
                 so a specific price can be defended line by line to a customer or a regulator.</p>
-        </section>
 
-        <section>
-            <h2>Takeaway</h2>
+            <h2>Conclusion</h2>
             <p>The simple, transparent model explained 91% of the variation in cost, while a more complex Random Forest
                 explained 88%. In other words, R&sup2; of 0.91 means the model accounts for 91 percent of why bills
                 differ from one customer to the next, and the linear model did this slightly better while staying easy
                 to read. When a price has to be justified, a model you can explain is worth more than a black box that
                 scores no higher.</p>
-        </section>
 
-        <section>
+            <h2>Takeaway</h2>
+            <p>This project pushed me into techniques that were new to me, the CRISP-DM framework and Shapley values
+                among them. Writing the post itself for both technical and non-technical readers was its own lesson in
+                storytelling and stakeholder communication. A few things I am keeping with me:</p>
+            <ul>
+                <li>CRISP-DM is a genuinely helpful structure for taking a machine learning project from start to
+                    finish.</li>
+                <li>Shapley values are a powerful way to interpret a model, especially a simple one like regression.
+                </li>
+                <li>SHAP brings useful visualizations, such as the waterfall and beeswarm plots, that make both
+                    individual and overall explanations easy to read.</li>
+                <li>A simple model is sometimes far better than a complex one, in accuracy and in clarity alike.</li>
+            </ul>
+
             <h2>Source</h2>
             <p>Everything below lives in the public repository:</p>
             <ul>
@@ -119,7 +123,7 @@
             </ul>
             <p><a href="https://github.com/Abdu114hf16/medical-insurance-cost-prediction" target="_blank"
                     rel="noopener">View the code on GitHub &rarr;</a></p>
-        </section>
+        </article>
     </main>
     <footer>
         <p class="footer-credit">&copy; Designed &amp; built by Abdullah Alshammari</p>
