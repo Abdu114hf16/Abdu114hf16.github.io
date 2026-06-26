@@ -705,6 +705,27 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
 .repo-link:hover { background: #11796e; text-decoration: none; }
 .repo-link .gh-ico { width: 18px; height: 18px; filter: brightness(0) invert(1); }
 
+/* Action buttons (live demo, report) + resources card */
+.src-card.resources::before { content: "RESOURCES"; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .7rem; margin: .2rem 0; }
+.demo-link, .report-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 600;
+    font-size: .9rem;
+    text-decoration: none;
+    padding: .58rem 1rem;
+    border-radius: 8px;
+    transition: background .15s ease, color .15s ease;
+}
+.demo-link { background: #159588; color: #ffffff; }
+.demo-link:hover { background: #11796e; text-decoration: none; }
+.report-link { background: #ffffff; color: #159588; border: 1.5px solid #159588; }
+.report-link:hover { background: #eef9f7; text-decoration: none; }
+.demo-link svg, .report-link svg { width: 17px; height: 17px; }
+
 .blog-shot {
     display: block;
     width: 100%;
