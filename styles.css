@@ -582,7 +582,16 @@ a.project-row:hover {
 }
 
 .pr-main { flex: 1 1 auto; min-width: 0; }
-.pr-title { display: block; font-size: 1.18rem; font-weight: 700; color: #1a1a1a; margin-bottom: .2rem; }
+.pr-title {
+    display: inline-block;
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.5;
+    margin-bottom: .3rem;
+    padding: 0 .15rem;
+    background: linear-gradient(transparent 60%, #aef0cf 60%);
+}
 .pr-desc { display: block; font-size: .95rem; color: #586472; line-height: 1.45; margin-bottom: .55rem; }
 
 /* Tech-stack chips with a colored type chip up front */
