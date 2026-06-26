@@ -645,7 +645,56 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
 .blog-article > p + ul,
 .blog-article ul + p { margin-top: .6rem; }
 
-.blog-back { font-size: .88rem; font-weight: 600; color: #555; }
+.blog-back {
+    display: inline-flex;
+    align-items: center;
+    color: #6b7682;
+    transition: color .15s ease, transform .15s ease;
+}
+.blog-back:hover { color: #2e86ab; transform: translateX(-3px); }
+.blog-back svg { display: block; }
+
+/* Source repository card (dashed) */
+.src-card {
+    position: relative;
+    background: #ffffff;
+    border: 1.5px dashed #c4ccd6;
+    border-radius: 10px;
+    padding: 1.7rem 1.5rem 1.4rem;
+    margin-top: 1rem;
+}
+.src-card::before {
+    content: "REPOSITORY";
+    position: absolute;
+    top: -.6rem;
+    left: 1.2rem;
+    background: #ffffff;
+    padding: 0 .5rem;
+    font-size: .66rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    color: #8a94a0;
+}
+.src-card ul { list-style: none; padding: 0; margin: .4rem 0 1.2rem; display: grid; gap: .55rem; }
+.src-card li { font-size: .95rem; color: #475160; line-height: 1.5; }
+.src-card li strong { color: #1a1a1a; }
+
+/* GitHub "View Repository" button */
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: #24292f;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .55rem .95rem;
+    border-radius: 8px;
+    transition: background .15s ease;
+}
+.repo-link:hover { background: #1b1f24; text-decoration: none; }
+.repo-link .gh-ico { width: 18px; height: 18px; filter: brightness(0) invert(1); }
 
 .blog-shot {
     display: block;

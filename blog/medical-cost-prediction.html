@@ -21,7 +21,13 @@
     </header>
     <main>
         <article class="blog-article">
-            <p><a class="blog-back" href="../projects.html">&larr; Back to Projects</a></p>
+            <p><a class="blog-back" href="../projects.html" aria-label="Back to Projects" title="Back to Projects">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </a></p>
             <h1>What Makes Medical Insurance Expensive?</h1>
             <p class="subtitle lede">What shapes an annual insurance bill, and why two customers can be priced so
                 differently.</p>
@@ -123,17 +129,21 @@
             </ul>
 
             <h2>Source</h2>
-            <p>Everything below lives in the public repository:</p>
-            <ul>
-                <li><strong>medical-cost-prediction.ipynb</strong> the full CRISP-DM notebook, from EDA to the saved
-                    model.</li>
-                <li><strong>data/insurance.csv</strong> the dataset, 1,338 records.</li>
-                <li><strong>medical_cost_model.joblib</strong> the trained model, ready to reuse. It explains about 91%
-                    of the variation in annual cost (R&sup2; 0.91), with a typical error near $4,100.</li>
-                <li><strong>README.md</strong> the full technical details: methodology, results and how to run it.</li>
-            </ul>
-            <p><a href="https://github.com/Abdu114hf16/medical-insurance-cost-prediction" target="_blank"
-                    rel="noopener">View the code on GitHub &rarr;</a></p>
+            <div class="src-card">
+                <p>Everything below lives in the public repository:</p>
+                <ul>
+                    <li><strong>medical-cost-prediction.ipynb</strong> the full CRISP-DM notebook, from EDA to the saved
+                        model.</li>
+                    <li><strong>data/insurance.csv</strong> the dataset, 1,338 records.</li>
+                    <li><strong>medical_cost_model.joblib</strong> the trained model, ready to reuse. It explains about
+                        91% of the variation in annual cost (R&sup2; 0.91), with a typical error near $4,100.</li>
+                    <li><strong>README.md</strong> the full technical details: methodology, results and how to run
+                        it.</li>
+                </ul>
+                <a class="repo-link" href="https://github.com/Abdu114hf16/medical-insurance-cost-prediction"
+                    target="_blank" rel="noopener"><img class="gh-ico" src="../visuals/github_icon.svg" alt=""> View
+                    Repository</a>
+            </div>
         </article>
     </main>
     <footer>
