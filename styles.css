@@ -736,6 +736,24 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
     box-shadow: 0 1px 3px rgba(16, 24, 40, .06);
 }
 
+/* Picture gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .8rem;
+    margin: 1rem 0 1.2rem;
+}
+.gallery a { display: block; overflow: hidden; border-radius: 8px; border: 1px solid #e8e8e8; box-shadow: 0 1px 3px rgba(16, 24, 40, .06); }
+.gallery img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    transition: transform .25s ease;
+}
+.gallery a:hover img { transform: scale(1.04); }
+@media (max-width: 560px) { .gallery { grid-template-columns: 1fr; } }
+
 .blog-placeholder {
     background: #fafafa;
     border: 1px dashed #ccc;
