@@ -1,3 +1,5 @@
 # Local dev tools, not for production
 headers_panel.html
 headers.css
+options_panel.html
+options.css
