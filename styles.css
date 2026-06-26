@@ -581,36 +581,28 @@ a.project-row:hover {
     text-decoration: none;
 }
 
-.pr-field {
-    flex: 0 0 auto;
-    align-self: flex-start;
-    margin-top: .15rem;
+.pr-main { flex: 1 1 auto; min-width: 0; }
+.pr-title { display: block; font-size: 1.18rem; font-weight: 700; color: #1a1a1a; margin-bottom: .2rem; }
+.pr-desc { display: block; font-size: .95rem; color: #586472; line-height: 1.45; margin-bottom: .55rem; }
+
+/* Tech-stack line with a colored type chip up front */
+.pr-stack { display: block; font-size: .82rem; color: #8a94a0; line-height: 1.5; }
+.pr-type {
+    display: inline-block;
     font-size: .66rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .05em;
-    padding: .3rem .5rem;
-    border-radius: 5px;
-    white-space: nowrap;
+    padding: .16rem .5rem;
+    border-radius: 4px;
+    margin-right: .55rem;
+    vertical-align: 1px;
 }
+.pr-type.ml { background: #eaf3f8; color: #1d6a8f; }
+.pr-type.ba { background: #fdf0e6; color: #b5651d; }
+.pr-type.web { background: #eef0fb; color: #4a4fb0; }
 
-.pr-field.ml { background: #eaf3f8; color: #1d6a8f; }
-.pr-field.ba { background: #fdf0e6; color: #b5651d; }
-.pr-field.web { background: #eef0fb; color: #4a4fb0; }
-
-.pr-main { flex: 1 1 auto; min-width: 0; }
-.pr-title { display: block; font-size: 1.18rem; font-weight: 700; color: #1a1a1a; margin-bottom: .15rem; }
-.pr-desc { display: block; font-size: .92rem; color: #586472; line-height: 1.45; }
-
-.pr-meta { flex: 0 0 auto; display: flex; align-items: center; gap: .9rem; }
-.pr-origin {
-    font-size: .7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    color: #8a94a0;
-}
-.pr-arr { color: #2e86ab; font-size: 1.05rem; transition: transform .15s ease; }
+.pr-arr { flex: 0 0 auto; align-self: center; color: #2e86ab; font-size: 1.15rem; transition: transform .15s ease; }
 a.project-row:hover .pr-arr { transform: translateX(5px); }
 
 .project-row.hidden { display: none; }
@@ -618,9 +610,7 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
 .no-results { color: #8a94a0; font-style: italic; padding: 1.5rem .35rem; }
 
 @media (max-width: 40em) {
-    a.project-row { flex-wrap: wrap; gap: .6rem; }
-    .pr-main { flex-basis: 100%; order: 2; }
-    .pr-meta { order: 3; width: 100%; justify-content: space-between; }
+    .pr-arr { display: none; }
 }
 
 /* ---------- 19. Blog post ---------- */
