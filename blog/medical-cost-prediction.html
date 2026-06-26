@@ -44,18 +44,17 @@
             <p>The work followed the CRISP-DM process, so every step had a purpose and fed the next. It began with the
                 business question itself: an insurer needs a price that is both accurate and easy to justify. That goal
                 shaped every choice that followed.</p>
-            <p>Next came the data. A public set of 1,300 customer records covered age, sex, BMI, number of children,
-                smoking status and region. Exploring it revealed the patterns that matter most, above all the way
-                smoking and a high BMI combine to drive cost far higher than either does alone. Those findings guided
-                how the data was cleaned and which features were built.</p>
+            <p>Next came the data. A public set of customer records covered age, sex, BMI, number of children, smoking
+                status and region. Exploring it revealed the patterns that matter most, above all the way smoking and a
+                high BMI combine to drive cost far higher than either does alone. Those findings guided how the data was
+                cleaned and which features were built.</p>
             <p>With the groundwork in place, a linear regression model was trained to predict the annual cost, and SHAP
                 values were layered on top to explain each prediction. Linear regression was chosen on purpose: its
                 logic can be read and defended, not hidden inside a black box.</p>
-            <p>Before the model could be trusted, it was tested against a clear target set at the outset. On data it had
-                never seen, it explained about 91 percent of the variation in cost, comfortably past the goal, and it
-                edged out a more complex Random Forest while staying far easier to read. The factors it leaned on also
-                made business sense, with smoking, BMI and age pushing cost up exactly as expected, which confirmed the
-                model was learning real patterns rather than noise.</p>
+            <p>The model was tested against a clear target (&ge; 80%). On data it had never seen, it explained about 91%
+                of the variation in cost, comfortably past the goal, and it edged out more complex models while staying
+                far easier to read. The factors it leaned on also made business sense, with smoking, BMI and age pushing
+                cost up exactly as expected, which confirmed the model was learning real patterns rather than noise.</p>
 
             <h2>Tech Stack</h2>
             <ul class="tech-stack">
