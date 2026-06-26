@@ -64,47 +64,49 @@
 
             <h2>Tech Stack</h2>
             <ul class="tech-stack">
+                <li>ML</li>
                 <li>Python</li>
-                <li>scikit-learn</li>
-                <li>statsmodels</li>
+                <li>EDA</li>
+                <li>Data Cleaning</li>
+                <li>Linear Regression</li>
+                <li>Ridge</li>
+                <li>Lasso</li>
                 <li>SHAP</li>
-                <li>pandas</li>
-                <li>Jupyter Notebook</li>
-                <li>VS Code</li>
+                <li>R2 = 0.91</li>
             </ul>
 
             <h2>Answering Business Questions with Data</h2>
 
-            <p><strong>1. Can annual cost be predicted accurately enough to set premiums?</strong><br>
-                Yes. A linear model that captures the right factors explains about 91% of the variation in annual cost,
+            <p class="bq-q">1. Can annual cost be predicted accurately enough to set premiums?</p>
+            <p>Yes. A linear model that captures the right factors explains about 91% of the variation in annual cost,
                 with a typical error of roughly $4,100 per customer. That is accurate enough to support real pricing
                 decisions.</p>
 
-            <p><strong>2. What drives medical cost the most?</strong><br>
-                Smoking, but rarely on its own. The combination of smoking and a high BMI outweighs every other factor,
+            <p class="bq-q">2. What drives medical cost the most?</p>
+            <p>Smoking, but rarely on its own. The combination of smoking and a high BMI outweighs every other factor,
                 followed by age. The chart below ranks how much each factor pushes a prediction up or down, in dollars.
             </p>
 
             <img class="blog-shot" src="../visuals/mcp_preview_shap.png"
                 alt="Feature importance for predicted medical cost">
 
-            <p><strong>3. How does cost change with age, and does smoking shift it?</strong><br>
-                Cost rises steadily with age for everyone, yet smokers sit on a far higher band at every age. A young
+            <p class="bq-q">3. How does cost change with age, and does smoking shift it?</p>
+            <p>Cost rises steadily with age for everyone, yet smokers sit on a far higher band at every age. A young
                 smoker can be charged more than an older non-smoker. Age matters, and smoking matters more.</p>
 
             <img class="blog-shot" src="../visuals/mcp_preview_age.png"
                 alt="Annual charges versus age, split by smoking status">
 
-            <p><strong>4. Does BMI affect everyone equally?</strong><br>
-                No, and this was the most valuable insight. For non-smokers, BMI barely moves the bill. For smokers, a
+            <p class="bq-q">4. Does BMI affect everyone equally?</p>
+            <p>No, and this was the most valuable insight. For non-smokers, BMI barely moves the bill. For smokers, a
                 higher BMI raises it sharply. Capturing that interaction is what lifted the model from 81% to 91% of the
                 variation explained.</p>
 
             <img class="blog-shot" src="../visuals/mcp_preview_interaction.png"
                 alt="Annual charges versus BMI, split by smoking status">
 
-            <p><strong>5. Can a single customer's price be explained?</strong><br>
-                Yes. Shapley values break any individual estimate into the exact dollar contribution of each attribute,
+            <p class="bq-q">5. Can a single customer's price be explained?</p>
+            <p>Yes. Shapley values break any individual estimate into the exact dollar contribution of each attribute,
                 so a specific price can be defended line by line to a customer or a regulator.</p>
 
             <h2>Conclusion</h2>

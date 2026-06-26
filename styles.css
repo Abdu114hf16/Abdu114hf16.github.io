@@ -645,6 +645,15 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
 .blog-article > p + ul,
 .blog-article ul + p { margin-top: .6rem; }
 
+/* Business-question blocks: clear gap before each question, tight to its answer */
+.blog-article .bq-q {
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 2rem 0 .4rem;
+}
+.blog-article .bq-q:first-of-type { margin-top: 1.2rem; }
+.blog-article .bq-q + p { margin-top: 0; }
+
 .blog-back {
     display: inline-flex;
     align-items: center;
