@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commercial Flights Delays Analysis - Abdullah Alshammari</title>
+    <title>Commercial Flight Delays Analysis - Abdullah Alshammari</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -20,41 +20,140 @@
         </nav>
     </header>
     <main>
-        <section>
-            <p><a class="blog-back" href="../projects.html">&larr; Back to Projects</a></p>
-            <h1>Commercial Flights Delays Analysis</h1>
-            <p class="subtitle">Predicting and explaining commercial flight delays with Power BI.</p>
-        </section>
+        <article class="blog-article">
+            <p><a class="blog-back" href="../projects.html" aria-label="Back to Projects" title="Back to Projects">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </a></p>
+            <h1>Why Are New York Flights Always Late?</h1>
+            <p class="subtitle lede">A Power BI investigation into flight delays and passenger satisfaction across New
+                York's airports, with forecasts and recommendations for the National Aviation Administration.</p>
+            <img class="blog-hero" src="../heroes/cfd.png" alt="Commercial flight delays dashboard">
 
-        <section>
-            <h2>Problem</h2>
-            <p>Flight delays are costly and hard to anticipate for airlines and passengers alike.</p>
+            <h2>Introduction</h2>
+            <p>The National Aviation Administration (NAA) oversees airport operations across the United States. Over the
+                last few years, flights departing from New York have been running noticeably late, and the delays are
+                starting to ripple out to other airports. Airports blame the airlines, the airlines blame a shortage of
+                runways, and the NAA worries that if nothing improves, passengers will travel less and investment in
+                aviation will fall.</p>
+            <p>I was brought in as an analytics consultant to review a full year of New York departures, explain what is
+                driving the delays and the drop in passenger satisfaction, and turn the findings into clear
+                recommendations. The whole analysis lives in an interactive Power BI report.</p>
+
+            <h2>Problem Statement</h2>
+            <p>The NAA needed three things from the data. First, an honest summary of how New York departures performed
+                in 2021 and how satisfied passengers were. Second, an understanding of when and why delays happen, so
+                new operational policies can target the real cause. Third, a forward look: with a major event in Florida
+                in early January 2022, many people would fly out of New York that week, and the NAA wanted to recommend
+                the flights least likely to be delayed.</p>
+
             <h2>Solution</h2>
-            <p>A Power BI BI + predictive-analytics solution - linear regression, clustering, time-series forecasting and anomaly detection - that predicts delay probability and optimizes operational logistics.</p>
+            <p>I built a single Power BI report on a full year of commercial departures from New York in 2021, joined to
+                reference data about the airports and airlines. The source tables were imported and modelled into a
+                clean star schema, with derived columns added to make the data easier to read, such as turning the raw
+                flight status into plain "On time" and "Delayed" labels.</p>
+            <p>From there the report answers the NAA's questions across dedicated pages: headline KPIs, a key-influencers
+                breakdown of satisfaction, a linear regression to set a delay target, a clustering exercise to place new
+                supervision offices, a time-series forecast with anomaly detection, and a view into the delay-prediction
+                model. Every page closes back to a written conclusion the NAA can act on.</p>
+
             <h2>Tech Stack</h2>
-            <ul class="tech-tags">
+            <ul class="tech-stack">
                 <li>Power BI</li>
                 <li>DAX</li>
                 <li>Data Modeling</li>
-                <li>Predictive Analytics</li>
+                <li>Key Influencers</li>
+                <li>Linear Regression</li>
+                <li>Clustering</li>
+                <li>Forecasting</li>
+                <li>Anomaly Detection</li>
             </ul>
-        </section>
 
-        <section>
-            <h2>The Journey</h2>
-            <div class="blog-placeholder">Full write-up coming soon - the approach, key decisions, and lessons learned.</div>
-        </section>
+            <h2>What the Data Showed</h2>
 
-        <section>
-            <h2>Screenshots</h2>
-            <img class="blog-shot" src="../visuals/CFD_preview_exploration.png" alt="Commercial Flights Delays Analysis screenshot">
-            <img class="blog-shot" src="../visuals/CFD_preview_conclusions.png" alt="Commercial Flights Delays Analysis screenshot">
-        </section>
+            <p class="bq-q">1. How did New York departures perform in 2021?</p>
+            <p>Across the whole year, flights took off an average of <strong>20.78 minutes late</strong>, and passengers
+                rated their experience just <strong>5.62 out of 10</strong>. The monthly view shows delayed flights
+                consistently outnumbering on-time ones, with the gap widening in the winter months.</p>
+            <img class="blog-shot" src="../pictures/cfd_exploration.png" alt="Dataset exploration KPIs and monthly trend">
 
-        <section>
-            <h2>Source</h2>
-            <p><a href="https://github.com/Abdu114hf16" target="_blank" rel="noopener">View the code on GitHub &rarr;</a></p>
-        </section>
+            <p class="bq-q">2. What drives passenger satisfaction the most?</p>
+            <p>Whether a flight is delayed is the single biggest factor: a delayed flight drops the satisfaction score
+                by about <strong>1.14 points</strong> on its own. Among numerical factors, the length of the take-off
+                delay is the strongest driver. Satisfaction is, in short, a delay problem.</p>
+            <img class="blog-shot" src="../pictures/cfd_key_influencers.png" alt="Key influencers of passenger satisfaction">
+
+            <p class="bq-q">3. How short must delays be to keep passengers happy?</p>
+            <p>Focusing on the Summer season, a linear regression between take-off delay and satisfaction shows that
+                delays must stay <strong>under 7.5 minutes</strong> to clear a score of 6.1. A 7-minute delay yields a
+                passing 6.12, while 8 minutes drops it to a failing 6.08. That gives the NAA a concrete operational
+                target rather than a vague goal.</p>
+            <img class="blog-shot" src="../pictures/cfd_regression.png" alt="Linear regression of delay versus satisfaction">
+
+            <p class="bq-q">4. Where should the NAA open its new supervision offices?</p>
+            <p>The NAA planned four offices, each supervising at most five airports, and weighed a location-based
+                strategy against a passenger-volume one. Clustering the airports both ways showed the
+                <strong>location-based strategy</strong> is the better choice: it respects the five-airport limit and
+                keeps each office close to its airports, so supervisors can make weekly on-site visits without driving
+                across the entire state.</p>
+            <img class="blog-shot" src="../pictures/cfd_offices.png" alt="Airport clusters for new offices">
+
+            <p class="bq-q">5. What is the pattern of delays, and what comes next?</p>
+            <p>The daily delay time-series is highly volatile, repeating a weekly cycle all year on top of a slight
+                downward trend. The one-month forecast into January 2022 expects that rhythm to continue, with an
+                initial spike in early January before settling back into the weekly pattern, staying within historical
+                confidence intervals. Anomaly detection also flags the specific dates with unusually high or low delays
+                for the NAA to investigate.</p>
+            <img class="blog-shot" src="../pictures/cfd_forecasting.png" alt="Delay forecasting and anomaly detection">
+
+            <p class="bq-q">6. Which flights should travellers actually book?</p>
+            <p>The prediction model points to a clear culprit: late departures, especially flights leaving after
+                <strong>14:00</strong>, carry the highest risk of delay. For the Florida trip, the safest options all
+                share the lowest predicted delay probability of <strong>37%</strong>, and all leave at midnight: a JFK
+                departure via Unique Air Lines, and two more from JFK and ISP via United States Airways.</p>
+            <img class="blog-shot" src="../pictures/cfd_prediction.png" alt="Flight delay prediction and recommendations">
+
+            <h2>Conclusion</h2>
+            <p>New York's delay problem is, at heart, a satisfaction problem: every minute a flight sits late costs the
+                airport in passenger goodwill. The analysis gave the NAA a clear target to chase (keep summer delays
+                under 7.5 minutes), a sensible plan for its new offices, a forecast it can trust, and a short list of
+                low-risk flights to recommend. Turning a year of raw departures into decisions the NAA can defend is
+                exactly what the report set out to do.</p>
+
+            <h2>Takeaway</h2>
+            <p>This project was my deep dive into business intelligence with Power BI, and it taught me a lot:</p>
+            <ul>
+                <li>A clean data model is the foundation of everything; the analysis is only as trustworthy as the
+                    relationships behind it.</li>
+                <li>DAX turns a dataset into answers, from KPIs to a full linear regression computed in the model.</li>
+                <li>Power BI's built-in analytics, the Key Influencers visual, forecasting and anomaly detection, can
+                    surface insight quickly when used with care.</li>
+                <li>Most of all, every page should end in a plain recommendation a stakeholder can act on, not just a
+                    chart.</li>
+            </ul>
+
+            <h2>Resources</h2>
+            <div class="src-card resources">
+                <p>Explore the full report and the source project:</p>
+                <div class="btn-row">
+                    <a class="report-link" href="../docs/CFD_Report.pdf" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg> Read the Full Report (PDF)
+                    </a>
+                    <a class="repo-link" href="https://github.com/Abdu114hf16/Commercial_Flights_Delays_Analysis"
+                        target="_blank" rel="noopener"><img class="gh-ico" src="../visuals/github_icon.svg" alt=""> View
+                        Repository</a>
+                </div>
+            </div>
+        </article>
     </main>
     <footer>
         <p class="footer-credit">&copy; Designed &amp; built by Abdullah Alshammari</p>
