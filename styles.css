@@ -625,6 +625,23 @@ a.project-row:hover .pr-arr { transform: translateX(5px); }
 
 .project-row.hidden { display: none; }
 
+/* Not-yet-written projects: unclickable, faded, with a "Soon" badge */
+.project-row.coming-soon { pointer-events: none; }
+.project-row.coming-soon .pr-main { opacity: .55; }
+.pr-soon {
+    flex: 0 0 auto;
+    align-self: center;
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #8a94a0;
+    background: #f0f2f5;
+    border: 1px solid #e2e6eb;
+    padding: .25rem .6rem;
+    border-radius: 999px;
+}
+
 .no-results { color: #8a94a0; font-style: italic; padding: 1.5rem .35rem; }
 
 @media (max-width: 40em) {
