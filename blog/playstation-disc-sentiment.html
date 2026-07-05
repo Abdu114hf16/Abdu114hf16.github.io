@@ -45,7 +45,13 @@
         .ps-tryit .marks .s { color: #D42E86; }
         /* smaller, centered tweet screenshot in the intro */
         .intro-shot { display: block; width: 100%; max-width: 418px; height: auto; margin: 16px auto; border-radius: 10px; }
-        @media (max-width: 640px) { .dash-cta { flex-direction: column; align-items: flex-start; } }
+        @media (max-width: 640px) {
+            .dash-cta { flex-direction: column; align-items: stretch; gap: 16px; padding: 18px; }
+            .dash-cta-info { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .dash-cta-marks { font-size: 24px; }
+            .dash-mini { width: 100%; max-width: none; }
+            .dash-launch { text-align: center; width: 100%; }
+        }
     </style>
 </head>
 
