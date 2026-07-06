@@ -16,18 +16,20 @@
             border-radius: 14px; padding: 22px 26px; margin: 18px 0 6px;
             box-shadow: 0 10px 34px rgba(0, 0, 0, .28);
         }
-        .dash-cta-info { display: flex; align-items: center; gap: 20px; }
+        .dash-cta-info { display: flex; align-items: center; gap: 20px; min-width: 0; flex: 1 1 auto; }
+        .dash-cta-info > div { min-width: 0; }
         .dash-cta-marks { font-size: 28px; letter-spacing: 6px; }
         .dash-cta-marks .t { color: #00A94F; }
         .dash-cta-marks .c { color: #E4002B; }
         .dash-cta-marks .x { color: #2E9BFF; }
         .dash-cta-marks .s { color: #D42E86; }
-        .dash-cta-title { color: #fff; font-size: 1.15rem; font-weight: 700; margin: 0 0 9px; }
+        .dash-cta-title { color: #fff; font-size: 1.15rem; font-weight: 700; margin: 0 0 9px; overflow-wrap: anywhere; }
         .dash-mini { display: flex; width: 230px; max-width: 60vw; height: 14px; border-radius: 7px; overflow: hidden; }
+        .dash-mini span { flex-shrink: 0; }
         .dash-mini .mn { background: #E4002B; }
         .dash-mini .mu { background: #8A94A6; }
         .dash-mini .mp { background: #FFC400; }
-        .dash-mini-lbl { font-size: .72rem; color: #8A94A6; margin-top: 6px; }
+        .dash-mini-lbl { font-size: .72rem; color: #8A94A6; margin-top: 6px; overflow-wrap: anywhere; }
         .dash-launch {
             display: inline-block; text-decoration: none; font-weight: 700;
             background: #0070D1; color: #fff; padding: 12px 24px; border-radius: 8px; white-space: nowrap;
@@ -45,12 +47,14 @@
         .ps-tryit .marks .s { color: #D42E86; }
         /* smaller, centered tweet screenshot in the intro */
         .intro-shot { display: block; width: 100%; max-width: 418px; height: auto; margin: 16px auto; border-radius: 10px; }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .dash-cta { flex-direction: column; align-items: stretch; gap: 16px; padding: 18px; }
-            .dash-cta-info { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .dash-cta-info { flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
             .dash-cta-marks { font-size: 24px; }
             .dash-mini { width: 100%; max-width: none; }
-            .dash-launch { text-align: center; width: 100%; }
+            .dash-launch { display: block; text-align: center; width: 100%; box-sizing: border-box; white-space: normal; }
+            .ps-tryit { letter-spacing: 1.5px; font-size: 1.35rem; }
+            .ps-tryit .marks { letter-spacing: 4px; margin-left: 4px; display: inline-block; }
         }
     </style>
 </head>
@@ -148,7 +152,7 @@
                         <p class="dash-mini-lbl">63% negative · 27% neutral · 10% positive &nbsp;|&nbsp; 56,677 reactions, clickable filters, PlayStation Remote</p>
                     </div>
                 </div>
-                <a class="dash-launch" href="ps-disc-dashboard.html" target="_blank" rel="noopener">Full View &rarr;</a>
+                <a class="dash-launch" href="ps-disc-dashboard.html" target="_blank" rel="noopener">Full View</a>
             </div>
 
             <h2>Conclusion</h2>
