@@ -1,0 +1,9 @@
+https://alshammari.dev/
+https://alshammari.dev/cv
+https://alshammari.dev/projects
+https://alshammari.dev/contact
+https://alshammari.dev/projects/playstation-disc-sentiment
+https://alshammari.dev/projects/medical-cost-prediction
+https://alshammari.dev/projects/eventia
+https://alshammari.dev/projects/commercial-flights-delays
+https://alshammari.dev/projects/playstation-disc-sentiment/dashboard

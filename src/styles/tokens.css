@@ -1,0 +1,89 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Design tokens — dual theme, dark default.
+   Categorical data trio validated (dataviz six checks) per mode:
+     dark  ML #BF8412 · Analytics #2AA0C4 · Web #8B6CF0   (surface #111A2C)
+     light ML #A66A00 · Analytics #0983B8 · Web #6E4BD4   (surface #FFFFFF)
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --font-display: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Instrument Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --r-s: 6px;
+  --r-m: 10px;
+  --r-l: 16px;
+
+  --wrap: 1104px;
+  --prose: 46rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0a101e;
+  --bg-raise: #0d1526;
+  --panel: #111a2c;
+  --panel-2: #16213a;
+  --border: #223052;
+  --border-strong: #31446e;
+
+  --text: #e9eef8;
+  --muted: #8b98b4;
+  --faint: #5c6a88;
+
+  --accent: #f5b841;      /* UI accent: fills, rings, highlights */
+  --accent-text: #f5c260; /* accent as text on bg/panel (AA) */
+  --on-accent: #1a1206;
+
+  --cat-ml: #bf8412;
+  --cat-ba: #2aa0c4;
+  --cat-web: #8b6cf0;
+  --cat-ml-text: #edb54a;  /* badge-text variants (AA on panel) */
+  --cat-ba-text: #5fc3e4;
+  --cat-web-text: #ab94f7;
+
+  --pos: #3ed598;
+  --neg: #f0526a;
+
+  --shadow-1: 0 1px 2px rgba(2, 6, 16, 0.5);
+  --shadow-2: 0 10px 34px rgba(2, 6, 16, 0.45);
+  --scrim: rgba(4, 8, 18, 0.82);
+  --header-bg: rgba(10, 16, 30, 0.82);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #f4f7fc;
+  --bg-raise: #ffffff;
+  --panel: #ffffff;
+  --panel-2: #edf2fa;
+  --border: #d9e1ef;
+  --border-strong: #b9c6de;
+
+  --text: #131c2c;
+  --muted: #55637e;
+  --faint: #8593ac;
+
+  --accent: #f5b841;
+  --accent-text: #8a5a00;
+  --on-accent: #1a1206;
+
+  --cat-ml: #a66a00;
+  --cat-ba: #0983b8;
+  --cat-web: #6e4bd4;
+  --cat-ml-text: #8a5a00;
+  --cat-ba-text: #086c98;
+  --cat-web-text: #5d3cbd;
+
+  --pos: #178a5e;
+  --neg: #c22e52;
+
+  --shadow-1: 0 1px 2px rgba(16, 24, 40, 0.07);
+  --shadow-2: 0 10px 34px rgba(16, 24, 40, 0.12);
+  --scrim: rgba(14, 20, 34, 0.66);
+  --header-bg: rgba(244, 247, 252, 0.85);
+}

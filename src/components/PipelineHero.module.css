@@ -1,0 +1,221 @@
+.frame {
+  border: 1px solid var(--border);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--panel), var(--bg-raise));
+  box-shadow: var(--shadow-1);
+  padding: clamp(0.4rem, 2vw, 1.1rem);
+  overflow: hidden;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── raw points drift in ── */
+.raw {
+  fill: var(--cat-ba);
+  opacity: 0;
+  transform: translateX(-14px);
+  animation: rawIn 0.55s var(--ease-out) forwards;
+}
+
+@keyframes rawIn {
+  to {
+    opacity: 0.75;
+    transform: none;
+  }
+}
+
+/* outliers appear, then are cleaned away */
+.outlier {
+  fill: var(--neg);
+  opacity: 0;
+  animation: outlier 2.1s ease forwards;
+}
+
+@keyframes outlier {
+  20% {
+    opacity: 0.85;
+  }
+
+  62% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ── flow lines & gate ── */
+.flow {
+  fill: none;
+  stroke: var(--faint);
+  stroke-width: 1.6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.8s ease-out forwards;
+}
+
+.gate {
+  opacity: 0;
+  transform-origin: 413px 134px;
+  transform: scaleY(0.2);
+  animation: gateIn 0.6s var(--ease-out) forwards;
+}
+
+.gateBody {
+  fill: var(--panel-2);
+  stroke: var(--border-strong);
+  stroke-width: 1.4;
+}
+
+.gateSlot {
+  stroke: var(--accent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+@keyframes gateIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── model line draws itself ── */
+.model {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.15s var(--ease-out) forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.vertex {
+  fill: var(--accent);
+  stroke: var(--panel);
+  stroke-width: 2;
+  opacity: 0;
+  animation: pop 0.4s var(--ease-out) forwards;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+}
+
+/* ── decision marker ── */
+.end {
+  fill: var(--accent);
+  stroke: var(--panel);
+  stroke-width: 2;
+  opacity: 0;
+  animation: pop 0.4s var(--ease-out) forwards;
+}
+
+.endPulse {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  opacity: 0;
+  animation: ring 3s ease-out 3.4s infinite;
+}
+
+@keyframes ring {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  55% {
+    opacity: 0;
+    transform: scale(2.4);
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.4);
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+}
+
+.chip {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: chipIn 0.45s var(--ease-out) forwards;
+}
+
+.chip rect {
+  fill: var(--panel-2);
+  stroke: var(--border-strong);
+  stroke-width: 1.2;
+}
+
+.chip text {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  fill: var(--text);
+}
+
+.check {
+  fill: none;
+  stroke: var(--pos);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes chipIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── stage labels ── */
+.label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  fill: var(--muted);
+  opacity: 0;
+  animation: labelIn 0.6s ease forwards;
+}
+
+@keyframes labelIn {
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,79 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.thumb {
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-m);
+  overflow: hidden;
+  background: var(--panel);
+  cursor: zoom-in;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.thumb:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem;
+  background: var(--scrim);
+  backdrop-filter: blur(4px);
+  animation: fade 0.2s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.full {
+  max-width: min(1100px, 100%);
+  max-height: 100%;
+  border-radius: var(--r-m);
+  box-shadow: var(--shadow-2);
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-m);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overlay {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,179 @@
+/* PlayStation-flavoured pieces — scoped to this article, matching the
+   project's own brand rather than the site palette. */
+
+.marks {
+  font-size: 28px;
+  letter-spacing: 6px;
+  white-space: nowrap;
+}
+
+.marksSm {
+  font-size: 0.8em;
+  letter-spacing: 6px;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.mT {
+  color: #00a94f;
+}
+
+.mC {
+  color: #e4002b;
+}
+
+.mX {
+  color: #2e9bff;
+}
+
+.mS {
+  color: #d42e86;
+}
+
+.introShot {
+  display: block;
+  width: 100%;
+  max-width: 418px;
+  height: auto;
+  margin: 16px auto;
+  border-radius: 10px;
+}
+
+.tryit {
+  margin-top: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #0070d1;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  flex-wrap: wrap;
+  background: linear-gradient(120deg, #0e1320, #16233f);
+  border: 1px solid #233047;
+  border-left: 5px solid #0070d1;
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin: 18px 0 6px;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.28);
+}
+
+.ctaInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ctaInfo > div {
+  min-width: 0;
+}
+
+.ctaTitle {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 9px;
+  overflow-wrap: anywhere;
+}
+
+.mini {
+  display: flex;
+  width: 230px;
+  max-width: 60vw;
+  height: 14px;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.mini span {
+  flex-shrink: 0;
+}
+
+.miniNeg {
+  background: #e4002b;
+}
+
+.miniNeu {
+  background: #8a94a6;
+}
+
+.miniPos {
+  background: #ffc400;
+}
+
+.miniLbl {
+  font-size: 0.72rem;
+  color: #8a94a6;
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.launch {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  background: #0070d1;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.launch:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+.resCard {
+  border: 1px solid var(--border);
+  border-left: 3px solid #0070d1;
+  border-radius: var(--r-m);
+  background: var(--panel);
+  padding: 1.1rem 1.3rem;
+}
+
+@media (max-width: 768px) {
+  .cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .ctaInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .marks {
+    font-size: 24px;
+  }
+
+  .mini {
+    width: 100%;
+    max-width: none;
+  }
+
+  .launch {
+    display: block;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+  }
+
+  .tryit {
+    letter-spacing: 1.5px;
+    font-size: 1.35rem;
+  }
+}

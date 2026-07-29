@@ -1,0 +1,196 @@
+.head {
+  padding-top: clamp(1.6rem, 5vw, 3rem);
+}
+
+.lede {
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.quote {
+  margin: 1.4rem 0 0;
+  padding: 1rem 1.3rem;
+  max-width: 44rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--r-m) var(--r-m) 0;
+  background: var(--panel);
+  color: var(--text);
+  font-style: italic;
+  transition: background-color 0.2s;
+}
+
+.quote:hover {
+  background: var(--panel-2);
+}
+
+.quote footer {
+  margin-top: 0.5rem;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.edu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: var(--r-m);
+  background: var(--panel);
+  padding: 1.1rem 1.3rem;
+}
+
+.eduName {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.12rem;
+  margin: 0 0 0.25rem;
+}
+
+.eduLine {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.gpa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-radius: var(--r-m);
+  background: color-mix(in srgb, var(--accent) 9%, var(--panel));
+}
+
+.gpaValue {
+  font-weight: 640;
+  font-size: 1.9rem;
+  line-height: 1.1;
+}
+
+.gpaCap {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.skills {
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.skillRow {
+  border: 1px solid var(--border);
+  border-radius: var(--r-m);
+  background: var(--panel);
+  padding: 0.85rem 1.1rem;
+}
+
+.skillRow dt {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: 0.35rem;
+}
+
+.skillRow dd {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+.certs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.cert {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  height: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-m);
+  background: var(--panel);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.cert:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.certIcon {
+  color: var(--accent-text);
+  flex: none;
+}
+
+.certBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.certTitle {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.certOrg {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.certExt {
+  margin-left: auto;
+  color: var(--faint);
+  flex: none;
+}
+
+.langs {
+  width: 100%;
+  max-width: 30rem;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+.langs th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.langs td {
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 640px) {
+  .certs {
+    grid-template-columns: 1fr;
+  }
+}

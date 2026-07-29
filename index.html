@@ -1,127 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdullah Alshammari - عبدالله الشمري</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* ===== index-only refinements (scoped; shared CSS/JS & other pages untouched) ===== */
-
-        /* (5 & 6) Hero photo — drop the bold black border, fix the oval, soft matted frame.
-           Portrait photos read best as a rounded rectangle, so no awkward circular crop. */
-        #intro .hero-photo {
-            display: inline-block;
-            padding: 7px;
-            background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(16, 24, 40, .13), 0 3px 8px rgba(16, 24, 40, .07);
-            margin-bottom: 0.85rem;
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdullah Alshammari — Data Science & AI</title>
+    <meta name="description" content="Portfolio of Abdullah Alshammari — turning raw, messy data into clear answers: machine learning, analytics dashboards, and decisions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Abdullah Alshammari — Data Science & AI" />
+    <meta property="og:description" content="Machine learning, analytics dashboards, and decision-ready insights." />
+    <meta property="og:url" content="https://alshammari.dev/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Theme pre-init: set before first paint to avoid a flash of wrong theme.
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) { /* default stays dark */ }
+      })();
+      // spa-github-pages decoder: 404.html redirects /cv -> /?/cv ; restore it.
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
         }
-
-        #intro .hero-photo img {
-            display: block;
-            width: 185px;
-            border: none;
-            border-radius: 18px;
-            margin-bottom: 0;
-        }
-
-        /* (5) Contact icons — plain, no surrounding (also overrides the bold black
-           #intro img border). The hero photo keeps its frame. */
-        #intro .contact-list li img {
-            width: 25px;
-            height: 25px;
-            padding: 0;
-            background: none;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            position: relative;
-            top: 2px;
-        }
-
-        /* (1) Centered subtitle (overrides the global p{text-align:left}). */
-        #intro .subtitle {
-            text-align: center;
-        }
-
-        /* (3) Center the contact row and vertically align each label with its icon. */
-        #intro .contact-list {
-            align-items: center;
-            justify-content: center;
-        }
-
-        #intro .contact-list li {
-            align-items: center;
-            line-height: 1;
-        }
-    </style>
-</head>
-
-<body id="top">
-    <header>
-        <nav role="navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="cv.html">CV</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="intro">
-            <div class="hero-photo">
-                <img src="visuals/Personal.png" alt="Professional portrait of Abdullah Alshammari" width="200">
-            </div>
-            <h1>Abdullah Alshammari</h1>
-            <p class="subtitle">Aspiring Data Science & AI</p>
-            <ul class="contact-list">
-                <li><img src="visuals/email_icon.svg" alt="Email Icon" width="25"> abdullah.tecch@gmail.com</li>
-                <li><img src="visuals/phone_icon.svg" alt="Phone Icon" width="25"> 0538845755</li>
-                <li><img src="visuals/linkedin_icon.svg" alt="LinkedIn Icon" width="25"> <a
-                        href="https://linkedin.com/in/alshammaridev" target="_blank" rel="noopener">Abdullah Alshammari</a></li>
-            </ul>
-        </section>
-        <section>
-            <h2>About Me</h2>
-            <p>First-Honors Computer Science student at King Saud University. I turn raw, messy data into clear answers
-                that help people make better decisions. That means cleaning and organizing data, building dashboards
-                that show what is happening at a glance, and turning insights into practical recommendations a business
-                can act on.</p>
-            <p>Machine learning is my strong suit, and I apply it to almost any kind of problem: predicting future
-                outcomes like cost or demand, grouping similar customers or products to reveal hidden patterns, sorting
-                items into categories, and spotting the unusual cases that need attention. Whatever the question, I can
-                shape data into a model that answers it.</p>
-        </section>
-        <section>
-            <h2>Interests</h2>
-            <ul>
-                <li>Data Science</li>
-                <li>Data & Business Analytics</li>
-                <li>Machine Learning & Deep Learning</li>
-                <li>Cutting-edge Artificial Intelligence</li>
-                <li>Software Development</li>
-                <li>FinTech</li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p class="footer-credit">&copy; Designed &amp; built by Abdullah Alshammari</p>
-    </footer>
-
-    <!-- (1) Floating back-to-top button -->
-    <button id="backToTopFab" aria-label="Back to top" title="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="12" y1="19" x2="12" y2="5"></line>
-            <polyline points="6 11 12 5 18 11"></polyline>
-        </svg>
-    </button>
-
-    <script src="scripts.js"></script>
-</body>
-
+      })(window.location);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

@@ -1,0 +1,147 @@
+.head {
+  padding-top: clamp(1.6rem, 5vw, 3rem);
+}
+
+.lede {
+  color: var(--muted);
+  max-width: 44rem;
+  font-size: 1.02rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.panelReset {
+  margin-top: 2rem;
+}
+
+.info {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-m);
+  background: var(--panel);
+  padding: 1.1rem 1.25rem;
+}
+
+.info dt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.9rem;
+}
+
+.info dt:first-child {
+  margin-top: 0;
+}
+
+.info dt svg {
+  color: var(--accent-text);
+}
+
+.info dd {
+  margin: 0.2rem 0 0 1.55rem;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.success {
+  padding: 0.8rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--pos) 55%, var(--border));
+  border-radius: var(--r-m);
+  background: color-mix(in srgb, var(--pos) 12%, var(--panel));
+  color: var(--text);
+  font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-m);
+  background: var(--panel);
+  padding: 1.2rem 1.25rem 1.35rem;
+}
+
+.form label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.7rem;
+}
+
+.form label:first-of-type {
+  margin-top: 0;
+}
+
+.form input,
+.form select,
+.form textarea {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg-raise);
+  border: 1px solid var(--border);
+  border-radius: var(--r-s);
+  padding: 0.6rem 0.75rem;
+  transition: border-color 0.15s;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.form textarea {
+  min-height: 9.5rem;
+  resize: vertical;
+}
+
+.honey {
+  display: none;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: var(--r-s);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 640;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.submit:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

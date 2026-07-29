@@ -1,0 +1,144 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 58px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pos);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--pos) 45%, transparent);
+  animation: pulse 2.6s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pos) 45%, transparent);
+  }
+
+  70% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.links {
+  display: flex;
+  gap: clamp(0.4rem, 2.5vw, 1.4rem);
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
+.link {
+  display: inline-block;
+  padding: 0.32rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  border-radius: var(--r-s);
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.link:hover {
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.active {
+  color: var(--accent-text);
+  position: relative;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+.theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-s);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.theme:hover {
+  color: var(--accent-text);
+  border-color: var(--border-strong);
+  transform: rotate(12deg);
+}
+
+@media (max-width: 560px) {
+  .bar {
+    gap: 0.5rem;
+  }
+
+  .brand {
+    font-size: 0.78rem;
+  }
+
+  .link {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.34rem;
+  }
+}
+
+/* Tiny screens: the brand collapses to its status dot so all links + the
+   theme toggle stay on-screen. */
+@media (max-width: 430px) {
+  .brandText {
+    display: none;
+  }
+
+  .links {
+    margin-left: 0;
+    flex: 1;
+    justify-content: space-evenly;
+  }
+}
