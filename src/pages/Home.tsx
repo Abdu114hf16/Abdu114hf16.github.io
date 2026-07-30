@@ -1,5 +1,6 @@
-import { Mail, Phone } from 'lucide-react';
-import { LinkedinIcon } from '../components/BrandIcons';
+import { Download, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router';
+import { GithubIcon, LinkedinIcon } from '../components/BrandIcons';
 import PipelineHero from '../components/PipelineHero';
 import KpiTile from '../components/KpiTile';
 import Panel from '../components/Panel';
@@ -17,7 +18,7 @@ const INTERESTS: Array<{ label: string; tone: 'ml' | 'ba' | 'web' | 'none' }> = 
 ];
 
 export default function Home() {
-  useSeo(undefined, 'Portfolio of Abdullah Alshammari — machine learning, analytics dashboards, and decision-ready insights.');
+  useSeo(undefined, 'Portfolio of Abdullah Alshammari: machine learning, analytics dashboards, and decision-ready insights.');
 
   return (
     <main className="wrap">
@@ -28,7 +29,27 @@ export default function Home() {
               portfolio <b>·</b> data science &amp; ai <b>·</b> riyadh
             </p>
             <h1 className={s.name}>Abdullah Alshammari</h1>
-            <p className={s.subtitle}>Aspiring Data Science &amp; AI</p>
+            <p className={s.subtitle}>Data Scientist</p>
+            <p className={s.meta}>
+              Computer Science at King Saud University <b>·</b> GPA 4.87/5.00, First Honors{' '}
+              <b>·</b> Riyadh or remote <b>·</b> <b>Available now</b>
+            </p>
+            <div className={s.ctas}>
+              <Link to="/projects" className={s.btn}>
+                Read the case studies
+              </Link>
+              <a href="/docs/Abdullah_Alshammari_CV.pdf" className={`${s.btn} ${s.btnGhost}`} download>
+                <Download size={16} aria-hidden="true" /> Download CV (PDF)
+              </a>
+              <a
+                href="https://github.com/Abdu114hf16"
+                className={`${s.btn} ${s.btnGhost}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubIcon size={16} aria-hidden /> GitHub
+              </a>
+            </div>
             <ul className={s.contact}>
               <li>
                 <a href="mailto:abdullah.tecch@gmail.com">
@@ -36,7 +57,9 @@ export default function Home() {
                 </a>
               </li>
               <li>
-                <Phone size={16} aria-hidden="true" /> 0538845755
+                <a href="tel:+966538845755">
+                  <Phone size={16} aria-hidden="true" /> 0538845755
+                </a>
               </li>
               <li>
                 <a href="https://linkedin.com/in/alshammaridev" target="_blank" rel="noopener noreferrer">
@@ -62,7 +85,7 @@ export default function Home() {
 
       <Reveal>
         <div className={s.kpis}>
-          <KpiTile label="GPA — KSU" to={4.87} decimals={2} caption="of 5.00 · First Honors" ring={4.87 / 5} />
+          <KpiTile label="GPA · KSU" to={4.87} decimals={2} caption="of 5.00 · First Honors" ring={4.87 / 5} />
           <KpiTile
             label="Best model R²"
             to={0.91}

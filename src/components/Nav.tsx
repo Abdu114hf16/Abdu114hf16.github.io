@@ -24,7 +24,7 @@ export default function Nav() {
       try {
         localStorage.setItem('theme', next);
       } catch {
-        /* private mode — theme just won't persist */
+        /* private mode: theme just won't persist */
       }
       return next;
     });
@@ -33,7 +33,7 @@ export default function Nav() {
   return (
     <header className={s.header}>
       <nav className={`wrap ${s.bar}`} aria-label="Main">
-        <NavLink to="/" className={s.brand} aria-label="alshammari.dev — home">
+        <NavLink to="/" className={s.brand} aria-label="alshammari.dev, home">
           <span className={s.dot} aria-hidden="true" />
           <span className={s.brandText}>alshammari.dev</span>
         </NavLink>

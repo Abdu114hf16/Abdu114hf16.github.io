@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import ArticleLayout, { Section, TechStack } from './ArticleLayout';
 import s from './PsDiscSentiment.module.css';
 
-/** PlayStation shape marks — part of the project's own brand, kept scoped. */
+/** PlayStation shape marks: part of the project's own brand, kept scoped. */
 function Marks({ size }: { size?: 'sm' }) {
   return (
     <span className={size === 'sm' ? `${s.marks} ${s.marksSm}` : s.marks} aria-hidden="true">

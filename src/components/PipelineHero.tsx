@@ -73,7 +73,7 @@ export default function PipelineHero() {
           <text x="822" y="31.5">decision</text>
         </g>
 
-        {/* stage labels — the narrative */}
+        {/* stage labels: the narrative */}
         <text className={s.label} x="160" y="248" style={dl(700)}>raw</text>
         <text className={s.label} x="413" y="248" style={dl(1500)}>clean · transform</text>
         <text className={s.label} x="670" y="248" style={dl(2600)}>model → decide</text>

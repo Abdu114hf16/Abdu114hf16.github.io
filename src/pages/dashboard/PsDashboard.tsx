@@ -76,7 +76,16 @@ export default function PsDashboard() {
   const setLang = (v: string | null) => setF((p) => ({ ...p, lang: v }));
   const reset = () => setF({ sent: null, day: null, lang: null });
 
-  /* One pass over 56K rows computes every aggregate (cross-filter style:
+  /* The cube's keys are parsed once per dataset, not once per filter change. */
+  const cells = useMemo(() => {
+    if (!data) return [];
+    return Object.entries(data.cube).map(([key, n]) => {
+      const [day, lang, sent] = key.split('|');
+      return { day: Number(day), lang: lang ?? '', sent: Number(sent), n };
+    });
+  }, [data]);
+
+  /* One pass over the 77-cell cube computes every aggregate (cross-filter style:
      each visual ignores its own dimension's filter). */
   const agg = useMemo(() => {
     if (!data) return null;
@@ -87,16 +96,17 @@ export default function PsDashboard() {
       [0, 0, 0],
     ];
     const lm: Record<string, [number, number, number]> = {};
-    for (const [day, lang, sent] of data.rows) {
+    for (const cell of cells) {
+      const { day, lang, sent } = cell;
       const mS = f.sent === null || sent === f.sent;
       const mD = f.day === null || day === f.day;
       const mL = f.lang === null || lang === f.lang;
       if (mS && mD && mL) {
-        n++;
-        c[sent]++;
+        n += cell.n;
+        c[sent] += cell.n;
       }
-      if (mS && mL) dc[day][sent]++;
-      if (mS && mD) (lm[lang] ??= [0, 0, 0])[sent]++;
+      if (mS && mL) dc[day][sent] += cell.n;
+      if (mS && mD) (lm[lang] ??= [0, 0, 0])[sent] += cell.n;
     }
     const langs = Object.entries(lm)
       .map(([l, v]) => ({ l, v, t: v[0] + v[1] + v[2] }))
@@ -111,15 +121,14 @@ export default function PsDashboard() {
       )
       .slice(0, 3);
     return { c, n, dc, langs, samples };
-  }, [data, f]);
+  }, [data, cells, f]);
 
-  /* Language dropdown options — unfiltered, computed once per dataset. */
+  /* Language dropdown options: unfiltered, computed once per dataset. */
   const langOptions = useMemo(() => {
-    if (!data) return [];
     const m: Record<string, number> = {};
-    for (const r of data.rows) m[r[1]] = (m[r[1]] ?? 0) + 1;
+    for (const cell of cells) m[cell.lang] = (m[cell.lang] ?? 0) + cell.n;
     return Object.entries(m).sort((a, b) => b[1] - a[1]);
-  }, [data]);
+  }, [cells]);
 
   const rootStyle = {
     ...THEMES[theme],
@@ -168,7 +177,7 @@ export default function PsDashboard() {
             <div>
               <h1>END OF DISCS - PUBLIC REACTION</h1>
               <div className={s.sub}>
-                X / TWITTER · SENTIMENT VIA PYTHON NLP · {fmt(data.rows.length)} REACTIONS
+                X / TWITTER · SENTIMENT VIA PYTHON NLP · {fmt(data.total)} REACTIONS
               </div>
             </div>
           </div>
@@ -221,7 +230,7 @@ export default function PsDashboard() {
             <h3>Reactions</h3>
             <div className={`${s.big} ${s.bigPs}`}>{fmt(n)}</div>
             <div className={s.cap}>
-              {n === data.rows.length ? 'of all reactions' : `${((100 * n) / data.rows.length).toFixed(1)}% of total`}
+              {n === data.total ? 'of all reactions' : `${((100 * n) / data.total).toFixed(1)}% of total`}
             </div>
           </div>
           <div className={`${s.tile} ${s.kpi}`}>

@@ -7,6 +7,52 @@
   font-size: 1.02rem;
 }
 
+/* Model-card spec row: the screening facts, dense by design. */
+.spec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 2.2rem;
+  margin: 1rem 0 1.1rem;
+}
+
+.spec dt {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.24rem;
+}
+
+.spec dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.actions {
+  margin: 0 0 1.3rem;
+}
+
+.dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: var(--r-s);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 640;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.dl:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
 .quote {
   margin: 1.4rem 0 0;
   padding: 1rem 1.3rem;

@@ -55,7 +55,7 @@ export default function App() {
     <>
       <ScrollToTop />
       <Routes>
-        {/* Dashboard renders standalone — it is its own full-view artifact. */}
+        {/* Dashboard renders standalone: it is its own full-view artifact. */}
         <Route
           path="/projects/playstation-disc-sentiment/dashboard"
           element={

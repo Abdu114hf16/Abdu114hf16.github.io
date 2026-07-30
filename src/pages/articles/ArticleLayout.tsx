@@ -59,7 +59,7 @@ export function TechStack({ items }: { items: string[] }) {
   );
 }
 
-/** A numbered business question — the numbering is real content here. */
+/** A numbered business question: the numbering is real content here. */
 export function Bq({ n, q, children }: { n: number; q: string; children: ReactNode }) {
   return (
     <div className={s.bq}>

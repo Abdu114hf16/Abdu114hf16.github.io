@@ -1,4 +1,4 @@
-/** Brand glyphs (lucide dropped brand icons) — same size/color API as lucide. */
+/** Brand glyphs (lucide dropped brand icons): same size/color API as lucide. */
 
 interface IconProps {
   size?: number;

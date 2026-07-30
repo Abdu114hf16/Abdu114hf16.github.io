@@ -1,5 +1,6 @@
 export type Field = 'ml' | 'ba' | 'web';
-export type Origin = 'academic' | 'personal';
+/** How the work came about: university coursework vs. taught myself outside a curriculum. */
+export type Origin = 'academic' | 'self-directed';
 
 export interface Project {
   slug: string;
@@ -30,7 +31,7 @@ export const projects: Project[] = [
     title: 'PlayStation Disc Decision Sentiment',
     desc: 'Sentiment analysis represented in an interactive dashboard of public reactions to PlayStation ending physical discs post on X/Twitter.',
     field: 'ba',
-    origin: 'personal',
+    origin: 'self-directed',
     tags: ['Python', 'NLP', 'XLM-RoBERTa', 'Transformers', 'Hugging Face', 'Pandas', 'Power BI'],
     status: 'live',
   },
@@ -39,7 +40,7 @@ export const projects: Project[] = [
     title: 'Medical Insurance Cost Prediction',
     desc: 'Annual medical costs prediction using Machine Learning and interpretation techniques.',
     field: 'ml',
-    origin: 'personal',
+    origin: 'self-directed',
     tags: ['Python', 'EDA', 'Data Cleaning', 'Linear Regression', 'Ridge', 'Lasso', 'SHAP', 'R2 = 0.91'],
     status: 'live',
   },
@@ -57,7 +58,7 @@ export const projects: Project[] = [
     title: 'Commercial Flights Delays Analysis',
     desc: 'A Power BI solution that forecasts delay probability and optimizes operational logistics.',
     field: 'ba',
-    origin: 'personal',
+    origin: 'self-directed',
     tags: ['Power BI', 'DAX', 'Data Modeling', 'Regression', 'Clustering', 'Time-Series', 'Anomaly Detection'],
     status: 'live',
   },
@@ -66,7 +67,7 @@ export const projects: Project[] = [
     title: 'Optimizing Donors Outreach',
     desc: 'A machine learning pipeline that flags the most likely donors and cuts outreach cost.',
     field: 'ml',
-    origin: 'personal',
+    origin: 'self-directed',
     tags: ['Python', 'scikit-learn', 'pandas', 'NumPy', 'EDA', 'Cross-Validation'],
     status: 'queued',
   },
@@ -75,7 +76,7 @@ export const projects: Project[] = [
     title: 'SMS Spam Classifier',
     desc: 'An NLP classifier that separates spam from legitimate messages.',
     field: 'ml',
-    origin: 'personal',
+    origin: 'self-directed',
     tags: ['Python', 'scikit-learn', 'NLP', 'Naive Bayes', 'Precision = 97.2%'],
     status: 'queued',
   },

@@ -19,7 +19,7 @@ const FIELD_OPTS: Array<{ value: FieldFilter; label: string }> = [
 const ORIGIN_OPTS: Array<{ value: OriginFilter; label: string }> = [
   { value: 'all', label: 'All' },
   { value: 'academic', label: 'Academic' },
-  { value: 'personal', label: 'Personal' },
+  { value: 'self-directed', label: 'Self-directed' },
 ];
 
 export default function Projects() {
@@ -27,7 +27,7 @@ export default function Projects() {
   const [field, setField] = useState<FieldFilter>('all');
   const [origin, setOrigin] = useState<OriginFilter>('all');
 
-  // Derived during render — no effects, no duplicated state.
+  // Derived during render: no effects, no duplicated state.
   const visible = projects.filter(
     (p) => (field === 'all' || p.field === field) && (origin === 'all' || p.origin === origin),
   );
@@ -121,7 +121,7 @@ export default function Projects() {
               </Reveal>
             ) : (
               <Reveal key={p.slug} delay={Math.min(i * 40, 200)}>
-                <div className={`${s.row} ${s.queued}`} aria-label={`${p.title} — coming soon`}>
+                <div className={`${s.row} ${s.queued}`} aria-label={`${p.title}, coming soon`}>
                   <span className={s.main}>
                     <span className={s.titleRow}>
                       <span className={s.badge} data-field={p.field}>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router';
-import { Mail, Phone, Send } from 'lucide-react';
+import { Download, Mail, Phone, Send } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons';
 import Panel from '../components/Panel';
 import Reveal from '../components/Reveal';
@@ -40,7 +40,9 @@ export default function Contact() {
               <dt>
                 <Phone size={17} aria-hidden="true" /> Phone
               </dt>
-              <dd>0538845755</dd>
+              <dd>
+                <a href="tel:+966538845755">0538845755</a>
+              </dd>
               <dt>
                 <LinkedinIcon size={17} aria-hidden /> LinkedIn
               </dt>
@@ -55,6 +57,14 @@ export default function Contact() {
               <dd>
                 <a href="https://github.com/Abdu114hf16" target="_blank" rel="noopener noreferrer">
                   github.com/Abdu114hf16
+                </a>
+              </dd>
+              <dt>
+                <Download size={17} aria-hidden="true" /> CV
+              </dt>
+              <dd>
+                <a href="/docs/Abdullah_Alshammari_CV.pdf" download>
+                  Abdullah_Alshammari_CV.pdf
                 </a>
               </dd>
             </dl>

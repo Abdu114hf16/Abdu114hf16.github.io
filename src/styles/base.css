@@ -87,7 +87,7 @@ button {
   padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
-/* Mono eyebrow label — the site's structural voice */
+/* Mono eyebrow label: the site's structural voice */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;

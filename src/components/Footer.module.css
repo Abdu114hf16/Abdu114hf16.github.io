@@ -20,20 +20,28 @@
   color: var(--muted);
 }
 
-.meta {
+/* Replaces the build-tooling credit: nobody screens on react/vite, but every
+   technical screen looks for the repo, and recruiters look for the CV. */
+.links {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--muted);
+  gap: 0.4rem 1.2rem;
+  font-size: 0.85rem;
 }
 
-.ok {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--pos);
+.links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: var(--text);
+}
+
+.links svg {
+  flex: none;
 }

@@ -1,4 +1,4 @@
-import { Award, ExternalLink } from 'lucide-react';
+import { Award, Download, ExternalLink } from 'lucide-react';
 import Panel from '../components/Panel';
 import Reveal from '../components/Reveal';
 import { useSeo } from '../hooks/useSeo';
@@ -44,7 +44,7 @@ const CERTS = [
 ];
 
 export default function Cv() {
-  useSeo('CV', 'CV of Abdullah Alshammari — education, technical skills, certifications, and languages.');
+  useSeo('CV', 'CV of Abdullah Alshammari: education, technical skills, certifications, and languages.');
 
   return (
     <main className="wrap">
@@ -54,10 +54,30 @@ export default function Cv() {
         </p>
         <h1>CV</h1>
         <p className={s.lede}>Abdullah Alshammari, Riyadh, Saudi Arabia</p>
+        {/* A model card states its intended use and how to deploy it. So does this. */}
+        <dl className={s.spec}>
+          <div>
+            <dt>Intended use</dt>
+            <dd>Entry-level data science and analytics roles</dd>
+          </div>
+          <div>
+            <dt>Deployment</dt>
+            <dd>Riyadh or remote</dd>
+          </div>
+          <div>
+            <dt>Available</dt>
+            <dd>Now</dd>
+          </div>
+        </dl>
+        <p className={s.actions}>
+          <a href="/docs/Abdullah_Alshammari_CV.pdf" className={s.dl} download>
+            <Download size={16} aria-hidden="true" /> Download CV (PDF)
+          </a>
+        </p>
         <blockquote className={s.quote}>
           "The future of Saudi Arabia is not dependent on oil but on the minds of our people and their ability to
           unleash their potential."
-          <footer>— Prince Mohammed bin Salman</footer>
+          <footer>Prince Mohammed bin Salman</footer>
         </blockquote>
       </section>
 
