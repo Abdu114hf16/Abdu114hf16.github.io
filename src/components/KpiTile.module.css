@@ -30,7 +30,9 @@
   font-size: clamp(1.7rem, 3.2vw, 2.15rem);
   line-height: 1;
   color: var(--text);
-  font-variant-numeric: normal;
+  /* Fixed-width digits: the value counts up, so proportional figures would
+     change width every frame and shove the ring or sparkline beside it. */
+  font-variant-numeric: tabular-nums;
 }
 
 .caption {

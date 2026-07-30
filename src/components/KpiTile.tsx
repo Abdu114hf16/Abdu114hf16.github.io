@@ -16,9 +16,17 @@ interface Props {
 const nf = (decimals: number) => (n: number) =>
   n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
-/** Count-up that starts when the tile scrolls into view. */
+/**
+ * Count-up that starts when the tile scrolls into view.
+ *
+ * Seeded at the final value on purpose: the number must be correct in the DOM
+ * from first paint, so a card can never read 0 if the observer does not fire,
+ * if JavaScript is unavailable, or during a screenshot or print that never
+ * scrolls. The animation is enhancement only, and rewinds to 0 just before it
+ * plays.
+ */
 function useCountUp(to: number, started: boolean, decimals: number) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(to);
 
   useEffect(() => {
     if (!started) return;
@@ -87,6 +95,11 @@ export default function KpiTile({ label, to, decimals = 0, format, caption, spar
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Fail open: without an observer the value simply stays at its final state.
+    if (!('IntersectionObserver' in window)) {
+      setStarted(true);
+      return;
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -104,7 +117,7 @@ export default function KpiTile({ label, to, decimals = 0, format, caption, spar
     <div ref={ref} className={s.tile}>
       <p className={s.label}>{label}</p>
       <div className={s.row}>
-        <span className={s.value}>{fmt(started ? value : 0)}</span>
+        <span className={s.value}>{fmt(value)}</span>
         {ring !== undefined && <Ring frac={ring} />}
         {spark && <Spark data={spark} />}
       </div>
