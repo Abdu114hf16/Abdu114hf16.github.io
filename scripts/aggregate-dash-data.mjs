@@ -44,9 +44,38 @@ for (const smp of raw.samples) {
   if (seen[key] <= SAMPLES_PER_CELL) samples.push(smp);
 }
 
+/* The raw export names both qam and qme "Media/Undefined", so the dashboard's
+   language dropdown listed the same label twice with different counts, which
+   reads as a data-cleaning slip on a page whose whole argument is careful
+   analysis. They are genuinely different X language codes: qme is media-only
+   content and qam is mentions-only, and neither is an undetected language,
+   which "und" already covers separately. Renamed here rather than in the
+   published JSON so a re-run cannot quietly reintroduce the collision. */
+const LANG_NAME_FIXES = {
+  qme: 'Media only',
+  qam: 'Mentions only',
+  und: 'Undetected',
+};
+
+const langNames = { ...raw.langNames, ...LANG_NAME_FIXES };
+
+const dupes = Object.entries(
+  Object.entries(langNames).reduce((acc, [code, name]) => {
+    (acc[name] ??= []).push(code);
+    return acc;
+  }, {}),
+).filter(([, codes]) => codes.length > 1);
+if (dupes.length) {
+  throw new Error(
+    `two language codes share a display name, so the filter would list it twice: ${dupes
+      .map(([name, codes]) => `${name} <- ${codes.join(', ')}`)
+      .join('; ')}`,
+  );
+}
+
 const next = {
   dayLabels: raw.dayLabels,
-  langNames: raw.langNames,
+  langNames,
   total: raw.rows.length,
   cube,
   samples,

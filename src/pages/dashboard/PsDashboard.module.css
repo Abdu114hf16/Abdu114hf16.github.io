@@ -366,11 +366,17 @@ select.chip {
 }
 
 /* ── days ── */
+/* min-height, not height. A column is the value label, then a stack up to
+   210px, then the day label, with 8px gaps and 14px of top padding: about 269px
+   in total, against the 250px this used to be fixed at. The overflow came out
+   of the top, so on the tallest bar the value label floated above the panel's
+   own border and above its heading. Letting the row size to its content cannot
+   drift again if the stack or the type changes. */
 .days {
   display: flex;
   gap: 48px;
   align-items: flex-end;
-  height: 250px;
+  min-height: 250px;
   padding: 14px 10px 0;
   justify-content: center;
 }
@@ -533,7 +539,9 @@ select.chip {
   color: var(--muted);
   font-size: 11px;
   text-align: center;
-  padding-bottom: 70px;
+  /* Clears the fixed REMOTE pill: 16px offset plus roughly 40px of button plus
+     breathing room, so the provenance line is never underneath it. */
+  padding-bottom: 88px;
 }
 
 /* The dashboard's palette comes from inline vars on .root, so the site-wide
@@ -624,8 +632,11 @@ select.chip {
   border-color: var(--txt);
 }
 
+/* Only the active swatch is labelled now. Five names under five 30px swatches
+   on a 262px panel ran together into a smear at 8px, and there is no size that
+   both fits and reads. */
 .sw span {
-  font-size: 8px;
+  font-size: 10px;
   position: absolute;
   bottom: -13px;
   left: 50%;
@@ -736,7 +747,7 @@ select.chip {
 
   .days {
     gap: 22px;
-    height: 220px;
+    min-height: 220px;
   }
 
   .stack {

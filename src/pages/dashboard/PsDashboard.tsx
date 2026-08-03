@@ -340,7 +340,8 @@ export default function PsDashboard() {
           <div className={s.row3}>
             <div className={s.tile}>
               <h2>
-                Sentiment by Language <span className={s.hint}>(click a row to filter)</span>
+                Sentiment by Language{' '}
+              <span className={s.hint}>(share within each language, click a row to filter)</span>
               </h2>
               <div className={s.lang}>
                 {agg.langs.length === 0 && <span className={s.none}>No rows.</span>}
@@ -426,7 +427,7 @@ export default function PsDashboard() {
                   title={name}
                   onClick={() => setTheme(name)}
                 >
-                  <span>{name}</span>
+                  {theme === name && <span>{name}</span>}
                 </button>
               ))}
             </div>
@@ -440,7 +441,9 @@ export default function PsDashboard() {
                   style={{ background: ACCENTS[name][0] }}
                   title={name}
                   onClick={() => setAccent(name)}
-                />
+                >
+                  {accent === name && <span>{name}</span>}
+                </button>
               ))}
             </div>
             <div className={s.optlbl}>Positive color</div>
@@ -453,7 +456,9 @@ export default function PsDashboard() {
                   style={{ background: POS_COLORS[name] }}
                   title={`${name} positive`}
                   onClick={() => setPosColor(name)}
-                />
+                >
+                  {posColor === name && <span>{name}</span>}
+                </button>
               ))}
             </div>
           </div>
