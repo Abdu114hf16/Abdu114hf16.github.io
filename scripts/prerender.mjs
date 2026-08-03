@@ -110,7 +110,10 @@ function setMeta(html, attr, key, value) {
 
 let written = 0;
 for (const [route, { title, description }] of Object.entries(ROUTES)) {
-  const url = route === '/' ? `${ORIGIN}/` : `${ORIGIN}${route}`;
+  // Trailing slash on purpose: Pages serves these as directory indexes and
+  // 301s /cv to /cv/, so the slash form is what actually answers 200. Pointing
+  // canonical at the non-slash form would aim it at a redirect.
+  const url = route === '/' ? `${ORIGIN}/` : `${ORIGIN}${route}/`;
 
   let html = template
     .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
