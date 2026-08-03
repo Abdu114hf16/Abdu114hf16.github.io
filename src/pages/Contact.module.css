@@ -113,8 +113,40 @@
   resize: vertical;
 }
 
+/* Rendered, but parked off-screen rather than display:none. A spam script that
+   parses the stylesheet skips a field it can see is display:none, whereas this
+   one looks like an ordinary text input to anything that is not painting the
+   page. tabindex -1 and aria-hidden keep it away from every human path: it is
+   not in the tab order and not in the accessibility tree. */
 .honey {
-  display: none;
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.blocked {
+  margin: var(--sp-4) 0 0;
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid color-mix(in srgb, var(--neg) 55%, var(--border));
+  border-radius: var(--r-m);
+  background: color-mix(in srgb, var(--neg) 12%, var(--panel));
+  color: var(--text);
+  font-size: var(--fs-3);
+}
+
+/* The relay can fail without saying so, so the direct address stays on screen
+   next to the form rather than only in the panel beside it. */
+.fallback {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-2);
+  color: var(--muted);
+}
+
+.fallback a {
+  color: var(--text);
 }
 
 .submit {
