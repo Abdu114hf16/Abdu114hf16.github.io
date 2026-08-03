@@ -1,0 +1,75 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Font faces, declared here rather than pulled in from the fontsource entry
+   points, for two reasons.
+
+   Subsets. The default imports shipped 25 files, 344 kB, covering latin,
+   latin-ext, cyrillic, cyrillic-ext and vietnamese. Every non-ASCII character
+   the built bundles actually contain either falls in the latin range
+   (· U+00B7, ² U+00B2, … U+2026, − U+2212) or falls in no subset of these
+   families at all (→ ≥ ◯ ◻ △ ✕ ●), in which case it was already rendering
+   from a system font before this change. The PlayStation dashboard sets its
+   own 'Segoe UI' stack, so its multilingual sample text never touched these
+   files either. unicode-range meant the unused subsets cost deploy size
+   rather than user bandwidth, but they were still dead weight.
+
+   scripts/prerender.mjs re-checks that claim against the built bundles on
+   every build, so new copy needing a wider subset fails loudly instead of
+   quietly rendering in a fallback face.
+
+   WOFF1. fontsource lists a .woff fallback beside every IBM Plex Mono .woff2,
+   which is 10 more files for browsers that predate woff2 and could not render
+   this site regardless: the layout depends on CSS custom properties and grid,
+   both of which arrived after woff2 support was universal.
+
+   The variable packages ship no per-subset entry point, so the two @font-face
+   rules for them have to be written out either way. Vite resolves each url()
+   through the package, so a missing or renamed file fails the build rather
+   than shipping a silent 404.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Google's "latin" subset range, copied verbatim from the fontsource CSS. The
+   weight ranges match what each package declares, so nothing gets clamped into
+   synthetic bolding. format('woff2') rather than fontsource's legacy
+   format('woff2-variations'): the -variations tokens are gone from CSS Fonts 4,
+   and an unrecognised format string makes a browser skip that src entirely.
+   Plain woff2 describes the container, which is all a variable font needs. */
+
+@font-face {
+  font-family: 'Bricolage Grotesque Variable';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Instrument Sans Variable';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
