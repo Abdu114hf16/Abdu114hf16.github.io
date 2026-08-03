@@ -38,7 +38,7 @@ export default function Projects() {
   ].filter(Boolean);
 
   return (
-    <main className="wrap">
+    <main id="main" tabIndex={-1} className="wrap">
       <section className={s.head}>
         <p className="eyebrow">
           run history <b>·</b> {projects.length} entries
@@ -105,7 +105,7 @@ export default function Projects() {
                         <span className={s.badgeDot} aria-hidden="true" />
                         {FIELD_BADGE[p.field]}
                       </span>
-                      <span className={s.title}>{p.title}</span>
+                      <h2 className={s.title}>{p.title}</h2>
                     </span>
                     <span className={s.desc}>{p.desc}</span>
                     <span className={s.tags}>
@@ -121,14 +121,20 @@ export default function Projects() {
               </Reveal>
             ) : (
               <Reveal key={p.slug} delay={Math.min(i * 40, 200)}>
-                <div className={`${s.row} ${s.queued}`} aria-label={`${p.title}, coming soon`}>
+                <div className={`${s.row} ${s.queued}`}>
                   <span className={s.main}>
                     <span className={s.titleRow}>
                       <span className={s.badge} data-field={p.field}>
                         <span className={s.badgeDot} aria-hidden="true" />
                         {FIELD_BADGE[p.field]}
                       </span>
-                      <span className={s.title}>{p.title}</span>
+                      {/* The visible "status: queued" chip is hidden below 560px, and an
+                          aria-label on a plain div is not exposed, so the status rides in
+                          the heading where it reaches everyone at every width. */}
+                      <h2 className={s.title}>
+                        {p.title}
+                        <span className="sr-only">, queued, no write-up yet</span>
+                      </h2>
                     </span>
                     <span className={s.desc}>{p.desc}</span>
                     <span className={s.tags}>

@@ -156,10 +156,14 @@ a.row:hover .arr {
   background: var(--cat-web);
 }
 
+/* An h2, so that heading navigation reaches the four project titles. Reset the
+   base heading margin; the row's flex gap already does the spacing. */
 .title {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.06rem;
+  line-height: 1.35;
+  margin: 0;
 }
 
 .desc {

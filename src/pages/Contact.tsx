@@ -18,7 +18,7 @@ export default function Contact() {
   }, [sent]);
 
   return (
-    <main className="wrap">
+    <main id="main" tabIndex={-1} className="wrap">
       <section className={s.head}>
         <p className="eyebrow">
           channel <b>·</b> open

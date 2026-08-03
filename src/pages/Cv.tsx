@@ -47,7 +47,7 @@ export default function Cv() {
   useSeo('CV', 'CV of Abdullah Alshammari: education, technical skills, certifications, and languages.');
 
   return (
-    <main className="wrap">
+    <main id="main" tabIndex={-1} className="wrap">
       <section className={s.head}>
         <p className="eyebrow">
           model card <b>·</b> abdullah alshammari

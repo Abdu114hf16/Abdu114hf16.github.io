@@ -4,7 +4,7 @@ import { useSeo } from '../hooks/useSeo';
 export default function NotFound() {
   useSeo('Page not found');
   return (
-    <main className="wrap" style={{ paddingTop: '4rem', minHeight: '50vh' }}>
+    <main id="main" tabIndex={-1} className="wrap" style={{ paddingTop: '4rem', minHeight: '50vh' }}>
       <p className="eyebrow">
         status <b>·</b> 404
       </p>

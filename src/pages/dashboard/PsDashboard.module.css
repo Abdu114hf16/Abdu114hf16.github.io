@@ -217,7 +217,7 @@ select.chip {
   padding: 10px;
 }
 
-.tile h3 {
+.tile h2 {
   font-size: 11px;
   color: var(--muted);
   font-weight: 600;
@@ -536,6 +536,27 @@ select.chip {
   padding-bottom: 70px;
 }
 
+/* The dashboard's palette comes from inline vars on .root, so the site-wide
+   print retint in base.css cannot reach it: dark theme would print white text
+   onto unprinted white paper. The colour here is the artifact, and the donut is
+   literally a background gradient, so print it exactly as shown and drop the
+   controls, which do nothing on paper. */
+@media print {
+  .root {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .remoteToggle,
+  .remote {
+    display: none;
+  }
+
+  .foot {
+    padding-bottom: 0;
+  }
+}
+
 /* ── REMOTE ── */
 .remoteToggle {
   position: fixed;
@@ -571,7 +592,7 @@ select.chip {
   margin-bottom: 12px;
 }
 
-.remote h4 {
+.remote h3 {
   font-size: 11px;
   letter-spacing: 1.5px;
   color: var(--ps2);

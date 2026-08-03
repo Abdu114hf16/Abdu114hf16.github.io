@@ -15,7 +15,7 @@ interface Meta {
 export default function ArticleLayout({ meta, children }: { meta: Meta; children: ReactNode }) {
   useSeo(meta.seoTitle, meta.lede);
   return (
-    <main className="wrap">
+    <main id="main" tabIndex={-1} className="wrap">
       <article className={s.article}>
         <p className={s.backRow}>
           <Link className={s.back} to="/projects" aria-label="Back to Projects" title="Back to Projects">

@@ -14,6 +14,13 @@ export default function Reveal({ children, delay = 0, className }: Props) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Fail open: without an observer the content is simply shown, never hidden.
+    if (!('IntersectionObserver' in window)) {
+      setInView(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -21,7 +28,13 @@ export default function Reveal({ children, delay = 0, className }: Props) {
           io.disconnect();
         }
       },
-      { threshold: 0.12 },
+      // threshold 0 fires on the first pixel of overlap. A ratio threshold could
+      // not: it compares intersected area to the *element's* area, so the old
+      // 0.12 was unreachable for anything taller than ~8.3 viewports and those
+      // sections would have stayed at opacity 0 forever. The small negative
+      // bottom margin is what holds the trigger until the section is properly
+      // on screen, and 60px stays clear of the footer at any scroll position.
+      { threshold: 0, rootMargin: '0px 0px -60px 0px' },
     );
     io.observe(el);
     return () => io.disconnect();

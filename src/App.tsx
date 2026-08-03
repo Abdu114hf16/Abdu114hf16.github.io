@@ -36,6 +36,9 @@ function ScrollToTop() {
 function Layout() {
   return (
     <>
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
       <Nav />
       <Suspense fallback={<div className="wrap" style={{ minHeight: '60vh' }} />}>
         <Outlet />

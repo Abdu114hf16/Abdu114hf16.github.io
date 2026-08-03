@@ -29,3 +29,9 @@
 .fab:hover {
   border-color: var(--accent);
 }
+
+@media print {
+  .fab {
+    display: none;
+  }
+}

@@ -21,7 +21,7 @@ export default function Home() {
   useSeo(undefined, 'Portfolio of Abdullah Alshammari: machine learning, analytics dashboards, and decision-ready insights.');
 
   return (
-    <main className="wrap">
+    <main id="main" tabIndex={-1} className="wrap">
       <section className={s.hero}>
         <div className={s.heroGrid}>
           <div>

@@ -85,6 +85,32 @@
   --ps-drop: rgba(16, 24, 40, 0.12);
 }
 
+/* Same reasoning as the light theme, for paper. Browsers drop background
+   colours by default, so the dark palette's white ink would print invisibly.
+   The sentiment bar is the one thing here worth ink, so it keeps its fills. */
+@media print {
+  .cta {
+    --ps-ink: #0e1320;
+    --ps-ink-dim: #4f5b70;
+    --ps-drop: transparent;
+
+    background: none;
+    border-color: #c2d5ee;
+    box-shadow: none;
+  }
+
+  .mini {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .launch {
+    background: none;
+    color: var(--ps-blue);
+    border: 1px solid currentcolor;
+  }
+}
+
 .ctaInfo {
   display: flex;
   align-items: center;

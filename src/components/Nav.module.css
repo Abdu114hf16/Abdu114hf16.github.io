@@ -136,9 +136,25 @@
     display: none;
   }
 
+  /* Collapsed, the link is an 8px dot, well under the 24px WCAG 2.2 minimum.
+     The padding grows the target to 40x44 and the matching negative margin
+     cancels it back out, so the dot itself does not move. */
+  .brand {
+    min-height: 44px;
+    padding: 0 16px;
+    margin-left: -16px;
+  }
+
   .links {
     margin-left: 0;
     flex: 1;
     justify-content: space-evenly;
+  }
+}
+
+/* On paper the sticky bar is dead weight and the links cannot be followed. */
+@media print {
+  .header {
+    display: none;
   }
 }

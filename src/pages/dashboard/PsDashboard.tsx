@@ -141,9 +141,9 @@ export default function PsDashboard() {
   if (error) {
     return (
       <div className={s.root} style={rootStyle}>
-        <div className={s.page}>
+        <main className={s.page}>
           <p className={s.status}>Dataset could not load ({error}). Refresh to retry.</p>
-        </div>
+        </main>
       </div>
     );
   }
@@ -151,9 +151,9 @@ export default function PsDashboard() {
   if (!data || !agg) {
     return (
       <div className={s.root} style={rootStyle}>
-        <div className={s.page}>
+        <main className={s.page}>
           <p className={s.status}>loading 56,677 reactions…</p>
-        </div>
+        </main>
       </div>
     );
   }
@@ -171,7 +171,9 @@ export default function PsDashboard() {
   return (
     <div className={`${s.root} ${density === 'compact' ? s.compact : ''}`} style={rootStyle}>
       <div className={s.page}>
-        <div className={s.barTop}>
+        {/* This route renders standalone, outside the shared Layout, so it has to
+            carry its own landmarks: header, nav, main and footer. */}
+        <header className={s.barTop}>
           <div className={s.brand}>
             <img src="/img/ps-logo.webp" alt="PlayStation logo" width="160" height="160" />
             <div>
@@ -182,12 +184,14 @@ export default function PsDashboard() {
             </div>
           </div>
           {motif && <Marks />}
-        </div>
+        </header>
 
         <div className={s.filters}>
-          <Link to="/projects/playstation-disc-sentiment" className={s.backLink} title="Back to the write-up">
-            <ArrowLeft size={13} aria-hidden="true" /> write-up
-          </Link>
+          <nav aria-label="Breadcrumb">
+            <Link to="/projects/playstation-disc-sentiment" className={s.backLink} title="Back to the write-up">
+              <ArrowLeft size={13} aria-hidden="true" /> write-up
+            </Link>
+          </nav>
           <span className={s.lbl}>Sentiment</span>
           {([0, 1, 2] as const).map((v) => (
             <button
@@ -225,181 +229,183 @@ export default function PsDashboard() {
           </button>
         </div>
 
-        <div className={s.kpis}>
-          <div className={`${s.tile} ${s.kpi} ${s.kpiAccent}`}>
-            <h3>Reactions</h3>
-            <div className={`${s.big} ${s.bigPs}`}>{fmt(n)}</div>
-            <div className={s.cap}>
-              {n === data.total ? 'of all reactions' : `${((100 * n) / data.total).toFixed(1)}% of total`}
+        <main>
+          <div className={s.kpis}>
+            <div className={`${s.tile} ${s.kpi} ${s.kpiAccent}`}>
+              <h2>Reactions</h2>
+              <div className={`${s.big} ${s.bigPs}`}>{fmt(n)}</div>
+              <div className={s.cap}>
+                {n === data.total ? 'of all reactions' : `${((100 * n) / data.total).toFixed(1)}% of total`}
+              </div>
+            </div>
+            <div className={`${s.tile} ${s.kpi}`}>
+              <h2>% Negative</h2>
+              <div className={`${s.big} ${s.bigNeg}`}>{pn.toFixed(1)}%</div>
+              <div className={s.cap}>{fmt(c[0])} reactions</div>
+            </div>
+            <div className={`${s.tile} ${s.kpi}`}>
+              <h2>% Positive</h2>
+              <div className={`${s.big} ${s.bigPos}`}>{pp.toFixed(1)}%</div>
+              <div className={s.cap}>{fmt(c[2])} reactions</div>
+            </div>
+            <div className={`${s.tile} ${s.kpi}`}>
+              <h2>Avg Sentiment</h2>
+              <div className={`${s.big} ${avg < 0 ? s.bigNeg : s.bigPos}`}>
+                {(avg >= 0 ? '+' : '−') + Math.abs(avg).toFixed(2)}
+              </div>
+              <div className={s.cap}>scale &minus;1 to +1</div>
             </div>
           </div>
-          <div className={`${s.tile} ${s.kpi}`}>
-            <h3>% Negative</h3>
-            <div className={`${s.big} ${s.bigNeg}`}>{pn.toFixed(1)}%</div>
-            <div className={s.cap}>{fmt(c[0])} reactions</div>
-          </div>
-          <div className={`${s.tile} ${s.kpi}`}>
-            <h3>% Positive</h3>
-            <div className={`${s.big} ${s.bigPos}`}>{pp.toFixed(1)}%</div>
-            <div className={s.cap}>{fmt(c[2])} reactions</div>
-          </div>
-          <div className={`${s.tile} ${s.kpi}`}>
-            <h3>Avg Sentiment</h3>
-            <div className={`${s.big} ${avg < 0 ? s.bigNeg : s.bigPos}`}>
-              {(avg >= 0 ? '+' : '−') + Math.abs(avg).toFixed(2)}
-            </div>
-            <div className={s.cap}>scale &minus;1 to +1</div>
-          </div>
-        </div>
 
-        <div className={s.row2}>
-          <div className={s.tile}>
-            <h3>
-              Sentiment Split <span className={s.hint}>(click to filter)</span>
-            </h3>
-            <div className={s.donutwrap}>
-              {dist === 'bar' ? (
-                <div className={s.distbar}>
-                  {([0, 1, 2] as const).map((v) => {
-                    const p = [pn, pu, pp][v];
-                    return (
-                      <button
-                        key={v}
-                        type="button"
-                        style={{ background: COL[v], width: `${p}%` }}
-                        onClick={() => toggleSent(v)}
-                        aria-label={`${SENT[v]} ${p.toFixed(1)}%`}
-                      >
-                        {p > 7 ? `${Math.round(p)}%` : ''}
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div
-                  className={s.donut}
-                  style={{
-                    background: `conic-gradient(var(--neg) 0 ${pn}%, var(--neu) ${pn}% ${pn + pu}%, var(--pos) ${pn + pu}% 100%)`,
-                  }}
-                >
-                  <div className={s.mid}>
-                    <b>{Math.round(pct(c[top]))}%</b>
-                    <span>{SENT[top].toUpperCase()}</span>
+          <div className={s.row2}>
+            <div className={s.tile}>
+              <h2>
+                Sentiment Split <span className={s.hint}>(click to filter)</span>
+              </h2>
+              <div className={s.donutwrap}>
+                {dist === 'bar' ? (
+                  <div className={s.distbar}>
+                    {([0, 1, 2] as const).map((v) => {
+                      const p = [pn, pu, pp][v];
+                      return (
+                        <button
+                          key={v}
+                          type="button"
+                          style={{ background: COL[v], width: `${p}%` }}
+                          onClick={() => toggleSent(v)}
+                          aria-label={`${SENT[v]} ${p.toFixed(1)}%`}
+                        >
+                          {p > 7 ? `${Math.round(p)}%` : ''}
+                        </button>
+                      );
+                    })}
                   </div>
+                ) : (
+                  <div
+                    className={s.donut}
+                    style={{
+                      background: `conic-gradient(var(--neg) 0 ${pn}%, var(--neu) ${pn}% ${pn + pu}%, var(--pos) ${pn + pu}% 100%)`,
+                    }}
+                  >
+                    <div className={s.mid}>
+                      <b>{Math.round(pct(c[top]))}%</b>
+                      <span>{SENT[top].toUpperCase()}</span>
+                    </div>
+                  </div>
+                )}
+                <div className={s.legend}>
+                  {([0, 1, 2] as const).map((i) => (
+                    <button key={i} type="button" className={s.li} onClick={() => toggleSent(i)}>
+                      <span className={s.dot} style={{ background: COL[i] }} />
+                      {SENT[i][0].toUpperCase() + SENT[i].slice(1)}&nbsp;<b>{pct(c[i]).toFixed(1)}%</b>&nbsp;
+                      <span className={s.liCount}>
+                        ({SYM[i]} {fmt(c[i])})
+                      </span>
+                    </button>
+                  ))}
                 </div>
-              )}
-              <div className={s.legend}>
-                {([0, 1, 2] as const).map((i) => (
-                  <button key={i} type="button" className={s.li} onClick={() => toggleSent(i)}>
-                    <span className={s.dot} style={{ background: COL[i] }} />
-                    {SENT[i][0].toUpperCase() + SENT[i].slice(1)}&nbsp;<b>{pct(c[i]).toFixed(1)}%</b>&nbsp;
-                    <span className={s.liCount}>
-                      ({SYM[i]} {fmt(c[i])})
-                    </span>
-                  </button>
-                ))}
+              </div>
+            </div>
+
+            <div className={s.tile}>
+              <h2>
+                Reactions by Day <span className={s.hint}>(click a bar to filter)</span>
+              </h2>
+              <div className={s.days}>
+                {data.dayLabels.map((label, d) => {
+                  const t = dtot[d];
+                  const h = (210 * t) / dmax;
+                  return (
+                    <button
+                      key={label}
+                      type="button"
+                      className={s.daycol}
+                      onClick={() => toggleDay(d)}
+                      aria-pressed={f.day === d}
+                    >
+                      <div className={s.daytot}>{fmt(t)}</div>
+                      <div className={s.stack} style={{ height: `${h}px` }}>
+                        <div style={{ background: 'var(--neg)', height: `${t ? (100 * dc[d][0]) / t : 0}%` }} />
+                        <div style={{ background: 'var(--neu)', height: `${t ? (100 * dc[d][1]) / t : 0}%` }} />
+                        <div style={{ background: 'var(--pos)', height: `${t ? (100 * dc[d][2]) / t : 0}%` }} />
+                      </div>
+                      <div className={s.daylbl}>{label}</div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          <div className={s.tile}>
-            <h3>
-              Reactions by Day <span className={s.hint}>(click a bar to filter)</span>
-            </h3>
-            <div className={s.days}>
-              {data.dayLabels.map((label, d) => {
-                const t = dtot[d];
-                const h = (210 * t) / dmax;
-                return (
+          <div className={s.row3}>
+            <div className={s.tile}>
+              <h2>
+                Sentiment by Language <span className={s.hint}>(click a row to filter)</span>
+              </h2>
+              <div className={s.lang}>
+                {agg.langs.length === 0 && <span className={s.none}>No rows.</span>}
+                {agg.langs.map(({ l, v, t }) => (
                   <button
-                    key={label}
+                    key={l}
                     type="button"
-                    className={s.daycol}
-                    onClick={() => toggleDay(d)}
-                    aria-pressed={f.day === d}
+                    className={s.lrow}
+                    onClick={() => setLang(f.lang === l ? null : l)}
+                    aria-pressed={f.lang === l}
                   >
-                    <div className={s.daytot}>{fmt(t)}</div>
-                    <div className={s.stack} style={{ height: `${h}px` }}>
-                      <div style={{ background: 'var(--neg)', height: `${t ? (100 * dc[d][0]) / t : 0}%` }} />
-                      <div style={{ background: 'var(--neu)', height: `${t ? (100 * dc[d][1]) / t : 0}%` }} />
-                      <div style={{ background: 'var(--pos)', height: `${t ? (100 * dc[d][2]) / t : 0}%` }} />
-                    </div>
-                    <div className={s.daylbl}>{label}</div>
+                    <span className={s.lname}>{data.langNames[l] ?? l}</span>
+                    <span className={s.lbar}>
+                      <span style={{ background: 'var(--neg)', width: `${(100 * v[0]) / t}%` }} />
+                      <span style={{ background: 'var(--neu)', width: `${(100 * v[1]) / t}%` }} />
+                      <span style={{ background: 'var(--pos)', width: `${(100 * v[2]) / t}%` }} />
+                    </span>
+                    <span className={s.lcount}>{fmt(t)}</span>
                   </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        <div className={s.row3}>
-          <div className={s.tile}>
-            <h3>
-              Sentiment by Language <span className={s.hint}>(click a row to filter)</span>
-            </h3>
-            <div className={s.lang}>
-              {agg.langs.length === 0 && <span className={s.none}>No rows.</span>}
-              {agg.langs.map(({ l, v, t }) => (
-                <button
-                  key={l}
-                  type="button"
-                  className={s.lrow}
-                  onClick={() => setLang(f.lang === l ? null : l)}
-                  aria-pressed={f.lang === l}
-                >
-                  <span className={s.lname}>{data.langNames[l] ?? l}</span>
-                  <span className={s.lbar}>
-                    <span style={{ background: 'var(--neg)', width: `${(100 * v[0]) / t}%` }} />
-                    <span style={{ background: 'var(--neu)', width: `${(100 * v[1]) / t}%` }} />
-                    <span style={{ background: 'var(--pos)', width: `${(100 * v[2]) / t}%` }} />
-                  </span>
-                  <span className={s.lcount}>{fmt(t)}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={s.tile}>
-            <h3>
-              Most-Viral Reactions <span className={s.hint}>(current filter)</span>
-            </h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Sentiment</th>
-                  <th>Reaction</th>
-                  <th className={s.thRight}>Likes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {agg.samples.length === 0 && (
-                  <tr>
-                    <td colSpan={3} className={s.none}>
-                      No sample tweets match this filter.
-                    </td>
-                  </tr>
-                )}
-                {agg.samples.map((x, i) => (
-                  <tr key={i}>
-                    <td>
-                      <span className={`${s.tchip} ${s[`tchip_${SC[x.s]}`]}`}>
-                        {SYM[x.s]} {SC[x.s].toUpperCase()}
-                      </span>
-                    </td>
-                    <td>{x.t}</td>
-                    <td className={s.likes}>{fmt(x.k)}</td>
-                  </tr>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+              </div>
+            </div>
 
-        <div className={s.foot}>
+            <div className={s.tile}>
+              <h2>
+                Most-Viral Reactions <span className={s.hint}>(current filter)</span>
+              </h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sentiment</th>
+                    <th>Reaction</th>
+                    <th className={s.thRight}>Likes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {agg.samples.length === 0 && (
+                    <tr>
+                      <td colSpan={3} className={s.none}>
+                        No sample tweets match this filter.
+                      </td>
+                    </tr>
+                  )}
+                  {agg.samples.map((x, i) => (
+                    <tr key={i}>
+                      <td>
+                        <span className={`${s.tchip} ${s[`tchip_${SC[x.s]}`]}`}>
+                          {SYM[x.s]} {SC[x.s].toUpperCase()}
+                        </span>
+                      </td>
+                      <td>{x.t}</td>
+                      <td className={s.likes}>{fmt(x.k)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+
+        <footer className={s.foot}>
           &#9651; positive · &#9723; neutral · &#9711; negative &nbsp; Data: X/Twitter reactions to PlayStation's
           1 July 2026 announcement that new games stop shipping on discs in January 2028 · Sentiment:
           CardiffNLP twitter-XLM-RoBERTa (Python)
-        </div>
+        </footer>
       </div>
 
       {/* REMOTE control */}
@@ -409,7 +415,7 @@ export default function PsDashboard() {
       {remoteOpen && (
         <div className={s.remote}>
           <div className={s.grp}>
-            <h4>&#9679; Colors</h4>
+            <h3>&#9679; Colors</h3>
             <div className={s.swatches}>
               {Object.keys(THEMES).map((name) => (
                 <button
@@ -453,7 +459,7 @@ export default function PsDashboard() {
           </div>
           <div className={s.divider} />
           <div className={s.grp}>
-            <h4>&#9723; Style &amp; Layout</h4>
+            <h3>&#9723; Style &amp; Layout</h3>
             <div className={s.optlbl}>Distribution chart</div>
             <div className={s.opts}>
               <button type="button" className={s.opt} aria-pressed={dist === 'donut'} onClick={() => setDist('donut')}>
