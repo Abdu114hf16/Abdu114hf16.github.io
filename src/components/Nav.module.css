@@ -1,11 +1,26 @@
+/* Opaque by default, on purpose. A translucent bar with no blur behind it is
+   not a style, it is body text scrolling through the navigation, which is
+   exactly what shipped: lightningcss collapses a hand-written prefix pair down
+   to the prefixed declaration alone, so `backdrop-filter` was stripped from the
+   bundle, and Chrome has since dropped the `-webkit-` alias. Both declarations
+   were therefore dead and every page scrolled through the header. */
 .header {
   position: sticky;
   top: 0;
   z-index: 40;
   background: var(--header-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
+}
+
+/* The frosted look is an enhancement, never what makes the nav legible. Only
+   the standard property is written here: given it alone the minifier adds the
+   prefix itself where a target needs one, which is what Gallery already relies
+   on. Safari before 18 fails this query and keeps the solid bar. */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .header {
+    background: var(--header-bg-glass);
+    backdrop-filter: blur(12px);
+  }
 }
 
 .bar {

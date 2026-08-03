@@ -109,6 +109,8 @@
   vertical-align: 2px;
 }
 
+/* <Shot> renders exactly the nine matplotlib and Power BI exports, never a
+   photograph, so this rule can assume a chart. */
 .shot {
   display: block;
   width: 100%;
@@ -117,6 +119,17 @@
   border-radius: var(--r-m);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-1);
+}
+
+/* All nine exports have fully opaque white backgrounds, so in dark theme each
+   one was a glaring white slab on a #0a101e page, six of them stacked down the
+   flights write-up. brightness() is a multiply: white 255 drops to 209 while
+   black stays black, so the plate calms down, text keeps its contrast, and
+   every hue is preserved. That last point is why this is not invert(): the SHAP
+   plot encodes meaning on a red-to-blue diverging scale, and inverting would
+   have swapped the two ends and reversed what the chart says. */
+:root[data-theme='dark'] .shot {
+  filter: brightness(0.82);
 }
 
 .srcCard {
