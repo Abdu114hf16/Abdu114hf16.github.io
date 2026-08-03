@@ -121,6 +121,11 @@ button {
   transition: transform 0.18s var(--ease-out);
 }
 
+/* :focus as well as :focus-visible. Safari only shipped :focus-visible in
+   15.4, and on the older builds the link would take focus while staying off
+   screen, which is worse than having no skip link at all. It can only be
+   reached by keyboard anyway, so the broader selector costs nothing. */
+.skip:focus,
 .skip:focus-visible {
   transform: translate(-50%, 0);
   outline-offset: -4px;
