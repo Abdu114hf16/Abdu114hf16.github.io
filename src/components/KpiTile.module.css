@@ -57,7 +57,7 @@
 }
 
 .sparkDot {
-  fill: var(--accent);
+  fill: var(--muted);
   stroke: var(--panel);
   stroke-width: 2;
 }

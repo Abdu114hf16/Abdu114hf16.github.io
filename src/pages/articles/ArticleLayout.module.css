@@ -100,9 +100,9 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--accent-text);
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
-  background: color-mix(in srgb, var(--accent) 10%, var(--panel));
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: var(--panel-2);
   border-radius: 6px;
   padding: 0.1rem 0.45rem;
   margin-right: 0.4rem;
@@ -121,7 +121,7 @@
 
 .srcCard {
   border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--border-strong);
   border-radius: var(--r-m);
   background: var(--panel);
   padding: 1.1rem 1.3rem;
@@ -156,6 +156,20 @@
 .btn:hover {
   filter: brightness(1.06);
   transform: translateY(-1px);
+}
+
+/* One amber fill per row. Eventia shipped three side by side, which is the
+   same problem as three headlines: the first link in a row is the one the
+   article is steering you towards, so the rest go quiet. */
+.btn ~ .btn {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+}
+
+.btn ~ .btn:hover {
+  filter: none;
+  border-color: var(--accent);
 }
 
 .btnDark {

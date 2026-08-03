@@ -34,8 +34,13 @@
   --muted: #8b98b4;
   --faint: #5c6a88;
 
-  --accent: #f5b841;      /* UI accent: fills, rings, highlights */
-  --accent-text: #f5c260; /* accent as text on bg/panel (AA) */
+  /* One job: state. Current (active nav), selected (pressed chip, selected
+     text), focused (focus ring, focused field), and the single primary action
+     on a page. Not links, not icons, not labels, not container edges: those
+     read as text, border or hover. The pipeline graphic is the one exception,
+     where amber is illustration rather than chrome. */
+  --accent: #f5b841;
+  --accent-text: #f5c260; /* the same, as text on bg/panel (AA) */
   --on-accent: #1a1206;
 
   --cat-ml: #bf8412;

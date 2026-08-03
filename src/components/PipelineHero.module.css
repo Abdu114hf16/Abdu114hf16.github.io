@@ -248,7 +248,7 @@
 }
 
 .stepNo {
-  color: var(--accent-text);
+  color: var(--text);
   font-weight: 600;
 }
 

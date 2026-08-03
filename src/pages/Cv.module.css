@@ -57,7 +57,7 @@
   margin: 1.4rem 0 0;
   padding: 1rem 1.3rem;
   max-width: 44rem;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--border-strong);
   border-radius: 0 var(--r-m) var(--r-m) 0;
   background: var(--panel);
   color: var(--text);
@@ -107,9 +107,9 @@
   flex-direction: column;
   align-items: center;
   padding: 0.6rem 1.2rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border: 1px solid var(--border-strong);
   border-radius: var(--r-m);
-  background: color-mix(in srgb, var(--accent) 9%, var(--panel));
+  background: var(--panel-2);
 }
 
 .gpaValue {
@@ -146,7 +146,7 @@
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--accent-text);
+  color: var(--muted);
   margin-bottom: 0.35rem;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .certIcon {
-  color: var(--accent-text);
+  color: var(--muted);
   flex: none;
 }
 

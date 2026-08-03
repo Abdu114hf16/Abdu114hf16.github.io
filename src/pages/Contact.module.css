@@ -45,7 +45,7 @@
 }
 
 .info dt svg {
-  color: var(--accent-text);
+  color: var(--muted);
 }
 
 .info dd {

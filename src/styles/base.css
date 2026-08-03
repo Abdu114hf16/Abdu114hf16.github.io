@@ -50,8 +50,12 @@ p {
   margin: 0 0 1rem;
 }
 
+/* Links are marked by the underline, not by the accent. Colouring every link
+   amber put the accent on dozens of elements per page, none of them the thing
+   that mattered most, so it stopped meaning anything. See tokens.css: amber
+   now says "current, selected, focused, or the one primary action here". */
 a {
-  color: var(--accent-text);
+  color: var(--text);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
@@ -148,10 +152,11 @@ main:focus {
   color: var(--muted);
 }
 
-.eyebrow b {
-  color: var(--accent-text);
-  font-weight: 600;
-}
+/* The <b> separators are deliberately unstyled. They used to be amber, which
+   put roughly ten accent marks on a page before any content did, and they are
+   the least meaningful text on the line. --faint would let them recede without
+   the accent, but it lands at 2.89:1 on the light background and a separator
+   is still text, so they inherit the label's colour instead. */
 
 /* Scroll-reveal primitive (Reveal component toggles .in) */
 .reveal {

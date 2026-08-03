@@ -77,8 +77,11 @@
   background: var(--panel-2);
 }
 
+/* The bar carries "current" on its own, and inactive links are muted, so the
+   brighter text already reads as selected. Two amber marks for one state was
+   one too many on every page of the site. */
 .active {
-  color: var(--accent-text);
+  color: var(--text);
   position: relative;
 }
 
