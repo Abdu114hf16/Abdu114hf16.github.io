@@ -4,46 +4,46 @@
 
 .lede {
   color: var(--muted);
-  font-size: 1.02rem;
+  font-size: var(--fs-4);
 }
 
 /* Model-card spec row: the screening facts, dense by design. */
 .spec {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem 2.2rem;
-  margin: 1rem 0 1.1rem;
+  gap: var(--sp-4) var(--sp-7);
+  margin: var(--sp-5) 0 var(--sp-5);
 }
 
 .spec dt {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-1);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 0.24rem;
+  margin-bottom: var(--sp-1);
 }
 
 .spec dd {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: var(--fs-3);
   color: var(--text);
 }
 
 .actions {
-  margin: 0 0 1.3rem;
+  margin: 0 0 var(--sp-6);
 }
 
 .dl {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.05rem;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
   border-radius: var(--r-s);
   background: var(--accent);
   color: var(--on-accent);
   font-weight: 640;
-  font-size: 0.9rem;
+  font-size: var(--fs-3);
   text-decoration: none;
   transition: filter 0.15s, transform 0.15s;
 }
@@ -54,8 +54,8 @@
 }
 
 .quote {
-  margin: 1.4rem 0 0;
-  padding: 1rem 1.3rem;
+  margin: var(--sp-6) 0 0;
+  padding: var(--sp-5) var(--sp-6);
   max-width: 44rem;
   border-left: 3px solid var(--border-strong);
   border-radius: 0 var(--r-m) var(--r-m) 0;
@@ -70,10 +70,10 @@
 }
 
 .quote footer {
-  margin-top: 0.5rem;
+  margin-top: var(--sp-3);
   font-style: normal;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-2);
   color: var(--muted);
 }
 
@@ -81,32 +81,32 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: var(--sp-6);
   flex-wrap: wrap;
   border: 1px solid var(--border);
   border-radius: var(--r-m);
   background: var(--panel);
-  padding: 1.1rem 1.3rem;
+  padding: var(--sp-5) var(--sp-6);
 }
 
 .eduName {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.12rem;
-  margin: 0 0 0.25rem;
+  font-size: var(--fs-5);
+  margin: 0 0 var(--sp-1);
 }
 
 .eduLine {
   margin: 0;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: var(--fs-3);
 }
 
 .gpa {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.6rem 1.2rem;
+  padding: var(--sp-3) var(--sp-5);
   border: 1px solid var(--border-strong);
   border-radius: var(--r-m);
   background: var(--panel-2);
@@ -114,14 +114,14 @@
 
 .gpaValue {
   font-weight: 640;
-  font-size: 1.9rem;
+  font-size: var(--fs-7);
   line-height: 1.1;
   font-variant-numeric: tabular-nums;
 }
 
 .gpaCap {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-1);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -130,29 +130,29 @@
 .skills {
   margin: 0;
   display: grid;
-  gap: 0.7rem;
+  gap: var(--sp-4);
 }
 
 .skillRow {
   border: 1px solid var(--border);
   border-radius: var(--r-m);
   background: var(--panel);
-  padding: 0.85rem 1.1rem;
+  padding: var(--sp-4) var(--sp-5);
 }
 
 .skillRow dt {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-1);
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 0.35rem;
+  margin-bottom: var(--sp-2);
 }
 
 .skillRow dd {
   margin: 0;
-  font-size: 0.93rem;
+  font-size: var(--fs-3);
   line-height: 1.7;
 }
 
@@ -162,15 +162,15 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.7rem;
+  gap: var(--sp-4);
 }
 
 .cert {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: var(--sp-4);
   height: 100%;
-  padding: 0.85rem 1rem;
+  padding: var(--sp-4) var(--sp-5);
   border: 1px solid var(--border);
   border-radius: var(--r-m);
   background: var(--panel);
@@ -192,17 +192,17 @@
 .certBody {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: var(--sp-0);
   min-width: 0;
 }
 
 .certTitle {
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: var(--fs-3);
 }
 
 .certOrg {
-  font-size: 0.78rem;
+  font-size: var(--fs-2);
   color: var(--muted);
 }
 
@@ -216,23 +216,23 @@
   width: 100%;
   max-width: 30rem;
   border-collapse: collapse;
-  font-size: 0.93rem;
+  font-size: var(--fs-3);
 }
 
 .langs th {
   text-align: left;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-1);
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 600;
-  padding: 0.5rem 0.9rem;
+  padding: var(--sp-3) var(--sp-5);
   border-bottom: 1px solid var(--border-strong);
 }
 
 .langs td {
-  padding: 0.55rem 0.9rem;
+  padding: var(--sp-3) var(--sp-5);
   border-bottom: 1px solid var(--border);
 }
 

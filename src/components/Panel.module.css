@@ -1,12 +1,12 @@
 .panel {
-  margin-top: 3rem;
+  margin-top: var(--sp-8);
 }
 
 .head {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 1rem;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-5);
 }
 
 .rule {
@@ -16,5 +16,5 @@
 }
 
 .title {
-  margin-bottom: 0.9rem;
+  margin-bottom: var(--sp-5);
 }

@@ -2,7 +2,7 @@
    project's own brand rather than the site palette. */
 
 .marks {
-  font-size: 28px;
+  font-size: var(--fs-7);
   letter-spacing: 6px;
   white-space: nowrap;
 }
@@ -10,7 +10,7 @@
 .marksSm {
   font-size: 0.8em;
   letter-spacing: 6px;
-  margin-left: 8px;
+  margin-left: var(--sp-3);
   display: inline-block;
 }
 
@@ -40,11 +40,11 @@
 }
 
 .tryit {
-  margin-top: 2.2rem;
+  margin-top: var(--sp-7);
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #0070d1;
-  padding-bottom: 0.35rem;
+  padding-bottom: var(--sp-2);
   border-bottom: 1px solid var(--border);
 }
 
@@ -64,14 +64,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 22px;
+  gap: var(--sp-6);
   flex-wrap: wrap;
   background: linear-gradient(120deg, var(--ps-surface-a), var(--ps-surface-b));
   border: 1px solid var(--ps-edge);
   border-left: 5px solid var(--ps-blue);
   border-radius: 14px;
-  padding: 22px 26px;
-  margin: 18px 0 6px;
+  padding: var(--sp-6) var(--sp-6);
+  margin: var(--sp-5) 0 var(--sp-2);
   box-shadow: 0 10px 34px var(--ps-drop);
 }
 
@@ -114,7 +114,7 @@
 .ctaInfo {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--sp-5);
   min-width: 0;
   flex: 1 1 auto;
 }
@@ -125,9 +125,9 @@
 
 .ctaTitle {
   color: var(--ps-ink);
-  font-size: 1.15rem;
+  font-size: var(--fs-5);
   font-weight: 700;
-  margin: 0 0 9px;
+  margin: 0 0 var(--sp-3);
   overflow-wrap: anywhere;
 }
 
@@ -157,9 +157,9 @@
 }
 
 .miniLbl {
-  font-size: 0.72rem;
+  font-size: var(--fs-1);
   color: var(--ps-ink-dim);
-  margin: 6px 0 0;
+  margin: var(--sp-2) 0 0;
   overflow-wrap: anywhere;
 }
 
@@ -169,7 +169,7 @@
   font-weight: 700;
   background: var(--ps-blue, #0070d1);
   color: #fff;
-  padding: 12px 24px;
+  padding: var(--sp-4) var(--sp-6);
   border-radius: 8px;
   white-space: nowrap;
   transition: filter 0.15s, transform 0.15s;
@@ -185,26 +185,26 @@
   border-left: 3px solid #0070d1;
   border-radius: var(--r-m);
   background: var(--panel);
-  padding: 1.1rem 1.3rem;
+  padding: var(--sp-5) var(--sp-6);
 }
 
 @media (max-width: 768px) {
   .cta {
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
-    padding: 18px;
+    gap: var(--sp-5);
+    padding: var(--sp-5);
   }
 
   .ctaInfo {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: var(--sp-4);
     width: 100%;
   }
 
   .marks {
-    font-size: 24px;
+    font-size: var(--fs-6);
   }
 
   .mini {
@@ -222,6 +222,6 @@
 
   .tryit {
     letter-spacing: 1.5px;
-    font-size: 1.35rem;
+    font-size: var(--fs-6);
   }
 }

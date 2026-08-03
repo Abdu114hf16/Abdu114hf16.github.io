@@ -3,14 +3,14 @@
   border-radius: var(--r-m);
   background: var(--panel);
   box-shadow: var(--shadow-1);
-  padding: 1rem 1.15rem 0.9rem;
+  padding: var(--sp-5) var(--sp-5) var(--sp-5);
   min-width: 0;
 }
 
 .label {
-  margin: 0 0 0.45rem;
+  margin: 0 0 var(--sp-3);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-1);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -21,13 +21,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.6rem;
+  gap: var(--sp-3);
 }
 
 .value {
   font-family: var(--font-body);
   font-weight: 620;
-  font-size: clamp(1.7rem, 3.2vw, 2.15rem);
+  font-size: var(--fs-stat);
   line-height: 1;
   color: var(--text);
   /* Fixed-width digits: the value counts up, so proportional figures would
@@ -36,8 +36,8 @@
 }
 
 .caption {
-  margin: 0.5rem 0 0;
-  font-size: 0.78rem;
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-2);
   color: var(--muted);
 }
 

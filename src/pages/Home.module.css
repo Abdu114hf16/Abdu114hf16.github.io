@@ -10,10 +10,10 @@
 .heroGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  column-gap: 2rem;
+  column-gap: var(--sp-7);
   row-gap: 0;
   align-items: center;
-  margin-bottom: 1.6rem;
+  margin-bottom: var(--sp-6);
 }
 
 /* Grid items do not collapse margins, and .name carries 0.55rem of its own, so
@@ -21,7 +21,7 @@
 .heroEyebrow {
   grid-column: 1;
   grid-row: 1;
-  margin: 0 0 0.45rem;
+  margin: 0 0 var(--sp-3);
 }
 
 .identity {
@@ -35,21 +35,21 @@
 }
 
 .name {
-  margin: 0.55rem 0 0.2rem;
+  margin: var(--sp-3) 0 var(--sp-1);
 }
 
 .subtitle {
-  font-size: 1.08rem;
+  font-size: var(--fs-5);
   color: var(--text);
   font-weight: 620;
-  margin-bottom: 0.42rem;
+  margin-bottom: var(--sp-2);
 }
 
 /* Screening facts a recruiter looks for first: level, place, availability. */
 .meta {
-  font-size: 0.92rem;
+  font-size: var(--fs-3);
   color: var(--muted);
-  margin-bottom: 1.1rem;
+  margin-bottom: var(--sp-5);
   line-height: 1.55;
 }
 
@@ -61,20 +61,20 @@
 .ctas {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 1.3rem;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.62rem 1.1rem;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
   border-radius: var(--r-s);
   background: var(--accent);
   color: var(--on-accent);
   font-weight: 640;
-  font-size: 0.9rem;
+  font-size: var(--fs-3);
   text-decoration: none;
   transition: filter 0.15s, transform 0.15s;
 }
@@ -101,15 +101,15 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.4rem;
-  font-size: 0.92rem;
+  gap: var(--sp-3) var(--sp-6);
+  font-size: var(--fs-3);
 }
 
 .contact li,
 .contact a {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: var(--sp-3);
   color: var(--text);
 }
 
@@ -130,7 +130,7 @@
   grid-column: 2;
   grid-row: 1 / span 3;
   align-self: center;
-  padding: 7px;
+  padding: var(--sp-2);
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 22px;
@@ -145,14 +145,14 @@
 }
 
 .pipeline {
-  margin-top: 0.4rem;
+  margin-top: var(--sp-2);
 }
 
 .kpis {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.8rem;
-  margin-top: 2.2rem;
+  gap: var(--sp-4);
+  margin-top: var(--sp-7);
 }
 
 .prose {
@@ -169,18 +169,18 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem 0.7rem;
+  gap: var(--sp-3) var(--sp-4);
 }
 
 .legendItem {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.42rem 0.85rem;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-4);
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--panel);
-  font-size: 0.88rem;
+  font-size: var(--fs-3);
   transition: border-color 0.15s, transform 0.15s;
 }
 
@@ -212,7 +212,7 @@
   /* Was column-reverse plus centred text, which led with the portrait and
      dropped the left-aligned, label-led rhythm the rest of the site keeps. */
   .heroGrid {
-    column-gap: 1.1rem;
+    column-gap: var(--sp-5);
   }
 
   /* Full width, so a 38-character eyebrow is not forced to wrap inside the

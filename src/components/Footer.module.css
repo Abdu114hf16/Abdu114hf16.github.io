@@ -1,5 +1,5 @@
 .footer {
-  margin-top: 4rem;
+  margin-top: var(--sp-9);
   border-top: 1px solid var(--border);
   background: var(--bg-raise);
 }
@@ -7,16 +7,16 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  gap: var(--sp-3) var(--sp-6);
   align-items: center;
   justify-content: space-between;
-  padding-top: 1.1rem;
-  padding-bottom: 1.2rem;
+  padding-top: var(--sp-5);
+  padding-bottom: var(--sp-5);
 }
 
 .credit {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: var(--fs-2);
   color: var(--muted);
 }
 
@@ -26,14 +26,14 @@
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.4rem 1.2rem;
-  font-size: 0.85rem;
+  gap: var(--sp-2) var(--sp-5);
+  font-size: var(--fs-2);
 }
 
 .links a {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: var(--sp-2);
   color: var(--muted);
   text-decoration: none;
 }

@@ -5,26 +5,26 @@
 .lede {
   color: var(--muted);
   max-width: 44rem;
-  font-size: 1.02rem;
+  font-size: var(--fs-4);
 }
 
 .filters {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  margin-top: 1.4rem;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
 }
 
 .group {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: var(--sp-3);
 }
 
 .flabel {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-1);
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -33,12 +33,12 @@
 }
 
 .chip {
-  padding: 0.36rem 0.85rem;
+  padding: var(--sp-2) var(--sp-4);
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--panel);
   color: var(--text);
-  font-size: 0.84rem;
+  font-size: var(--fs-2);
   font-weight: 500;
   cursor: pointer;
   transition: border-color 0.15s, background-color 0.15s, color 0.15s;
@@ -57,13 +57,13 @@
 
 /* the visible query the chips compose */
 .query {
-  margin: 1.1rem 0 1.4rem;
-  padding: 0.75rem 1rem;
+  margin: var(--sp-5) 0 var(--sp-6);
+  padding: var(--sp-4) var(--sp-5);
   border: 1px solid var(--border);
   border-radius: var(--r-m);
   background: var(--bg-raise);
   font-family: var(--font-mono);
-  font-size: 0.83rem;
+  font-size: var(--fs-2);
   color: var(--text);
   overflow-x: auto;
   white-space: nowrap;
@@ -81,14 +81,14 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: var(--sp-4);
 }
 
 .row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.05rem 1.2rem;
+  gap: var(--sp-5);
+  padding: var(--sp-5) var(--sp-5);
   border: 1px solid var(--border);
   border-radius: var(--r-m);
   background: var(--panel);
@@ -111,7 +111,7 @@ a.row:hover .arr {
 .main {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: var(--sp-2);
   min-width: 0;
   flex: 1;
 }
@@ -120,18 +120,18 @@ a.row:hover .arr {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: var(--sp-3);
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.14rem 0.6rem;
+  gap: var(--sp-2);
+  padding: var(--sp-0) var(--sp-3);
   border: 1px solid var(--border-strong);
   border-radius: 999px;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: var(--fs-1);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -161,28 +161,28 @@ a.row:hover .arr {
 .title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.06rem;
+  font-size: var(--fs-5);
   line-height: 1.35;
   margin: 0;
 }
 
 .desc {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: var(--fs-3);
   line-height: 1.55;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.15rem;
+  gap: var(--sp-2);
+  margin-top: var(--sp-0);
 }
 
 .tag {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 0.13rem 0.5rem;
+  font-size: var(--fs-1);
+  padding: var(--sp-0) var(--sp-3);
   border-radius: 5px;
   background: var(--panel-2);
   border: 1px solid var(--border);
@@ -202,23 +202,23 @@ a.row:hover .arr {
 .soon {
   flex: none;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-1);
   letter-spacing: 0.08em;
   color: var(--muted);
   border: 1px dashed var(--border-strong);
   border-radius: 999px;
-  padding: 0.28rem 0.7rem;
+  padding: var(--sp-1) var(--sp-4);
 }
 
 .empty {
   color: var(--muted);
   font-style: italic;
-  margin-top: 1.2rem;
+  margin-top: var(--sp-5);
 }
 
 @media (max-width: 560px) {
   .row {
-    padding: 0.9rem 0.95rem;
+    padding: var(--sp-5) var(--sp-5);
   }
 
   .arr {

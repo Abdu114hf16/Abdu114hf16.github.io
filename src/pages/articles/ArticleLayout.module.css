@@ -1,25 +1,25 @@
 .article {
   max-width: var(--prose);
   margin: 0 auto;
-  padding-top: 1.6rem;
+  padding-top: var(--sp-6);
 }
 
 .backRow {
-  margin: 0 0 1.2rem;
+  margin: 0 0 var(--sp-5);
 }
 
 .back {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: var(--sp-3);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-2);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--muted);
-  padding: 0.4rem 0.7rem;
+  padding: var(--sp-2) var(--sp-4);
   border: 1px solid var(--border);
   border-radius: var(--r-s);
   transition: color 0.15s, border-color 0.15s, transform 0.15s;
@@ -32,9 +32,9 @@
 }
 
 .lede {
-  font-size: 1.08rem;
+  font-size: var(--fs-5);
   color: var(--muted);
-  margin-bottom: 1.3rem;
+  margin-bottom: var(--sp-6);
 }
 
 .hero {
@@ -43,41 +43,41 @@
   border-radius: var(--r-l);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-2);
-  margin-bottom: 0.6rem;
+  margin-bottom: var(--sp-3);
 }
 
 .section {
-  margin-top: 2.2rem;
+  margin-top: var(--sp-7);
 }
 
 .section h2 {
-  padding-bottom: 0.35rem;
+  padding-bottom: var(--sp-2);
   border-bottom: 1px solid var(--border);
 }
 
 .section ul {
-  padding-left: 1.3rem;
+  padding-left: var(--sp-6);
 }
 
 .section li {
-  margin-bottom: 0.4rem;
+  margin-bottom: var(--sp-2);
 }
 
 .stack {
   list-style: none;
-  margin: 0.4rem 0 0;
+  margin: var(--sp-2) 0 0;
   padding: 0 !important;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: var(--sp-2);
 }
 
 .stack li {
   margin: 0 !important;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: var(--fs-2);
   font-weight: 600;
-  padding: 0.28rem 0.7rem;
+  padding: var(--sp-1) var(--sp-4);
   border-radius: 999px;
   border: 1px solid var(--border-strong);
   background: var(--panel);
@@ -85,27 +85,27 @@
 }
 
 .bq {
-  margin-top: 1.6rem;
+  margin-top: var(--sp-6);
 }
 
 .bqQ {
   font-weight: 640;
   font-family: var(--font-display);
-  font-size: 1.04rem;
-  margin-bottom: 0.5rem;
+  font-size: var(--fs-4);
+  margin-bottom: var(--sp-3);
 }
 
 .bqN {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-1);
   font-weight: 600;
   color: var(--muted);
   border: 1px solid var(--border);
   background: var(--panel-2);
   border-radius: 6px;
-  padding: 0.1rem 0.45rem;
-  margin-right: 0.4rem;
+  padding: var(--sp-0) var(--sp-3);
+  margin-right: var(--sp-2);
   vertical-align: 2px;
 }
 
@@ -113,7 +113,7 @@
   display: block;
   width: 100%;
   height: auto;
-  margin: 1rem 0 1.4rem;
+  margin: var(--sp-5) 0 var(--sp-6);
   border-radius: var(--r-m);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-1);
@@ -124,31 +124,31 @@
   border-left: 3px solid var(--border-strong);
   border-radius: var(--r-m);
   background: var(--panel);
-  padding: 1.1rem 1.3rem;
-  margin-top: 0.8rem;
+  padding: var(--sp-5) var(--sp-6);
+  margin-top: var(--sp-4);
 }
 
 .srcCard :global(ul) {
-  margin: 0.6rem 0 1rem;
+  margin: var(--sp-3) 0 var(--sp-5);
 }
 
 .btnRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 0.9rem;
+  gap: var(--sp-4);
+  margin-top: var(--sp-5);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.62rem 1.1rem;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
   border-radius: var(--r-s);
   background: var(--accent);
   color: var(--on-accent);
   font-weight: 640;
-  font-size: 0.9rem;
+  font-size: var(--fs-3);
   text-decoration: none;
   transition: filter 0.15s, transform 0.15s;
 }

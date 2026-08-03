@@ -11,16 +11,16 @@
 .bar {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--sp-5);
   height: 58px;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: var(--sp-3);
   font-family: var(--font-mono);
-  font-size: 0.86rem;
+  font-size: var(--fs-3);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--text);
@@ -60,9 +60,9 @@
 
 .link {
   display: inline-block;
-  padding: 0.32rem 0.5rem;
+  padding: var(--sp-2) var(--sp-3);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-2);
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -118,17 +118,17 @@
 
 @media (max-width: 560px) {
   .bar {
-    gap: 0.5rem;
+    gap: var(--sp-3);
   }
 
   .brand {
-    font-size: 0.78rem;
+    font-size: var(--fs-2);
   }
 
   .link {
-    font-size: 0.7rem;
+    font-size: var(--fs-1);
     letter-spacing: 0.05em;
-    padding: 0.3rem 0.34rem;
+    padding: var(--sp-1) var(--sp-2);
   }
 }
 
@@ -144,8 +144,8 @@
      cancels it back out, so the dot itself does not move. */
   .brand {
     min-height: 44px;
-    padding: 0 16px;
-    margin-left: -16px;
+    padding: 0 var(--sp-5);
+    margin-left: calc(-1 * var(--sp-5));
   }
 
   .links {

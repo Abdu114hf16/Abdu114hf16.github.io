@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/prerender.mjs",
+    "build": "tsc -b && node scripts/snap-scale.mjs --check && vite build && node scripts/prerender.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "images": "node scripts/optimize-images.mjs",
