@@ -4,7 +4,8 @@
  *   node scripts/aggregate-dash-data.mjs
  *
  *   in:  data/ps-dash.raw.json        (56,677 rows: source of truth, not deployed)
- *   out: public/data/ps-dash.json     (contingency cube + trimmed samples, deployed)
+ *   out: src/pages/dashboard/ps-dash.json  (cube + trimmed samples; Vite emits it
+ *                                          as a content-hashed asset)
  *
  * Why: every visual on the dashboard is a marginal sum over a
  * (day x language x sentiment) contingency table. That table has 77 non-empty
@@ -24,7 +25,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 const SAMPLES_PER_CELL = 3;
 
 const src = new URL('../data/ps-dash.raw.json', import.meta.url).pathname;
-const out = new URL('../public/data/ps-dash.json', import.meta.url).pathname;
+const out = new URL('../src/pages/dashboard/ps-dash.json', import.meta.url).pathname;
 
 const raw = JSON.parse(readFileSync(src, 'utf8'));
 

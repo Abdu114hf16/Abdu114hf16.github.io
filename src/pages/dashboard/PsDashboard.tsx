@@ -163,7 +163,16 @@ export default function PsDashboard() {
   const pn = pct(c[0]);
   const pu = pct(c[1]);
   const pp = pct(c[2]);
-  const avg = n ? (c[2] - c[0]) / n : 0;
+  /* Share positive minus share negative, on the class labels. Named for what it
+     is: it was previously surfaced as "Avg Sentiment" over a "scale -1 to +1",
+     which reads as the mean of a continuous score and is not what this computes.
+     The write-up's -0.44 IS that continuous mean, taken over the model's class
+     probabilities, and the two are consistent rather than contradictory: a soft
+     score is always less extreme than the hard label it came from, so a
+     probability mean must sit closer to zero than this -0.528. Filtering to a
+     single class makes the difference obvious, since net sentiment over an
+     all-positive subset is exactly +1.00 while a score mean could not be. */
+  const net = n ? (c[2] - c[0]) / n : 0;
   const dtot = [dc[0][0] + dc[0][1] + dc[0][2], dc[1][0] + dc[1][1] + dc[1][2]];
   const dmax = Math.max(dtot[0], dtot[1], 1);
   const top = c[0] >= c[1] && c[0] >= c[2] ? 0 : c[2] >= c[1] ? 2 : 1;
@@ -249,11 +258,11 @@ export default function PsDashboard() {
               <div className={s.cap}>{fmt(c[2])} reactions</div>
             </div>
             <div className={`${s.tile} ${s.kpi}`}>
-              <h2>Avg Sentiment</h2>
-              <div className={`${s.big} ${avg < 0 ? s.bigNeg : s.bigPos}`}>
-                {(avg >= 0 ? '+' : '−') + Math.abs(avg).toFixed(2)}
+              <h2>Net Sentiment</h2>
+              <div className={`${s.big} ${net < 0 ? s.bigNeg : s.bigPos}`}>
+                {(net >= 0 ? '+' : '−') + Math.abs(net).toFixed(2)}
               </div>
-              <div className={s.cap}>scale &minus;1 to +1</div>
+              <div className={s.cap}>share positive &minus; share negative</div>
             </div>
           </div>
 
