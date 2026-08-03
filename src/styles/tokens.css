@@ -74,6 +74,7 @@
   --accent: #f5b841;
   --accent-text: #f5c260; /* the same, as text on bg/panel (AA) */
   --on-accent: #1a1206;
+  --focus-ring: #f5b841;  /* 10.7:1 on bg, 9.8:1 on panel */
 
   --cat-ml: #bf8412;
   --cat-ba: #2aa0c4;
@@ -109,6 +110,10 @@
   --accent: #f5b841;
   --accent-text: #8a5a00;
   --on-accent: #1a1206;
+  /* Not --accent. Amber measures 1.66:1 on this background, against the 3:1
+     WCAG 2.2 wants for a focus indicator, so the ring was all but invisible in
+     light theme. This is 5.5:1 on bg and 5.9:1 on panel. */
+  --focus-ring: #8a5a00;
 
   --cat-ml: #a66a00;
   --cat-ba: #0983b8;

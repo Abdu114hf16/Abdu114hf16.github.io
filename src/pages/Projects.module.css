@@ -195,8 +195,16 @@ a.row:hover .arr {
   transition: transform 0.18s, color 0.18s;
 }
 
+/* opacity: 0.62 used to carry "not ready yet", which dropped the description to
+   2.69:1 on white and 3.11:1 on dark, both under the 4.5 body text needs. The
+   dashed edge and the muted title say the same thing without touching contrast,
+   and the status chip spells it out. */
 .queued {
-  opacity: 0.62;
+  border-style: dashed;
+}
+
+.queued .title {
+  color: var(--muted);
 }
 
 .soon {
@@ -225,7 +233,18 @@ a.row:hover .arr {
     display: none;
   }
 
+  /* The status chip stays. Hiding it left four of the eight cards dimmed,
+     unlabelled and unresponsive to a tap, with nothing on screen to say why. */
   .soon {
-    display: none;
+    align-self: flex-start;
+    padding: var(--sp-0) var(--sp-3);
+  }
+
+  /* Badge on its own line so every title starts at the same x. Wrapping put
+     three different left edges down a single list. */
+  .titleRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-2);
   }
 }

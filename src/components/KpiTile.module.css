@@ -5,6 +5,7 @@
   box-shadow: var(--shadow-1);
   padding: var(--sp-5) var(--sp-5) var(--sp-5);
   min-width: 0;
+  container-type: inline-size;
 }
 
 .label {
@@ -42,10 +43,27 @@
 }
 
 /* sparkline: de-emphasis hue, current point in accent */
+/* Fixed width plus flex:none is what pushed this out of the card at 768px,
+   where four across leaves a 135px content box: the value measures 85px and the
+   gap 8, so an unshrinkable 88px SVG had 42px to fit into and drew across the
+   border into the next tile. A flex-basis lets it give way instead, and the
+   viewBox means it still renders correctly when it does. */
 .spark {
-  width: 88px;
+  flex: 0 1 88px;
+  min-width: 0;
+  max-width: 88px;
   height: 26px;
-  flex: none;
+}
+
+/* Below this the sparkline is a stub rather than a trend, and it is decoration,
+   so it goes entirely. Keyed to the card rather than the viewport on purpose:
+   the value's font size is fluid, so the card width and the text it must hold
+   both scale, and no single media query describes the point they stop fitting.
+   220px of card is 188px of content, against the 181px the pair needs. */
+@container (max-width: 220px) {
+  .spark {
+    display: none;
+  }
 }
 
 .sparkLine {
