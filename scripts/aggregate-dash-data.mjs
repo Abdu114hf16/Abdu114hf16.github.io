@@ -3,8 +3,8 @@
  *
  *   node scripts/aggregate-dash-data.mjs
  *
- *   in:  data/ps-dash.raw.json        (56,677 rows — source of truth, not deployed)
- *   out: public/data/ps-dash.json     (contingency cube + trimmed samples — deployed)
+ *   in:  data/ps-dash.raw.json        (56,677 rows: source of truth, not deployed)
+ *   out: public/data/ps-dash.json     (contingency cube + trimmed samples, deployed)
  *
  * Why: every visual on the dashboard is a marginal sum over a
  * (day x language x sentiment) contingency table. That table has 77 non-empty
@@ -14,7 +14,7 @@
  *
  * Samples are trimmed to SAMPLES_PER_CELL per cell, in their original order.
  * The UI renders `.slice(0, 3)` of the rows matching the current filter, and any
- * filter is a union of cells — so if a sample would place in the first 3 of a
+ * filter is a union of cells, so if a sample would place in the first 3 of a
  * union, it must also be in the first 3 of its own cell. Keeping the first 3 per
  * cell therefore preserves the rendered output exactly.
  */
@@ -57,7 +57,7 @@ writeFileSync(out, JSON.stringify(next));
 /* ── verify the cube reproduces the raw totals before reporting success ───── */
 const cubeTotal = Object.values(cube).reduce((a, b) => a + b, 0);
 if (cubeTotal !== raw.rows.length) {
-  throw new Error(`cube total ${cubeTotal} != ${raw.rows.length} rows — aborting`);
+  throw new Error(`cube total ${cubeTotal} != ${raw.rows.length} rows, aborting`);
 }
 
 const before = Buffer.byteLength(JSON.stringify(raw));

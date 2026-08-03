@@ -4,7 +4,7 @@
  * Run with:  node scripts/make-og-card.mjs
  *
  * The card reuses the site's dark-theme tokens so a shared link previews as the
- * same object it points at. Type is set in generic families on purpose — the
+ * same object it points at. Type is set in generic families on purpose: the
  * brand webfonts are not installed in the rendering environment, so metrics are
  * chosen to stay safe under a wide fallback face.
  */
@@ -104,4 +104,4 @@ await sharp(Buffer.from(svg))
   .toFile(out);
 
 const meta = await sharp(out).metadata();
-console.log(`wrote ${out} — ${meta.width}x${meta.height}, ${(meta.size / 1024).toFixed(1)} kB`);
+console.log(`wrote ${out}, ${meta.width}x${meta.height}, ${(meta.size / 1024).toFixed(1)} kB`);

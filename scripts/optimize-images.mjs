@@ -25,7 +25,6 @@ const jobs = [
   ['pictures/cfd_offices.png', 'cfd-offices.webp', 1400],
   ['pictures/cfd_forecasting.png', 'cfd-forecasting.webp', 1400],
   ['pictures/cfd_prediction.png', 'cfd-prediction.webp', 1400],
-  ['pictures/cfd_conclusions.png', 'cfd-conclusions.webp', 1400],
   ['pictures/ps_tweet.png', 'ps-tweet.webp', 840],
   ['visuals/mcp_preview_shap.png', 'mcp-shap.webp', 1400],
   ['visuals/mcp_preview_age.png', 'mcp-age.webp', 1400],

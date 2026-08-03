@@ -48,19 +48,41 @@
   border-bottom: 1px solid var(--border);
 }
 
+/* PlayStation brand surface, scoped to this block rather than the site tokens.
+   The panel keeps its identity in both themes: PS blue stays constant, only the
+   surface and ink flip. Without this the block rendered near-black with white
+   text floating in a pale page under the light theme. */
 .cta {
+  --ps-blue: #0070d1;
+  --ps-surface-a: #0e1320;
+  --ps-surface-b: #16233f;
+  --ps-edge: #233047;
+  --ps-ink: #ffffff;
+  --ps-ink-dim: #8a94a6;
+  --ps-drop: rgba(0, 0, 0, 0.28);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 22px;
   flex-wrap: wrap;
-  background: linear-gradient(120deg, #0e1320, #16233f);
-  border: 1px solid #233047;
-  border-left: 5px solid #0070d1;
+  background: linear-gradient(120deg, var(--ps-surface-a), var(--ps-surface-b));
+  border: 1px solid var(--ps-edge);
+  border-left: 5px solid var(--ps-blue);
   border-radius: 14px;
   padding: 22px 26px;
   margin: 18px 0 6px;
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 10px 34px var(--ps-drop);
+}
+
+/* Measured against the light surface: ink 16.3:1, dim ink 6.0:1, both AA. */
+:root[data-theme='light'] .cta {
+  --ps-surface-a: #e9f1fc;
+  --ps-surface-b: #dbe8f8;
+  --ps-edge: #c2d5ee;
+  --ps-ink: #0e1320;
+  --ps-ink-dim: #4f5b70;
+  --ps-drop: rgba(16, 24, 40, 0.12);
 }
 
 .ctaInfo {
@@ -76,7 +98,7 @@
 }
 
 .ctaTitle {
-  color: #fff;
+  color: var(--ps-ink);
   font-size: 1.15rem;
   font-weight: 700;
   margin: 0 0 9px;
@@ -110,7 +132,7 @@
 
 .miniLbl {
   font-size: 0.72rem;
-  color: #8a94a6;
+  color: var(--ps-ink-dim);
   margin: 6px 0 0;
   overflow-wrap: anywhere;
 }
@@ -119,7 +141,7 @@
   display: inline-block;
   text-decoration: none;
   font-weight: 700;
-  background: #0070d1;
+  background: var(--ps-blue, #0070d1);
   color: #fff;
   padding: 12px 24px;
   border-radius: 8px;

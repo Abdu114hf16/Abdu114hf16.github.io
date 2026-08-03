@@ -397,7 +397,8 @@ export default function PsDashboard() {
 
         <div className={s.foot}>
           &#9651; positive · &#9723; neutral · &#9711; negative &nbsp; Data: X/Twitter reactions to PlayStation's
-          Jan 2028 disc announcement · Sentiment: CardiffNLP twitter-XLM-RoBERTa (Python)
+          1 July 2026 announcement that new games stop shipping on discs in January 2028 · Sentiment:
+          CardiffNLP twitter-XLM-RoBERTa (Python)
         </div>
       </div>
 
