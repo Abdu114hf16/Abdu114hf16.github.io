@@ -2,12 +2,36 @@
   padding-top: clamp(1.6rem, 5vw, 3.2rem);
 }
 
+/* Two columns, three rows. Wide: the portrait spans all three on the right and
+   the text reads straight down the left. Narrow: the portrait drops to the name
+   row only, so it sits beside the name while the eyebrow above and everything
+   below run full width. Same DOM at both sizes, so visual order never
+   contradicts reading order. */
 .heroGrid {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 2rem;
+  row-gap: 0;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
   margin-bottom: 1.6rem;
+}
+
+/* Grid items do not collapse margins, and .name carries 0.55rem of its own, so
+   0.45rem here reproduces the 1rem gap the collapsed margins used to give. */
+.heroEyebrow {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0 0 0.45rem;
+}
+
+.identity {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.rest {
+  grid-column: 1;
+  grid-row: 3;
 }
 
 .name {
@@ -103,7 +127,9 @@
 }
 
 .portraitFrame {
-  flex: none;
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  align-self: center;
   padding: 7px;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -183,15 +209,31 @@
 }
 
 @media (max-width: 760px) {
+  /* Was column-reverse plus centred text, which led with the portrait and
+     dropped the left-aligned, label-led rhythm the rest of the site keeps. */
   .heroGrid {
-    flex-direction: column-reverse;
-    align-items: center;
-    text-align: center;
-    gap: 1.4rem;
+    column-gap: 1.1rem;
   }
 
-  .contact {
-    justify-content: center;
+  /* Full width, so a 38-character eyebrow is not forced to wrap inside the
+     narrow column left over beside the portrait. */
+  .heroEyebrow {
+    grid-column: 1 / -1;
+  }
+
+  .portraitFrame {
+    grid-row: 2;
+    border-radius: 16px;
+  }
+
+  .portraitFrame img {
+    width: 96px;
+    border-radius: 11px;
+  }
+
+  /* Full width too, so the buttons and contact links keep their room. */
+  .rest {
+    grid-column: 1 / -1;
   }
 
   .kpis {

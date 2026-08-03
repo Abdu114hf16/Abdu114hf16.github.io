@@ -23,13 +23,26 @@ export default function Home() {
   return (
     <main id="main" tabIndex={-1} className="wrap">
       <section className={s.hero}>
+        {/* Three cells, not two: on a phone the portrait sits beside the name
+            instead of above it, so the page still leads with who this is. */}
         <div className={s.heroGrid}>
-          <div>
-            <p className="eyebrow">
-              portfolio <b>·</b> data science &amp; ai <b>·</b> riyadh
-            </p>
+          <p className={`eyebrow ${s.heroEyebrow}`}>
+            portfolio <b>·</b> data science &amp; ai <b>·</b> riyadh
+          </p>
+          <div className={s.identity}>
             <h1 className={s.name}>Abdullah Alshammari</h1>
             <p className={s.subtitle}>Data Scientist</p>
+          </div>
+          <div className={s.portraitFrame}>
+            <img
+              src="/img/portrait.webp"
+              alt="Professional portrait of Abdullah Alshammari"
+              width="480"
+              height="720"
+              fetchPriority="high"
+            />
+          </div>
+          <div className={s.rest}>
             <p className={s.meta}>
               Computer Science at King Saud University <b>·</b> GPA 4.87/5.00, First Honors{' '}
               <b>·</b> Riyadh or remote <b>·</b> <b>Available now</b>
@@ -67,15 +80,6 @@ export default function Home() {
                 </a>
               </li>
             </ul>
-          </div>
-          <div className={s.portraitFrame}>
-            <img
-              src="/img/portrait.webp"
-              alt="Professional portrait of Abdullah Alshammari"
-              width="480"
-              height="720"
-              fetchPriority="high"
-            />
           </div>
         </div>
         <div className={s.pipeline}>

@@ -27,6 +27,21 @@ const MODEL_PTS: Array<[number, number]> = [
   [470, 186], [552, 158], [634, 142], [716, 116], [798, 96],
 ];
 
+/*
+ * The narrative, declared once. It renders twice: as SVG labels on wide
+ * screens, and as a real HTML list on narrow ones. The labels live inside a
+ * 920-unit viewBox, so they scale with the graphic: at a 345px render width
+ * they land near 4.3px and the sentence becomes a smear. Below 760px the SVG
+ * labels are hidden and the list takes over at a fixed, readable size. Three
+ * labels cannot share one row legibly on a phone at any font size, so the list
+ * wraps instead of shrinking.
+ */
+const STAGES: Array<{ no: string; label: string; x: number; delay: number }> = [
+  { no: '01', label: 'raw', x: 160, delay: 700 },
+  { no: '02', label: 'clean · transform', x: 413, delay: 1500 },
+  { no: '03', label: 'model → decide', x: 670, delay: 2600 },
+];
+
 const dl = (ms: number): CSSProperties => ({ animationDelay: `${ms}ms` });
 
 export default function PipelineHero() {
@@ -74,10 +89,24 @@ export default function PipelineHero() {
         </g>
 
         {/* stage labels: the narrative */}
-        <text className={s.label} x="160" y="248" style={dl(700)}>raw</text>
-        <text className={s.label} x="413" y="248" style={dl(1500)}>clean · transform</text>
-        <text className={s.label} x="670" y="248" style={dl(2600)}>model → decide</text>
+        {STAGES.map((st) => (
+          <text key={st.no} className={s.label} x={st.x} y="248" style={dl(st.delay)}>
+            {st.label}
+          </text>
+        ))}
       </svg>
+
+      {/* Same narrative, at a size that does not depend on the viewBox. */}
+      <ol className={s.steps} role="list">
+        {STAGES.map((st) => (
+          <li key={st.no}>
+            <span className={s.stepNo} aria-hidden="true">
+              {st.no}
+            </span>
+            {st.label}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
