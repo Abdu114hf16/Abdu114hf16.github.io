@@ -2,158 +2,69 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
-import { FIELD_BADGE, projects, type Field, type Origin } from '../data/projects';
+import { DOMAIN_LABEL, DOMAIN_TONE, TIER_LABEL, filterProjects, publishedProjects, type Domain, type ProjectTier } from '../data/projects';
 import { useSeo } from '../hooks/useSeo';
 import s from './Projects.module.css';
 
-type FieldFilter = Field | 'all';
-type OriginFilter = Origin | 'all';
-
-const FIELD_OPTS: Array<{ value: FieldFilter; label: string }> = [
-  { value: 'all', label: 'All' },
-  { value: 'ml', label: 'Machine Learning' },
-  { value: 'ba', label: 'Business Analytics' },
-  { value: 'web', label: 'Web Development' },
-];
-
-const ORIGIN_OPTS: Array<{ value: OriginFilter; label: string }> = [
-  { value: 'all', label: 'All' },
-  { value: 'academic', label: 'Academic' },
-  { value: 'self-directed', label: 'Self-directed' },
-];
-
 export default function Projects() {
-  useSeo('Projects', 'Hands-on work across machine learning, business analytics and web development.');
-  const [field, setField] = useState<FieldFilter>('all');
-  const [origin, setOrigin] = useState<OriginFilter>('all');
-
-  // Derived during render: no effects, no duplicated state.
-  const visible = projects.filter(
-    (p) => (field === 'all' || p.field === field) && (origin === 'all' || p.origin === origin),
-  );
-
-  const where = [
-    field !== 'all' && `field = '${field}'`,
-    origin !== 'all' && `origin = '${origin}'`,
-  ].filter(Boolean);
+  useSeo('Projects');
+  const [domains, setDomains] = useState<Domain[]>([]);
+  const visible = filterProjects(publishedProjects, domains);
+  const toggleDomain = (domain: Domain) => setDomains(previous => previous.includes(domain) ? previous.filter(d => d !== domain) : [...previous, domain]);
 
   return (
     <main id="main" tabIndex={-1} className="wrap">
       <section className={s.head}>
-        <p className="eyebrow">
-          run history <b>·</b> {projects.length} entries
-        </p>
+        <p className="eyebrow">project collection <b>·</b> {publishedProjects.length} projects</p>
         <h1>Projects</h1>
-        <p className={s.lede}>
-          Hands-on work across machine learning, business analytics and web development. Filter by field or
-          type, and open any project for the full write-up.
-        </p>
+        <p className={s.lede}>Data engineering, databases, software, and analytics projects—from warehouse foundations to useful products and predictive models.</p>
       </section>
-
       <section aria-label="Project filters">
         <div className={s.filters}>
-          <div className={s.group} role="group" aria-label="Filter by field">
-            <span className={s.flabel}>Field</span>
-            {FIELD_OPTS.map((o) => (
-              <button
-                key={o.value}
-                type="button"
-                className={s.chip}
-                aria-pressed={field === o.value}
-                onClick={() => setField(o.value)}
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
-          <div className={s.group} role="group" aria-label="Filter by type">
-            <span className={s.flabel}>Type</span>
-            {ORIGIN_OPTS.map((o) => (
-              <button
-                key={o.value}
-                type="button"
-                className={s.chip}
-                aria-pressed={origin === o.value}
-                onClick={() => setOrigin(o.value)}
-              >
-                {o.label}
-              </button>
+          <div className={s.group} role="group" aria-label="Filter by domain">
+            <span className={s.flabel}>Domain</span>
+            <button className={s.chip} type="button" aria-pressed={domains.length === 0} onClick={() => setDomains([])}>All</button>
+            {(Object.entries(DOMAIN_LABEL) as [Domain, string][]).map(([value, label]) => (
+              <button key={value} type="button" className={s.chip} aria-pressed={domains.includes(value)} onClick={() => toggleDomain(value)}>{label}</button>
             ))}
           </div>
         </div>
-
-        {/* Signature: the filters compose a real, visible query. */}
-        <p className={s.query} aria-live="polite">
-          <span className={s.kw}>SELECT</span> * <span className={s.kw}>FROM</span> projects
-          {where.length > 0 && (
-            <>
-              {' '}
-              <span className={s.kw}>WHERE</span> {where.join(' AND ')}
-            </>
-          )}
-          ;<span className={s.result}> → {visible.length} rows</span>
+        <p className={s.query}>
+          <span className={s.kw}>SELECT</span> projects <span className={s.kw}>WHERE</span>{' '}
+          {domains.length ? `domain matches ${domains.map(d => DOMAIN_LABEL[d]).join(' OR ')}` : 'any domain'}
+          ;
         </p>
-
-        <div className={s.list}>
-          {visible.map((p, i) =>
-            p.status === 'live' ? (
-              <Reveal key={p.slug} delay={Math.min(i * 40, 200)}>
-                <Link className={s.row} to={`/projects/${p.slug}`}>
-                  <span className={s.main}>
-                    <span className={s.titleRow}>
-                      <span className={s.badge} data-field={p.field}>
-                        <span className={s.badgeDot} aria-hidden="true" />
-                        {FIELD_BADGE[p.field]}
-                      </span>
-                      <h2 className={s.title}>{p.title}</h2>
-                    </span>
-                    <span className={s.desc}>{p.desc}</span>
-                    <span className={s.tags}>
-                      {p.tags.map((t) => (
-                        <span key={t} className={s.tag}>
-                          {t}
-                        </span>
-                      ))}
-                    </span>
-                  </span>
-                  <ArrowRight className={s.arr} size={20} aria-hidden="true" />
-                </Link>
-              </Reveal>
-            ) : (
-              <Reveal key={p.slug} delay={Math.min(i * 40, 200)}>
-                <div className={`${s.row} ${s.queued}`}>
-                  <span className={s.main}>
-                    <span className={s.titleRow}>
-                      <span className={s.badge} data-field={p.field}>
-                        <span className={s.badgeDot} aria-hidden="true" />
-                        {FIELD_BADGE[p.field]}
-                      </span>
-                      {/* The visible "status: queued" chip is hidden below 560px, and an
-                          aria-label on a plain div is not exposed, so the status rides in
-                          the heading where it reaches everyone at every width. */}
-                      <h2 className={s.title}>
-                        {p.title}
-                        <span className="sr-only">, queued, no write-up yet</span>
-                      </h2>
-                    </span>
-                    <span className={s.desc}>{p.desc}</span>
-                    <span className={s.tags}>
-                      {p.tags.map((t) => (
-                        <span key={t} className={s.tag}>
-                          {t}
-                        </span>
-                      ))}
-                    </span>
-                  </span>
-                  <span className={s.soon}>status: queued</span>
-                </div>
-              </Reveal>
-            ),
-          )}
-        </div>
-
-        {visible.length === 0 && <p className={s.empty}>No projects match these filters.</p>}
+        <p className={s.result} role="status" aria-live="polite" aria-atomic="true">{visible.length} {visible.length === 1 ? 'project' : 'projects'} found.</p>
       </section>
+      {(Object.keys(TIER_LABEL) as ProjectTier[]).map(tier => {
+        const group = visible.filter(p => p.tier === tier);
+        return group.length ? (
+          <section key={tier} className={s.tier} aria-labelledby={`tier-${tier}`}>
+            <h2 id={`tier-${tier}`}>{TIER_LABEL[tier]}</h2>
+            <div className={s.list}>
+              {group.map(p => (
+                <Reveal key={p.slug}>
+                  <Link className={s.row} to={`/projects/${p.slug}`}>
+                    <div className={s.main}>
+                      <div className={s.titleRow}>
+                        {p.domains.slice(0, 3).map(domain => <span key={domain} className={s.badge} data-field={DOMAIN_TONE[domain]}><span className={s.badgeDot} aria-hidden="true" />{DOMAIN_LABEL[domain]}</span>)}
+                      </div>
+                      <h3 className={s.title}>{p.title}</h3>
+                      <p className={s.desc}>{p.summary}</p>
+                      <p className={s.outcome}>{p.outcome}</p>
+                      <div className={s.tags}>{p.tags.slice(0, 4).map(tag => <span className={s.tag} key={tag}>{tag}</span>)}</div>
+                      <span className={s.read}>View project</span>
+                    </div>
+                    <ArrowRight className={s.arr} size={20} aria-hidden="true" />
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        ) : null;
+      })}
+      {visible.length === 0 && <p className={s.empty}>No projects match these filters. Try another domain or reset to All.</p>}
+      <p className={s.method}>Each project documents its approach, results, limitations, and contribution. Source and course attribution are included in the project details.</p>
     </main>
   );
 }

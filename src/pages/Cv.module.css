@@ -7,6 +7,8 @@
   font-size: var(--fs-4);
 }
 
+.summary { max-width: var(--prose); }
+
 /* Model-card spec row: the screening facts, dense by design. */
 .spec {
   display: flex;
@@ -188,6 +190,8 @@
   color: var(--muted);
   flex: none;
 }
+
+.certBadge { width: 48px; height: auto; flex: none; }
 
 .certBody {
   display: flex;

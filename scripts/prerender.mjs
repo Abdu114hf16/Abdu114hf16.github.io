@@ -15,58 +15,16 @@
  * cards with zero hydration risk. Full SSR would additionally serve content to
  * non-JS crawlers, and can be layered on later without redoing this.
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from 'node:fs';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { routeMetadata as ROUTES, ORIGIN, structuredData, legacyRoutes, canonicalUrl } from '../src/data/site.ts';
+import { publishedProjects } from '../src/data/projects.ts';
+import { articleFiles } from '../src/data/articleFiles.ts';
 
-const ORIGIN = 'https://alshammari.dev';
-const BASE = 'Abdullah Alshammari';
 const dist = new URL('../dist/', import.meta.url);
 const root = new URL('../', import.meta.url);
 
-/** Titles here must match what useSeo sets, or the tab title changes on hydrate. */
-const ROUTES = {
-  '/': {
-    title: `${BASE} · Data Science & AI`,
-    description:
-      'Portfolio of Abdullah Alshammari: machine learning, analytics dashboards, and decision-ready insights.',
-  },
-  '/cv': {
-    title: `CV - ${BASE}`,
-    description: 'CV of Abdullah Alshammari: education, technical skills, certifications, and languages.',
-  },
-  '/projects': {
-    title: `Projects - ${BASE}`,
-    description: 'Hands-on work across machine learning, business analytics and web development.',
-  },
-  '/contact': {
-    title: `Contact - ${BASE}`,
-    description:
-      'Get in touch with Abdullah Alshammari for collaborations, opportunities, or just to connect.',
-  },
-  '/projects/playstation-disc-sentiment': {
-    title: `Sentiment Analysis for People About PlayStation's Disc Decision - ${BASE}`,
-    description:
-      'The mood clearly leans negative, but exactly how negative, and how does it stack up against the positive and neutral voices? Let the data answer instead of the gut.',
-  },
-  '/projects/medical-cost-prediction': {
-    title: `Medical Insurance Cost Prediction - ${BASE}`,
-    description: 'What shapes an annual insurance bill, and why two customers can be priced so differently.',
-  },
-  '/projects/eventia': {
-    title: `Eventia - ${BASE}`,
-    description:
-      'A centralized platform that runs the full event lifecycle, from official licensing to live analytics, for organizers, vendors, attendees and authorities.',
-  },
-  '/projects/commercial-flights-delays': {
-    title: `Commercial Flight Delays Analysis - ${BASE}`,
-    description:
-      "A Power BI investigation into flight delays and passenger satisfaction across New York's airports, with forecasts and recommendations for the National Aviation Administration.",
-  },
-  '/projects/playstation-disc-sentiment/dashboard': {
-    title: `PlayStation Disc Sentiment - Interactive Dashboard - ${BASE}`,
-    description:
-      'Explore 56,677 public reactions to the end of PlayStation discs, filterable by sentiment, day and language.',
-  },
-};
 
 /* ── drift guards: fail the build rather than ship a silently stale route ──── */
 
@@ -86,10 +44,12 @@ if (missing.length || extra.length) {
 
 // Every live project must have a page; a new one added to projects.ts without a
 // sitemap entry would otherwise ship unprerendered and keep answering 404.
-const projectsSrc = readFileSync(new URL('src/data/projects.ts', root), 'utf8');
-const liveSlugs = [...projectsSrc.matchAll(/slug:\s*'([^']+)'[\s\S]*?status:\s*'(\w+)'/g)]
-  .filter((m) => m[2] === 'live')
-  .map((m) => m[1]);
+const liveSlugs = publishedProjects.map(p => p.slug);
+for (const slug of liveSlugs) {
+  if (!articleFiles[slug] || !existsSync(new URL(`src/pages/articles/${articleFiles[slug]}`, root))) {
+    throw new Error(`Published project has no article component: ${slug}`);
+  }
+}
 const unlisted = liveSlugs.filter((s) => !sitemapPaths.includes(`/projects/${s}`));
 if (unlisted.length) {
   throw new Error(`live projects missing from sitemap.txt: ${unlisted.join(', ')}`);
@@ -150,12 +110,13 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, 
    fetched and parsed. Injected here rather than written into index.html
    because Vite content-hashes the filenames.
 
-   Only the display and body faces. IBM Plex Mono is left to normal discovery:
-   it is two more files for two weights, and a longer preload list would
-   compete with the hero portrait for the first connections. */
+   Metadata is now part of the article hero. Preload its two mono weights too:
+   the measured late font swap wrapped the metric strip and shifted the cover. */
 const CRITICAL_FONTS = [
   /^bricolage-grotesque-latin-wght-normal-[\w-]+\.woff2$/,
   /^instrument-sans-latin-wght-normal-[\w-]+\.woff2$/,
+  /^ibm-plex-mono-latin-400-normal-[\w-]+\.woff2$/,
+  /^ibm-plex-mono-latin-600-normal-[\w-]+\.woff2$/,
 ];
 
 const preloads = CRITICAL_FONTS.map((re) => {
@@ -197,6 +158,10 @@ for (const [route, { title, description }] of Object.entries(ROUTES)) {
   html = setMeta(html, 'property', 'og:url', url);
   html = setMeta(html, 'name', 'twitter:title', title);
   html = setMeta(html, 'name', 'twitter:description', description);
+  html = setMeta(html, 'property', 'og:type', ROUTES[route].projectSlug ? 'article' : 'website');
+  const heroSrc = route === '/' ? '/img/portrait.webp' : publishedProjects.find(p => p.slug === ROUTES[route].projectSlug)?.cover?.src;
+  if (heroSrc) html = html.replace('</head>', `<link rel="preload" as="image" href="${esc(heroSrc)}" fetchpriority="high">\n  </head>`);
+  html = html.replace('</head>', `<script type="application/ld+json" id="page-schema">${JSON.stringify(structuredData(route)).replace(/</g, '\\u003c')}</script>\n  </head>`);
 
   const outDir = route === '/' ? dist : new URL(`.${route}/`, dist);
   mkdirSync(outDir, { recursive: true });
@@ -205,3 +170,15 @@ for (const [route, { title, description }] of Object.entries(ROUTES)) {
 }
 
 console.log(`prerendered ${written} routes with per-page metadata`);
+
+// Static aliases also work for crawlers and direct requests on GitHub Pages.
+for (const [from, to] of Object.entries(legacyRoutes)) {
+  if (from === '/index.html') continue; // the real home document already occupies it
+  const target = canonicalUrl(to);
+  const destination = to === '/' ? '/' : `${to}/`;
+  const path = fileURLToPath(new URL(`.${from}${from.endsWith('.html') ? '' : '/index.html'}`, dist));
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${esc(target)}"><script>location.replace(${JSON.stringify(destination)} + location.search + location.hash);</script><meta http-equiv="refresh" content="0;url=${esc(destination)}"><title>Page moved | Abdullah Alshammari</title></head><body><p>This page has moved. <a href="${esc(destination)}">Continue to the project or page</a>.</p></body></html>`);
+}
+// Keep the historical source asset recoverable in Git, but do not publish a stale CV.
+rmSync(new URL('docs/Abdullah_Alshammari_CV.pdf', dist), { force: true });

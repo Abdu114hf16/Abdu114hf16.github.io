@@ -6,6 +6,9 @@ import './styles/tokens.css';
 import './styles/base.css';
 import App from './App';
 
+// The loaded-page navigation hook restores history positions after lazy routes mount.
+history.scrollRestoration = 'manual';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>

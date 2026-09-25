@@ -1,157 +1,75 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { useSearchParams } from 'react-router';
-import { Download, Mail, Phone, Send } from 'lucide-react';
+import { Link } from 'react-router';
+import { FileText, Mail, Send } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons';
 import Panel from '../components/Panel';
 import Reveal from '../components/Reveal';
+import { profile } from '../data/profile';
 import { useSeo } from '../hooks/useSeo';
 import { looksAutomated } from './contactGuard';
+import { sendContactMessage } from './contactTransport';
 import s from './Contact.module.css';
 
-const EMAIL = 'abdullah.tecch@gmail.com';
-
 export default function Contact() {
-  useSeo('Contact', 'Get in touch with Abdullah Alshammari for collaborations, opportunities, or just to connect.');
-  const [params] = useSearchParams();
-  const sent = params.get('sent') === '1';
-  const banner = useRef<HTMLParagraphElement>(null);
+  useSeo('Contact');
   const openedAt = useRef(Date.now());
-  const [blocked, setBlocked] = useState(false);
+  const controller = useRef<AbortController | null>(null);
+  const [status, setStatus] = useState<'idle' | 'pending' | 'success' | 'error'>('idle');
+  const [error, setError] = useState('');
+  useEffect(() => () => controller.current?.abort(), []);
 
-  useEffect(() => {
-    if (sent) banner.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, [sent]);
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    const honey = e.currentTarget.elements.namedItem('_honey');
-    const value = honey instanceof HTMLInputElement ? honey.value : '';
-    if (looksAutomated(value, Date.now() - openedAt.current)) {
-      e.preventDefault();
-      setBlocked(true);
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (controller.current) return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    if (looksAutomated(String(data.get('_honey') ?? ''), Date.now() - openedAt.current)) {
+      setError('This submission was blocked by the spam guard. Please try again or use the email link below.');
+      setStatus('error');
+      return;
+    }
+    const request = new AbortController();
+    controller.current = request;
+    setStatus('pending');
+    const timeout = window.setTimeout(() => request.abort(), 15000);
+    try {
+      await sendContactMessage(Object.fromEntries([...data].map(([key, value]) => [key, String(value)])), request.signal);
+      setStatus('success');
+      form.reset();
+    } catch {
+      setError('The form service could not confirm acceptance. Your message is still here; retry or email me directly.');
+      setStatus('error');
+    } finally {
+      clearTimeout(timeout);
+      controller.current = null;
     }
   }
 
   return (
     <main id="main" tabIndex={-1} className="wrap">
-      <section className={s.head}>
-        <p className="eyebrow">
-          channel <b>·</b> open
-        </p>
-        <h1>Get in Touch</h1>
-        <p className={s.lede}>Feel free to reach out for collaborations, opportunities, or just to connect.</p>
-      </section>
-
+      <section className={s.head}><p className="eyebrow">channel <b>·</b> open</p><h1>Let's Build Better Decisions with Data</h1><p className={s.lede}>I am open to graduate and entry-level opportunities across data science, business intelligence, data analytics, data engineering, and applied AI. You are welcome to reach out about relevant roles, projects, or professional collaboration.</p></section>
       <div className={s.grid}>
-        <Reveal>
-          <Panel eyebrow="endpoints" title="Contact Information" className={s.panelReset}>
-            <dl className={s.info}>
-              <dt>
-                <Mail size={17} aria-hidden="true" /> Email
-              </dt>
-              <dd>
-                <a href="mailto:abdullah.tecch@gmail.com">abdullah.tecch@gmail.com</a>
-              </dd>
-              <dt>
-                <Phone size={17} aria-hidden="true" /> Phone
-              </dt>
-              <dd>
-                <a href="tel:+966538845755">0538845755</a>
-              </dd>
-              <dt>
-                <LinkedinIcon size={17} aria-hidden /> LinkedIn
-              </dt>
-              <dd>
-                <a href="https://linkedin.com/in/alshammaridev" target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/alshammaridev
-                </a>
-              </dd>
-              <dt>
-                <GithubIcon size={17} aria-hidden /> GitHub
-              </dt>
-              <dd>
-                <a href="https://github.com/Abdu114hf16" target="_blank" rel="noopener noreferrer">
-                  github.com/Abdu114hf16
-                </a>
-              </dd>
-              <dt>
-                <Download size={17} aria-hidden="true" /> CV
-              </dt>
-              <dd>
-                <a href="/docs/Abdullah_Alshammari_CV.pdf" download>
-                  Abdullah_Alshammari_CV.pdf
-                </a>
-              </dd>
-            </dl>
-          </Panel>
-        </Reveal>
-
-        <Reveal delay={80}>
-          <Panel eyebrow="send message" title="Send a Message" className={s.panelReset}>
-            {/* Honest wording: ?sent=1 means the relay accepted the post, which
-                is not the same as the mail landing, so the note names a fallback
-                instead of promising delivery. */}
-            <p ref={banner} className={s.success} hidden={!sent}>
-              Thanks, your message is on its way. If you have not heard back within a few days, email{' '}
-              <a href={`mailto:${EMAIL}`}>{EMAIL}</a> directly.
-            </p>
-            <form
-              className={s.form}
-              action={`https://formsubmit.co/${EMAIL}`}
-              method="POST"
-              onSubmit={handleSubmit}
-            >
-              <input type="hidden" name="_subject" value="New message from your portfolio" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://alshammari.dev/contact?sent=1" />
-              <input
-                type="text"
-                name="_honey"
-                className={s.honey}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
-
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your full name" required />
-
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required />
-
-              <label htmlFor="subject">Subject</label>
-              <select id="subject" name="subject" defaultValue="general">
-                <option value="general">General</option>
-                <option value="opportunity">Opportunity</option>
-                <option value="collaboration">Collaboration</option>
-                <option value="other">Other</option>
-              </select>
-
-              <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" placeholder="Write your message here..." required />
-
-              <button type="submit" className={s.submit}>
-                <Send size={16} aria-hidden="true" /> Send
-              </button>
-            </form>
-
-            {/* Rendered only when blocked, rather than an existing node that gains
-                role="alert": screen readers announce an alert reliably when the
-                node is inserted, not when a role is added to one already there. */}
-            {blocked && (
-              <p className={s.blocked} role="alert">
-                That looked automated, so it was not sent. If that is wrong, email{' '}
-                <a href={`mailto:${EMAIL}`}>{EMAIL}</a> and it will reach me.
-              </p>
-            )}
-
-            {/* The form depends on a third-party relay that can fail quietly, so
-                the route that does not is always on screen next to it. */}
-            <p className={s.fallback}>
-              Prefer not to use a form? Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> directly.
-            </p>
-          </Panel>
-        </Reveal>
+        <Reveal><Panel eyebrow="endpoints" title="Contact Information" className={s.panelReset}><dl className={s.info}>
+          <dt><Mail size={17} aria-hidden="true" />Email</dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd>
+          <dt><LinkedinIcon size={17} aria-hidden />LinkedIn</dt><dd><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">linkedin.com/in/alshammaridev</a></dd>
+          <dt><GithubIcon size={17} aria-hidden />GitHub</dt><dd><a href={profile.github} target="_blank" rel="noopener noreferrer">github.com/Abdu114hf16</a></dd>
+          <dt><FileText size={17} aria-hidden="true" />CV</dt><dd><Link to="/cv">View CV</Link></dd>
+        </dl></Panel></Reveal>
+        <Reveal><Panel eyebrow="send message" title="Send a Message" className={s.panelReset}>
+          <form className={s.form} action={`https://formsubmit.co/${profile.email}`} method="POST" onSubmit={handleSubmit} aria-busy={status === 'pending'}>
+            <input type="hidden" name="_subject" value="New message from your portfolio" />
+            <input type="hidden" name="_template" value="table" /><input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" className={s.honey} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+            <label htmlFor="name">Name</label><input type="text" id="name" name="name" autoComplete="name" placeholder="Your full name" required disabled={status === 'pending'} />
+            <label htmlFor="email">Email</label><input type="email" id="email" name="email" autoComplete="email" placeholder="you@example.com" required disabled={status === 'pending'} />
+            <label htmlFor="subject">Subject</label><select id="subject" name="subject" defaultValue="Career Opportunity" disabled={status === 'pending'}>{['Career Opportunity', 'Project Collaboration', 'Professional Networking', 'Website Feedback', 'Other'].map(subject => <option key={subject}>{subject}</option>)}</select>
+            <label htmlFor="message">Message</label><textarea id="message" name="message" placeholder="Write your message here..." required disabled={status === 'pending'} />
+            <button type="submit" className={s.submit} disabled={status === 'pending'}><Send size={16} aria-hidden="true" />{status === 'pending' ? 'Sending…' : 'Send message'}</button>
+          </form>
+          <div role="status" aria-live="polite" aria-atomic="true">{status === 'pending' ? <p className={s.fallback}>Waiting for the form service to respond…</p> : status === 'success' ? <p className={s.success}>The form service accepted your message. If you do not hear back, please email me directly.</p> : null}</div>
+          {status === 'error' && <p role="alert" className={s.blocked}>{error}</p>}
+          <p className={s.fallback}>Prefer not to use a form? Email <a href={`mailto:${profile.email}`}>{profile.email}</a> directly.</p>
+        </Panel></Reveal>
       </div>
     </main>
   );

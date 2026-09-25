@@ -1,0 +1,5 @@
+.head { padding-top: clamp(1.6rem, 5vw, 3rem); }
+.lede { max-width: var(--prose); color: var(--muted); }
+.note { max-width: var(--prose); color: var(--muted); font-size: var(--fs-3); margin-top: var(--sp-6); }
+.links { display: flex; flex-wrap: wrap; gap: var(--sp-5); margin-top: var(--sp-7); font-size: var(--fs-3); }
+.links a { display: inline-flex; align-items: center; min-height: 44px; }

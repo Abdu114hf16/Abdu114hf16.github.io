@@ -1,144 +1,21 @@
-import ArticleLayout, { BtnRow, ResourceLink, Section, SrcCard, TechStack } from './ArticleLayout';
+import CaseStudy from './CaseStudy';
 import Gallery from '../../components/Gallery';
 
 export default function Eventia() {
-  return (
-    <ArticleLayout
-      meta={{
-        title: 'Eventia',
-        seoTitle: 'Eventia',
-        lede: 'A centralized platform that runs the full event lifecycle, from official licensing to live analytics, for organizers, vendors, attendees and authorities.',
-        hero: { src: '/img/hero-eventia.webp', alt: 'Eventia platform interface', w: 1600, h: 896 },
-      }}
-    >
-      <BtnRow>
-        <ResourceLink kind="demo" href="https://www.eventia.software">
-          Visit Live Demo
-        </ResourceLink>
-      </BtnRow>
-
-      <Section title="Introduction">
-        <p>
-          Eventia is my graduation project, and the largest system I have built. It is an end-to-end platform for
-          the full event lifecycle: planning an event, getting it licensed, running it, keeping everyone involved
-          in touch, and reviewing how it went. Today that work is spread across spreadsheets, chat apps, separate
-          government portals and disconnected dashboards. Eventia pulls all of it, and every role that touches an
-          event, into one place. It runs live at{' '}
-          <a href="https://www.eventia.software" target="_blank" rel="noopener noreferrer">
-            eventia.software
-          </a>
-          .
-        </p>
-      </Section>
-
-      <Section title="Problem Statement">
-        <p>
-          An event passes through many hands before, during and after it happens. Organizers plan it, vendors
-          deliver parts of it, attendees take part, and authorities license it. Each group tends to work in its
-          own tool, so information is scattered, status is hard to track, and the compliance steps that make an
-          event legal happen far away from where the event is actually managed. The result is slow coordination,
-          duplicated effort and no single source of truth.
-        </p>
-      </Section>
-
-      <Section title="Solution">
-        <p>
-          Eventia answers this with one role-based platform. Organizers, vendors, attendees and authorities each
-          sign in to an experience shaped for them, with the permissions and views that fit their part of the job,
-          while everyone shares the same underlying data.
-        </p>
-        <p>
-          Licensing is built in rather than bolted on. The platform guides an organizer through the official
-          licensing workflow of the Saudi Conventions and Exhibitions General Authority, step by step, so
-          compliance happens inside the same system that manages the event, instead of in a separate portal.
-        </p>
-        <p>
-          A Gemini-powered AI assistant supports users throughout, answering questions and offering the kind of
-          guidance that would otherwise need a manual or a support desk. In-app messaging keeps organizers,
-          vendors and authorities in sync, and analytics dashboards turn day-to-day activity into a clear picture
-          organizers can act on.
-        </p>
-        <p>
-          Under the hood, Eventia is a Django and Python application backed by a MySQL database, with the Gemini
-          API integrated for the assistant. The aim throughout was a single, coherent product rather than a stack
-          of disconnected tools.
-        </p>
-      </Section>
-
-      <Section title="Tech Stack">
-        <TechStack items={['Django', 'Python', 'MySQL', 'Gemini AI', 'Resend', 'JavaScript', 'HTML', 'CSS']} />
-      </Section>
-
-      <Section title="Key Features">
-        <p>A few of the pieces that make Eventia work as one system:</p>
-        <ul>
-          <li>Role-based access tailored to organizers, vendors, attendees and authorities.</li>
-          <li>A built-in official licensing workflow that handles compliance in-platform.</li>
-          <li>A Gemini-powered AI assistant for guidance and support.</li>
-          <li>In-app messaging that keeps every role in sync.</li>
-          <li>Analytics dashboards that turn activity into decisions.</li>
-        </ul>
-      </Section>
-
-      <Section title="Pictures">
-        <Gallery
-          items={[
-            { src: '/img/eventia-1.webp', alt: 'Eventia platform interface', w: 960, h: 1280 },
-            { src: '/img/eventia-2.webp', alt: 'Eventia dashboard and management view', w: 960, h: 1280 },
-          ]}
-        />
-      </Section>
-
-      <Section title="Conclusion">
-        <p>
-          Eventia took the messy, multi-tool reality of running an event and turned it into one coherent platform.
-          Bringing planning, licensing, communication and analytics together under role-based access was the
-          hardest and most rewarding part, and it is what makes the system feel like a single product rather than
-          a collection of features.
-        </p>
-      </Section>
-
-      <Section title="Takeaway">
-        <p>
-          Building Eventia stretched me as a software engineer in ways earlier projects did not. A few things I am
-          keeping with me:
-        </p>
-        <ul>
-          <li>
-            Designing a role-based system from the ground up taught me to think in permissions and trust
-            boundaries, not just features.
-          </li>
-          <li>
-            Building in a real compliance workflow showed how much value a product gains when it handles the
-            mandatory, unglamorous steps for the user.
-          </li>
-          <li>
-            Adding a Gemini-powered assistant was my first time weaving a large language model into a production
-            web app.
-          </li>
-          <li>
-            Carrying a large project from an idea to a working, deployed system was a lesson in scope, planning
-            and finishing.
-          </li>
-          <li>
-            Most of all, it grew my soft skills: communicating clearly, dividing the work and collaborating as
-            part of a team toward one shared goal.
-          </li>
-        </ul>
-      </Section>
-
-      <Section title="Explore Eventia">
-        <SrcCard intro="See it running and read the full story behind the build:">
-          <BtnRow>
-            <ResourceLink kind="demo" href="https://www.eventia.software">
-              Visit Live Demo
-            </ResourceLink>
-            <ResourceLink kind="report" href="/docs/Eventia_Report.pdf">
-              Read the Full Report (PDF)
-            </ResourceLink>
-          </BtnRow>
-        </SrcCard>
-      </Section>
-    </ArticleLayout>
-  );
+  return <CaseStudy slug="eventia" designTitle="System Design"
+    summary={['Eventia is a four-person graduation project that brings event creation, licensing workflows, attendee engagement, messaging, and oversight into a shared platform. An AI assistant supports the experience as one feature within the wider workflow.', 'My contribution focused on backend and relational-database development and supporting the assistant integration. The project demonstrates coordinated workflows and data foundations; it does not report production-scale operation or an authorized government integration.']}
+    data={['The relational model connects events, license applications, vendors, attendees, and role-specific workflows. Different roles need access to related records with different permissions.', 'The platform models a licensing process as understood during the graduation project. It is not an authorized integration with the Saudi Conventions and Exhibitions General Authority, and the assistant has no approval authority.']}
+    approach={['Map event creation, coordination, licensing, and oversight into role-specific workflows.', 'Represent shared records and relationships in the database.', 'Connect server-side workflow handling to organizer, vendor, attendee, and authority-facing views.', 'Support communication and analytics around the same event records.', 'Integrate an AI assistant as supporting guidance within the product.']}
+    design="The application groups models, views, forms, lifecycle hooks, and templates around a shared event-management domain. Role-aware request handling determines access to related records. Keeping database relationships and workflow permissions aligned is more important than simply hiding controls in the interface."
+    designVisual={<Gallery items={[
+      { src: '/img/eventia-1.webp', alt: 'Eventia interface showing the graduation-project event workflow', w: 960, h: 1280 },
+      { src: '/img/eventia-2.webp', alt: 'Eventia management and dashboard views from the project report', w: 960, h: 1280 },
+    ]} />}
+    evaluation={<p>The report, screenshots, and public source demonstrate the implemented workflows and relational structure. They do not establish production uptime, load capacity, a full security review, or benchmarked assistant quality. The deployment is undergoing a hosting transition, so the portfolio links to the source and report rather than an unverified live demo.</p>}
+    findings={['Event coordination benefits from shared records instead of disconnected role-specific documents.', 'Relational design and access rules shape how each role can participate in the same event.', 'Licensing, communication, and attendee engagement are the core workflow; the assistant is supporting functionality.']}
+    recommendation="Review the report and source to understand the team workflow and database foundations. A production release would need operational testing, permission review, assistant evaluation, and any required authorized integrations."
+    limitations={['Academic team project; no production-scale reliability or performance is claimed.', 'The licensing workflow is a project representation, not an authorized authority integration.', 'The AI assistant has no published quality benchmark.', 'Available implementation safeguards do not constitute a full application security review.']}
+    stack={['Django', 'Python', 'MySQL', 'Gemini API', 'JavaScript']}
+    contribution="Delivered by a four-person university team. My own contribution focused on backend and relational-database development and on supporting the integration of the Gemini-powered AI assistant. I collaborated with the team to connect these components to the platform's multi-role event-management workflows. The main takeaway was how closely useful database design depends on understanding responsibilities and permissions."
+  />;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router';
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import { loadDashData, type DashData } from './data';
@@ -59,6 +59,15 @@ export default function PsDashboard() {
   const [accent, setAccent] = useState('Blue');
   const [posColor, setPosColor] = useState('Yellow');
   const [remoteOpen, setRemoteOpen] = useState(false);
+  const remoteToggle = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!remoteOpen) return;
+    const close = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setRemoteOpen(false); remoteToggle.current?.focus(); }
+    };
+    document.addEventListener('keydown', close);
+    return () => document.removeEventListener('keydown', close);
+  }, [remoteOpen]);
 
   useEffect(() => {
     let on = true;
@@ -135,13 +144,19 @@ export default function PsDashboard() {
     '--ps': ACCENTS[accent][0],
     '--ps2': ACCENTS[accent][1],
     '--pos': POS_COLORS[posColor],
+    '--pos-text': theme === 'PS5 Light' ? (posColor === 'Yellow' ? '#806000' : posColor === 'Green' ? '#08753e' : '#006f79') : posColor === 'Green' ? '#3ed598' : POS_COLORS[posColor],
+    '--neg-text': theme === 'PS5 Light' ? '#b10024' : '#ff6b83',
+    '--ps-text': theme === 'PS5 Light' ? ({ Blue: '#005ca9', Cyan: '#006f79', Violet: '#5542cc', Magenta: '#a71f64' } as Record<string, string>)[accent] : ACCENTS[accent][1],
+    '--on-ps': accent === 'Cyan' ? '#0e1320' : '#ffffff',
+    '--focus-ring': theme === 'PS5 Light' ? '#8a5a00' : '#f5b841',
     '--radius': corner === 'sharp' ? '0px' : '10px',
   } as CSSProperties;
 
   if (error) {
     return (
       <div className={s.root} style={rootStyle}>
-        <main className={s.page}>
+        <main id="dashboard-main" tabIndex={-1} className={s.page}>
+          <h1>Sentiment dashboard</h1>
           <p className={s.status}>Dataset could not load ({error}). Refresh to retry.</p>
         </main>
       </div>
@@ -151,7 +166,8 @@ export default function PsDashboard() {
   if (!data || !agg) {
     return (
       <div className={s.root} style={rootStyle}>
-        <main className={s.page}>
+        <main id="dashboard-main" tabIndex={-1} className={s.page}>
+          <h1>Sentiment dashboard</h1>
           <p className={s.status}>loading 56,677 reactions…</p>
         </main>
       </div>
@@ -163,15 +179,8 @@ export default function PsDashboard() {
   const pn = pct(c[0]);
   const pu = pct(c[1]);
   const pp = pct(c[2]);
-  /* Share positive minus share negative, on the class labels. Named for what it
-     is: it was previously surfaced as "Avg Sentiment" over a "scale -1 to +1",
-     which reads as the mean of a continuous score and is not what this computes.
-     The write-up's -0.44 IS that continuous mean, taken over the model's class
-     probabilities, and the two are consistent rather than contradictory: a soft
-     score is always less extreme than the hard label it came from, so a
-     probability mean must sit closer to zero than this -0.528. Filtering to a
-     single class makes the difference obvious, since net sentiment over an
-     all-positive subset is exactly +1.00 while a score mean could not be. */
+  // Share positive minus share negative, computed only from the shipped labels.
+  // A probability-weighted mean cannot be reconstructed from this export.
   const net = n ? (c[2] - c[0]) / n : 0;
   const dtot = [dc[0][0] + dc[0][1] + dc[0][2], dc[1][0] + dc[1][1] + dc[1][2]];
   const dmax = Math.max(dtot[0], dtot[1], 1);
@@ -179,6 +188,7 @@ export default function PsDashboard() {
 
   return (
     <div className={`${s.root} ${density === 'compact' ? s.compact : ''}`} style={rootStyle}>
+      <a className="skip" href="#dashboard-main">Skip to dashboard</a>
       <div className={s.page}>
         {/* This route renders standalone, outside the shared Layout, so it has to
             carry its own landmarks: header, nav, main and footer. */}
@@ -186,7 +196,7 @@ export default function PsDashboard() {
           <div className={s.brand}>
             <img src="/img/ps-logo.webp" alt="PlayStation logo" width="160" height="160" />
             <div>
-              <h1>END OF DISCS - PUBLIC REACTION</h1>
+              <h1>PHYSICAL DISCS - PUBLIC REACTION</h1>
               <div className={s.sub}>
                 X / TWITTER · SENTIMENT VIA PYTHON NLP · {fmt(data.total)} REACTIONS
               </div>
@@ -238,7 +248,8 @@ export default function PsDashboard() {
           </button>
         </div>
 
-        <main>
+        <main id="dashboard-main" tabIndex={-1}>
+          <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">{fmt(n)} reactions match the current filters.</p>
           <div className={s.kpis}>
             <div className={`${s.tile} ${s.kpi} ${s.kpiAccent}`}>
               <h2>Reactions</h2>
@@ -269,23 +280,20 @@ export default function PsDashboard() {
           <div className={s.row2}>
             <div className={s.tile}>
               <h2>
-                Sentiment Split <span className={s.hint}>(click to filter)</span>
+                Sentiment Split <span className={s.hint}>(select a label to filter)</span>
               </h2>
               <div className={s.donutwrap}>
                 {dist === 'bar' ? (
-                  <div className={s.distbar}>
+                  <div className={s.distbar} aria-hidden="true">
                     {([0, 1, 2] as const).map((v) => {
                       const p = [pn, pu, pp][v];
                       return (
-                        <button
+                        <span
                           key={v}
-                          type="button"
-                          style={{ background: COL[v], width: `${p}%` }}
-                          onClick={() => toggleSent(v)}
-                          aria-label={`${SENT[v]} ${p.toFixed(1)}%`}
+                          style={{ background: COL[v], width: `${p}%`, color: v === 0 ? '#fff' : '#0e1320' }}
                         >
                           {p > 7 ? `${Math.round(p)}%` : ''}
-                        </button>
+                        </span>
                       );
                     })}
                   </div>
@@ -376,7 +384,7 @@ export default function PsDashboard() {
 
             <div className={s.tile}>
               <h2>
-                Most-Viral Reactions <span className={s.hint}>(current filter)</span>
+                Selected Reactions <span className={s.hint}>(current filter)</span>
               </h2>
               <table>
                 <thead>
@@ -409,21 +417,29 @@ export default function PsDashboard() {
               </table>
             </div>
           </div>
+          <details className={s.dataDetails}>
+            <summary>View chart data and definitions</summary>
+            <p>Sentiment counts match all active filters. The day chart uses sentiment and language filters; the language chart uses sentiment and day filters. Net sentiment is positive share minus negative share, not a confidence score.</p>
+            <table><caption>Current sentiment distribution</caption><thead><tr><th scope="col">Sentiment</th><th scope="col">Reactions</th><th scope="col">Share</th></tr></thead><tbody>{SENT.map((label, i) => <tr key={label}><th scope="row">{label}</th><td>{fmt(c[i])}</td><td>{pct(c[i]).toFixed(1)}%</td></tr>)}</tbody></table>
+            <table><caption>Day distribution under sentiment and language filters</caption><thead><tr><th scope="col">Day</th><th scope="col">Negative</th><th scope="col">Neutral</th><th scope="col">Positive</th></tr></thead><tbody>{data.dayLabels.map((day, i) => <tr key={day}><th scope="row">{day}</th>{dc[i].map((value, j) => <td key={j}>{fmt(value)}</td>)}</tr>)}</tbody></table>
+            <table><caption>Displayed language groups under sentiment and day filters</caption><thead><tr><th scope="col">Language</th><th scope="col">Negative</th><th scope="col">Neutral</th><th scope="col">Positive</th></tr></thead><tbody>{agg.langs.map(({ l, v }) => <tr key={l}><th scope="row">{data.langNames[l] ?? l}</th>{v.map((value, i) => <td key={i}>{fmt(value)}</td>)}</tr>)}</tbody></table>
+          </details>
         </main>
 
         <footer className={s.foot}>
-          &#9651; positive · &#9723; neutral · &#9711; negative &nbsp; Data: X/Twitter reactions to PlayStation's
-          1 July 2026 announcement that new games stop shipping on discs in January 2028 · Sentiment:
-          CardiffNLP twitter-XLM-RoBERTa (Python)
+          &#9651; positive · &#9723; neutral · &#9711; negative &nbsp; Data: collected X/Twitter reactions to a
+          PlayStation-related post about physical discs; supplied day labels Jul 1–2. This sample is not representative of all customers.
+          Classification: CardiffNLP twitter-XLM-RoBERTa. Selected reactions are examples from the supplied export.
         </footer>
       </div>
 
       {/* REMOTE control */}
-      <button type="button" className={s.remoteToggle} onClick={() => setRemoteOpen((o) => !o)}>
+      <button ref={remoteToggle} type="button" className={s.remoteToggle} aria-expanded={remoteOpen} aria-controls="dashboard-options" onClick={() => setRemoteOpen((o) => !o)}>
         &#9651;&#9711;&#10005;&#9723; REMOTE
       </button>
       {remoteOpen && (
-        <div className={s.remote}>
+        <section id="dashboard-options" className={s.remote} aria-label="Dashboard appearance">
+          <h2 className="sr-only">Dashboard appearance</h2>
           <div className={s.grp}>
             <h3>&#9679; Colors</h3>
             <div className={s.swatches}>
@@ -434,6 +450,8 @@ export default function PsDashboard() {
                   className={`${s.sw} ${theme === name ? s.swActive : ''}`}
                   style={{ background: THEME_SWATCH[name] }}
                   title={name}
+                  aria-label={`${name} theme`}
+                  aria-pressed={theme === name}
                   onClick={() => setTheme(name)}
                 >
                   {theme === name && <span>{name}</span>}
@@ -449,6 +467,8 @@ export default function PsDashboard() {
                   className={`${s.sw} ${accent === name ? s.swActive : ''}`}
                   style={{ background: ACCENTS[name][0] }}
                   title={name}
+                  aria-label={`${name} accent`}
+                  aria-pressed={accent === name}
                   onClick={() => setAccent(name)}
                 >
                   {accent === name && <span>{name}</span>}
@@ -464,6 +484,8 @@ export default function PsDashboard() {
                   className={`${s.sw} ${posColor === name ? s.swActive : ''}`}
                   style={{ background: POS_COLORS[name] }}
                   title={`${name} positive`}
+                  aria-label={`${name} positive color`}
+                  aria-pressed={posColor === name}
                   onClick={() => setPosColor(name)}
                 >
                   {posColor === name && <span>{name}</span>}
@@ -521,7 +543,7 @@ export default function PsDashboard() {
               </button>
             </div>
           </div>
-        </div>
+        </section>
       )}
     </div>
   );

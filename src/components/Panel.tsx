@@ -6,12 +6,13 @@ interface Props {
   title?: string;
   children: ReactNode;
   className?: string;
+  id?: string;
 }
 
 /** Dashboard-grammar section: mono eyebrow + hairline header, quiet body. */
-export default function Panel({ eyebrow, title, children, className }: Props) {
+export default function Panel({ eyebrow, title, children, className, id }: Props) {
   return (
-    <section className={`${s.panel} ${className ?? ''}`}>
+    <section id={id} tabIndex={id ? -1 : undefined} className={`${s.panel} ${className ?? ''}`}>
       <header className={s.head}>
         <span className="eyebrow">{eyebrow}</span>
         <span className={s.rule} aria-hidden="true" />

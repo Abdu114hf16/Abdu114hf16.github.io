@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { Moon, Sun } from 'lucide-react';
 import s from './Nav.module.css';
 
 const LINKS = [
   { to: '/', label: 'Home' },
-  { to: '/cv', label: 'CV' },
+  { to: '/experience', label: 'Experience' },
   { to: '/projects', label: 'Projects' },
+  { to: '/cv', label: 'CV' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -15,6 +16,7 @@ function currentTheme(): 'dark' | 'light' {
 }
 
 export default function Nav() {
+  const { pathname, hash } = useLocation();
   const [theme, setTheme] = useState(currentTheme);
 
   function toggleTheme() {
@@ -33,22 +35,24 @@ export default function Nav() {
   return (
     <header className={s.header}>
       <nav className={`wrap ${s.bar}`} aria-label="Main">
-        <NavLink to="/" className={s.brand} aria-label="alshammari.dev, home">
+        <Link to="/" className={s.brand} aria-label="alshammari.dev, home">
           <span className={s.dot} aria-hidden="true" />
           <span className={s.brandText}>alshammari.dev</span>
-        </NavLink>
+        </Link>
         <ul className={s.links}>
-          {LINKS.map((l) => (
+          {LINKS.map((l) => {
+            const active = l.to.includes('#') ? pathname === '/' && hash === '#experience' : l.to === '/' ? pathname === '/' && !hash : pathname.startsWith(l.to);
+            return (
             <li key={l.to}>
-              <NavLink
+              <Link
                 to={l.to}
-                end={l.to === '/'}
-                className={({ isActive }) => (isActive ? `${s.link} ${s.active}` : s.link)}
+                aria-current={active ? (l.to.includes('#') ? 'location' : 'page') : undefined}
+                className={active ? `${s.link} ${s.active}` : s.link}
               >
                 {l.label}
-              </NavLink>
+              </Link>
             </li>
-          ))}
+          ); })}
         </ul>
         <button
           type="button"

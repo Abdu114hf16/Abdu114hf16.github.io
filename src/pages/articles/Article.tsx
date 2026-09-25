@@ -1,22 +1,20 @@
-import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from 'react';
+import { lazy, type ComponentType } from 'react';
 import { useParams } from 'react-router';
+import { publishedProjects } from '../../data/projects';
+import { articleFiles } from '../../data/articleFiles';
 import NotFound from '../NotFound';
 
-/** Each article is its own chunk, loaded only when visited. */
-const ARTICLES: Record<string, LazyExoticComponent<ComponentType>> = {
-  'medical-cost-prediction': lazy(() => import('./MedicalCost')),
-  'playstation-disc-sentiment': lazy(() => import('./PsDiscSentiment')),
-  eventia: lazy(() => import('./Eventia')),
-  'commercial-flights-delays': lazy(() => import('./FlightDelays')),
-};
+const modules = import.meta.glob<{ default: ComponentType }>('./*.tsx');
+const articles = Object.fromEntries(publishedProjects.map(p => {
+  const loader = modules[`./${articleFiles[p.slug]}`];
+  if (!loader) throw new Error(`Missing published article: ${p.slug}`);
+  return [p.slug, lazy(loader)];
+}));
 
 export default function Article() {
   const { slug } = useParams();
-  const Body = slug ? ARTICLES[slug] : undefined;
+  const Body = slug && Object.hasOwn(articles, slug) ? articles[slug] : undefined;
   if (!Body) return <NotFound />;
-  return (
-    <Suspense fallback={<div className="wrap" style={{ minHeight: '60vh' }} />}>
-      <Body />
-    </Suspense>
-  );
+  // Let the layout boundary keep content and footer together during loading.
+  return <Body />;
 }

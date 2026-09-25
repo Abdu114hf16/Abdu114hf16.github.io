@@ -33,6 +33,7 @@
 }
 
 .chip {
+  min-height: 44px;
   padding: var(--sp-2) var(--sp-4);
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -65,8 +66,7 @@
   font-family: var(--font-mono);
   font-size: var(--fs-2);
   color: var(--text);
-  overflow-x: auto;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .kw {
@@ -167,6 +167,7 @@ a.row:hover .arr {
 }
 
 .desc {
+  margin: 0;
   color: var(--muted);
   font-size: var(--fs-3);
   line-height: 1.55;
@@ -223,6 +224,12 @@ a.row:hover .arr {
   font-style: italic;
   margin-top: var(--sp-5);
 }
+
+.tier { margin-top: var(--sp-7); }
+.tier > h2 { margin-bottom: var(--sp-5); }
+.outcome { margin: 0; font-size: var(--fs-3); }
+.read { font-family: var(--font-mono); font-size: var(--fs-2); margin-top: var(--sp-3); text-decoration: underline; text-underline-offset: 3px; }
+.method { color: var(--muted); max-width: var(--prose); margin-top: var(--sp-7); font-size: var(--fs-3); }
 
 @media (max-width: 560px) {
   .row {

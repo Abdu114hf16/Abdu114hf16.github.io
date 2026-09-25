@@ -37,9 +37,11 @@ const MODEL_PTS: Array<[number, number]> = [
  * wraps instead of shrinking.
  */
 const STAGES: Array<{ no: string; label: string; x: number; delay: number }> = [
-  { no: '01', label: 'raw', x: 160, delay: 700 },
-  { no: '02', label: 'clean · transform', x: 413, delay: 1500 },
-  { no: '03', label: 'model → decide', x: 670, delay: 2600 },
+  { no: '01', label: 'source', x: 150, delay: 700 },
+  { no: '02', label: 'validate', x: 380, delay: 1500 },
+  { no: '03', label: 'model', x: 535, delay: 2200 },
+  { no: '04', label: 'communicate', x: 665, delay: 2600 },
+  { no: '05', label: 'decide', x: 850, delay: 3000 },
 ];
 
 const dl = (ms: number): CSSProperties => ({ animationDelay: `${ms}ms` });
@@ -51,7 +53,7 @@ export default function PipelineHero() {
         className={s.svg}
         viewBox="0 0 920 264"
         role="img"
-        aria-label="Animated pipeline: raw scattered data is cleaned and transformed into an ordered model line that ends in a decision"
+        aria-label="Process: collect data, validate quality, build a model, communicate findings, and support a decision."
       >
         {/* raw, noisy points */}
         {RAW.map(([x, y], i) => (

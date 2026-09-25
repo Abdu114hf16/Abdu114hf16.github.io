@@ -1,37 +1,18 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
+import { legacyRoutes as LEGACY } from './data/site';
 
 const Home = lazy(() => import('./pages/Home'));
+const Experience = lazy(() => import('./pages/Experience'));
 const Cv = lazy(() => import('./pages/Cv'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Article = lazy(() => import('./pages/articles/Article'));
 const PsDashboard = lazy(() => import('./pages/dashboard/PsDashboard'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-
-/** Map old static-site URLs (kept alive by inbound links) to new routes. */
-const LEGACY: Record<string, string> = {
-  '/index.html': '/',
-  '/cv.html': '/cv',
-  '/projects.html': '/projects',
-  '/contact.html': '/contact',
-  '/blog/medical-cost-prediction.html': '/projects/medical-cost-prediction',
-  '/blog/playstation-disc-sentiment.html': '/projects/playstation-disc-sentiment',
-  '/blog/eventia.html': '/projects/eventia',
-  '/blog/commercial-flights-delays.html': '/projects/commercial-flights-delays',
-  '/blog/ps-disc-dashboard.html': '/projects/playstation-disc-sentiment/dashboard',
-};
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
 
 function Layout() {
   return (
@@ -40,23 +21,23 @@ function Layout() {
         Skip to content
       </a>
       <Nav />
-      <Suspense fallback={<div className="wrap" style={{ minHeight: '60vh' }} />}>
+      <Suspense fallback={<div className="wrap" role="status" aria-label="Loading page" style={{ minHeight: '100svh' }} />}>
         <Outlet />
+        <Footer />
       </Suspense>
-      <Footer />
       <BackToTop />
     </>
   );
 }
 
 export default function App() {
-  const { pathname } = useLocation();
-  const legacy = LEGACY[pathname] ?? (pathname.startsWith('/blog/') ? '/projects' : null);
-  if (legacy) return <Navigate to={legacy} replace />;
+  const { pathname, search, hash } = useLocation();
+  if (pathname === '/' && hash === '#experience') return <Navigate to="/experience" replace />;
+  const legacy = LEGACY[pathname.replace(/\/$/, '') || '/'] ?? (pathname.startsWith('/blog/') ? '/projects' : null);
+  if (legacy) return <Navigate to={{ pathname: legacy, search, hash }} replace />;
 
   return (
     <>
-      <ScrollToTop />
       <Routes>
         {/* Dashboard renders standalone: it is its own full-view artifact. */}
         <Route
@@ -69,6 +50,7 @@ export default function App() {
         />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/experience" element={<Experience />} />
           <Route path="/cv" element={<Cv />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<Article />} />

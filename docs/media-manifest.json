@@ -1,0 +1,297 @@
+[
+  {
+    "file": "/img/arabic-interface.webp",
+    "width": 1170,
+    "height": 431,
+    "bytes": 19184,
+    "note": "Static capture of the pinned Arabic prototype interface, with scripts disabled. No image upload was performed."
+  },
+  {
+    "file": "/img/arabic-speech-flow.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 33328,
+    "note": "Explanatory diagram based on documented numeral-to-audio composition."
+  },
+  {
+    "file": "/img/boolean-flow.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 29990,
+    "note": "Illustrative set operations, not measured corpus results."
+  },
+  {
+    "file": "/img/boolean-index.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 34280,
+    "note": "Explanatory diagram of source-code operations, with explicitly illustrative postings."
+  },
+  {
+    "file": "/img/cover-boolean.webp",
+    "width": 1200,
+    "height": 675,
+    "note": "16:9 composition using boolean-index.webp; no invented measurements."
+  },
+  {
+    "file": "/img/cover-donor.webp",
+    "width": 1200,
+    "height": 675,
+    "note": "16:9 composition using donor-report-3.webp; no invented measurements."
+  },
+  {
+    "file": "/img/cover-eventia.webp",
+    "width": 1200,
+    "height": 675,
+    "note": "16:9 composition using hero-eventia.webp; no invented measurements."
+  },
+  {
+    "file": "/img/cover-income.webp",
+    "width": 1200,
+    "height": 675,
+    "note": "16:9 composition using income-dashboard.webp; no invented measurements."
+  },
+  {
+    "file": "/img/cover-medical.webp",
+    "width": 1200,
+    "height": 675,
+    "note": "16:9 composition using mcp-interaction.webp; no invented measurements."
+  },
+  {
+    "file": "/img/cover-olist.webp",
+    "width": 1200,
+    "height": 675,
+    "source": "Composition of the original public Olist ERD; no invented measurements."
+  },
+  {
+    "file": "/img/cover-playstation.webp",
+    "width": 1200,
+    "height": 675,
+    "note": "16:9 composition using ps-dashboard-overview.webp; no invented measurements."
+  },
+  {
+    "file": "/img/cover-saudi.webp",
+    "width": 1200,
+    "height": 675,
+    "note": "16:9 composition using saudi-3.webp; no invented measurements."
+  },
+  {
+    "file": "/img/datacamp-data-engineer-associate.webp",
+    "width": 112,
+    "height": 137,
+    "source": "Owner-supplied official DataCamp badge; resized without altering its design.",
+    "verification": "https://www.datacamp.com/certificate/DEA0016972420970"
+  },
+  {
+    "file": "/img/digit-demo.webp",
+    "width": 1440,
+    "height": 748,
+    "bytes": 35628,
+    "note": "Original drawing-interface screenshot; example output is not a benchmark accuracy."
+  },
+  {
+    "file": "/img/digit-example-1.webp",
+    "width": 417,
+    "height": 433,
+    "bytes": 4524,
+    "note": "Saved MNIST example image from the pinned notebook."
+  },
+  {
+    "file": "/img/digit-example-2.webp",
+    "width": 417,
+    "height": 433,
+    "bytes": 4632,
+    "note": "Saved MNIST example image from the pinned notebook."
+  },
+  {
+    "file": "/img/digit-preprocessing.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 29112,
+    "note": "Explanatory preprocessing flow based on the pinned notebook."
+  },
+  {
+    "file": "/img/donor-comparison.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 19276,
+    "note": "Regenerated from the documented comparison values; full values and limitations appear in the adjacent HTML table."
+  },
+  {
+    "file": "/img/donor-report-1.webp",
+    "width": 1089,
+    "height": 520,
+    "bytes": 21438,
+    "note": "Original embedded figure from pinned CharityML HTML report."
+  },
+  {
+    "file": "/img/donor-report-2.webp",
+    "width": 1089,
+    "height": 520,
+    "bytes": 20170,
+    "note": "Original embedded figure from pinned CharityML HTML report."
+  },
+  {
+    "file": "/img/donor-report-3.webp",
+    "width": 1249,
+    "height": 823,
+    "bytes": 52642,
+    "note": "Original embedded figure from pinned CharityML HTML report."
+  },
+  {
+    "file": "/img/donor-report-4.webp",
+    "width": 889,
+    "height": 490,
+    "bytes": 17308,
+    "note": "Original embedded figure from pinned CharityML HTML report."
+  },
+  {
+    "file": "/img/income-dashboard.webp",
+    "width": 1440,
+    "height": 600,
+    "bytes": 49332,
+    "note": "Chart excerpt from page 2; top KPI row excluded."
+  },
+  {
+    "file": "/img/income-industry.webp",
+    "width": 1440,
+    "height": 833,
+    "bytes": 58584,
+    "note": "Original industry dashboard page 3; source snapshot, not current workforce coverage."
+  },
+  {
+    "file": "/img/income-inflation-trend.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 31108,
+    "note": "Plotted directly from the public inflation CSV; peak and observation count validated."
+  },
+  {
+    "file": "/img/income-model.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 32580,
+    "note": "Simplified data-flow diagram based on the repository model description."
+  },
+  {
+    "file": "/img/olist-etl.webp",
+    "width": 1040,
+    "height": 1580,
+    "source": "https://github.com/Abdu114hf16/olist-data-warehouse/blob/ff33c00dfc4acf37ddc9197105c80eb0edfc882f/snapshots/dimensions_ETL.png"
+  },
+  {
+    "file": "/img/olist-quality.webp",
+    "width": 1146,
+    "height": 1268,
+    "source": "https://github.com/Abdu114hf16/olist-data-warehouse/blob/ff33c00dfc4acf37ddc9197105c80eb0edfc882f/snapshots/data_quality.png"
+  },
+  {
+    "file": "/img/olist-schema.webp",
+    "width": 1512,
+    "height": 992,
+    "source": "https://github.com/Abdu114hf16/olist-data-warehouse/blob/ff33c00dfc4acf37ddc9197105c80eb0edfc882f/snapshots/ERD.png"
+  },
+  {
+    "file": "/img/olist-structure.webp",
+    "width": 582,
+    "height": 670,
+    "source": "https://github.com/Abdu114hf16/olist-data-warehouse/blob/ff33c00dfc4acf37ddc9197105c80eb0edfc882f/snapshots/project_structure.png"
+  },
+  {
+    "file": "/img/olist-workspace.webp",
+    "width": 1600,
+    "height": 1071,
+    "source": "https://github.com/Abdu114hf16/olist-data-warehouse/blob/ff33c00dfc4acf37ddc9197105c80eb0edfc882f/snapshots/DBeaver_environment.png"
+  },
+  {
+    "file": "/img/saudi-1.webp",
+    "width": 1124,
+    "height": 629,
+    "bytes": 39962,
+    "note": "Public UI screenshot extracted from the pinned, redacted Saudi Discovery report."
+  },
+  {
+    "file": "/img/saudi-2.webp",
+    "width": 1124,
+    "height": 631,
+    "bytes": 41538,
+    "note": "Public UI screenshot extracted from the pinned, redacted Saudi Discovery report."
+  },
+  {
+    "file": "/img/saudi-3.webp",
+    "width": 1124,
+    "height": 624,
+    "bytes": 56254,
+    "note": "Public UI screenshot extracted from the pinned, redacted Saudi Discovery report."
+  },
+  {
+    "file": "/img/saudi-4.webp",
+    "width": 999,
+    "height": 1129,
+    "bytes": 69056,
+    "note": "Public UI screenshot extracted from the pinned, redacted Saudi Discovery report."
+  },
+  {
+    "file": "/img/saudi-5.webp",
+    "width": 1124,
+    "height": 620,
+    "bytes": 25178,
+    "note": "Public UI screenshot extracted from the pinned, redacted Saudi Discovery report."
+  },
+  {
+    "file": "/img/saudi-6.webp",
+    "width": 1124,
+    "height": 629,
+    "bytes": 12976,
+    "note": "Public UI screenshot extracted from the pinned, redacted Saudi Discovery report."
+  },
+  {
+    "file": "/img/saudi-7.webp",
+    "width": 1124,
+    "height": 631,
+    "bytes": 18766,
+    "note": "Public UI screenshot extracted from the pinned, redacted Saudi Discovery report."
+  },
+  {
+    "file": "/img/sms-comparison.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 22954,
+    "note": "Regenerated from the documented comparison values; full values and limitations appear in the adjacent HTML table."
+  },
+  {
+    "file": "/img/sms-matrix.webp",
+    "width": 1024,
+    "height": 559,
+    "bytes": 84506,
+    "note": "Bag-of-words teaching illustration from the baseline repository."
+  },
+  {
+    "source": "https://raw.githubusercontent.com/Abdu114hf16/Handwritten_digit_recognition/b06196097e90c8de923f6aee2eb8013c44a276b7/demo_screenshot.png",
+    "sha256": "1667623428b394bd09d3196cbd7c151b6fbe4a59ffc4316208fda6823b264148"
+  },
+  {
+    "source": "https://raw.githubusercontent.com/Abdu114hf16/Handwritten_digit_recognition/b06196097e90c8de923f6aee2eb8013c44a276b7/Handwritting_Recognition.ipynb",
+    "sha256": "6b0675378ba392ddce14e45cbdee485cdcd580234cd2977bdd4e2bd600697725"
+  },
+  {
+    "source": "https://raw.githubusercontent.com/Abdu114hf16/interactive-ksa-discovery/0617ad322169721e549e71b1972d39636dcc47a4/Report.pdf",
+    "sha256": "09b7f8c45f8eb6e312ef9a8294e3cb1809f3c5cbb9a435107a22e891bac5ef47"
+  },
+  {
+    "source": "https://raw.githubusercontent.com/Abdu114hf16/MacroEconomic-Analysis-PowerBi/4bb516f0a35b340b2cab2b0fa688f343aaea749f/Dashboard_Preview.pdf",
+    "sha256": "272557fbd92c66465a0af1f38f03add68427a82ff2dde56854f65c1b75b251f8"
+  },
+  {
+    "source": "https://raw.githubusercontent.com/Abdu114hf16/MacroEconomic-Analysis-PowerBi/4bb516f0a35b340b2cab2b0fa688f343aaea749f/Datasets/Inflation_fred_dataset.csv",
+    "sha256": "a0f468797178102ccabf7e236437ee18a46a50e0b0b63818359d29e032398497"
+  },
+  {
+    "source": "https://raw.githubusercontent.com/Abdu114hf16/Naive_Bayes_SMS_Classifier/12a34e7222d3e66e281f5469e3c679e1056f0468/assets/term_by_doc_matrix.png",
+    "sha256": "f6a17eefdc2dadb96a3c9f3c71f4f0c342a0fdba6356e176ae50dcf1e10e0f39"
+  },
+  {
+    "source": "https://raw.githubusercontent.com/Abdu114hf16/Optimizing_Donors_Outreach/a38c3cfd1999cb1050e4aa6b0614a9eb20b004af/finding_donors_report.html",
+    "sha256": "a00335280f1e6de9e9dd20d852b15f4f8d9c4cb029d5f036b67925db0ccea560"
+  }
+]

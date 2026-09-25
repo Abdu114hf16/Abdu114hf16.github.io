@@ -100,6 +100,10 @@
   transition: border-color 0.15s;
 }
 
+.form input:not(.honey), .form select, .submit { min-height: 44px; }
+.submit:disabled { cursor: wait; }
+.success { margin-top: var(--sp-4); }
+
 /* Was outline:none plus an amber border and glow, which made the form the one
    place on the site with its own focus language, and in light theme the amber
    measured 1.66:1. Same ring as everything else now. */

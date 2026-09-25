@@ -1,153 +1,26 @@
 import { Link } from 'react-router';
-import ArticleLayout, { Section, TechStack } from './ArticleLayout';
+import CaseStudy from './CaseStudy';
+import { DataTable, Shot } from './ArticleLayout';
 import s from './PsDiscSentiment.module.css';
 
-/** PlayStation shape marks: part of the project's own brand, kept scoped. */
-function Marks({ size }: { size?: 'sm' }) {
-  return (
-    <span className={size === 'sm' ? `${s.marks} ${s.marksSm}` : s.marks} aria-hidden="true">
-      <span className={s.mT}>&#9651;</span>
-      <span className={s.mC}>&#9711;</span>
-      <span className={s.mX}>&#10005;</span>
-      <span className={s.mS}>&#9723;</span>
-    </span>
-  );
+function Marks() {
+  return <span className={s.marks} aria-hidden="true"><span className={s.mT}>△</span><span className={s.mC}>◯</span><span className={s.mX}>✕</span><span className={s.mS}>◻</span></span>;
 }
-
-const DASH_ROUTE = '/projects/playstation-disc-sentiment/dashboard';
-
 export default function PsDiscSentiment() {
-  return (
-    <ArticleLayout
-      meta={{
-        title: "Sentiment Analysis for People About PlayStation's Disc Decision",
-        seoTitle: "Sentiment Analysis for People About PlayStation's Disc Decision",
-        lede: 'The mood clearly leans negative, but exactly how negative, and how does it stack up against the positive and neutral voices? Let the data answer instead of the gut.',
-        hero: { src: '/img/hero-ps.webp', alt: 'PlayStation end of discs sentiment analysis', w: 720, h: 240 },
-      }}
-    >
-      <Section title="Introduction">
-        <p>
-          On 1 July 2026, PlayStation announced that new games would stop shipping on physical discs from January
-          2028. The post spread fast and pulled in over a million views within days, so there was no shortage of
-          reactions to measure. For a community that has bought boxed games for nearly thirty years, this was
-          never going to be a quiet update, and within hours the replies, quotes and mentions were pouring in. I
-          wanted to move past the anecdotes and measure the reaction properly: did the majority really react
-          negatively, and by how much compared to the positive and neutral reactions?
-        </p>
-        <img
-          className={s.introShot}
-          src="/img/ps-tweet.webp"
-          alt="PlayStation announcement post with over one million views"
-          width="840"
-          height="621"
-          loading="lazy"
-        />
-      </Section>
-
-      <Section title="Problem Statement">
-        <p>
-          Public reaction to a moment like this is huge, messy and short lived. Instead of taking a quick glance
-          and deciding the reaction is bad, let us run a sentiment analysis that tells us, using data and not gut
-          feeling, how negative it really is and by exactly how much.
-        </p>
-      </Section>
-
-      <Section title="Solution">
-        <h3>Data Collection</h3>
-        <p>
-          We collect the public reaction tweets from the first days of the announcement on X (Twitter), along with
-          their details such as likes and retweets. Using TwitterAPI.io instead of the official API kept the cost
-          low while still pulling direct replies, quote tweets and wider mentions of the post, which combined into
-          a large sample of the conversation.
-        </p>
-        <h3>Data Cleaning</h3>
-        <p>
-          The raw pull is noisy, so we de-duplicate every reaction by its tweet id, drop deleted or empty bodies,
-          and keep a single clean row per tweet carrying its text, language, timestamp and engagement. That left a
-          tidy dataset of 56,677 unique reactions ready to score.
-        </p>
-        <h3>Sentiment Analysis</h3>
-        <p>
-          With the data clean, we score every reaction in Python by running a pre-trained NLP model. Because
-          roughly a fifth of the reactions are not in English, the optimal choice here is a multilingual,
-          tweet-tuned model: CardiffNLP's XLM-RoBERTa. It reads English, Spanish, Portuguese, French, Arabic and
-          more on equal footing, and labels each reaction positive, neutral or negative with a confidence score.
-        </p>
-        <h3>Feature Engineering and Dashboard</h3>
-        <p>
-          From the model output we engineer the fields the report needs: a sentiment label, a signed sentiment
-          score from minus one to plus one, per class probabilities, and helper columns for language and day.
-          Those features feed a Power BI style dashboard that turns the numbers into something anyone can slice
-          and explore, which you can try live below.
-        </p>
-      </Section>
-
-      <Section title="Tech Stack">
-        <TechStack
-          items={['Python', 'Sentiment Analysis - XLM-RoBERTa', 'Pandas', 'Transformers', 'NLP', 'Hugging Face', 'Power BI']}
-        />
-      </Section>
-
-      <h2 className={s.tryit}>
-        Try It Your Own! <Marks size="sm" />
-      </h2>
-
-      <div className={s.cta}>
-        <div className={s.ctaInfo}>
-          <Marks />
-          <div>
-            <p className={s.ctaTitle}>Interactive Sentiment Dashboard</p>
-            <div className={s.mini}>
-              <span className={s.miniNeg} style={{ width: '63%' }} />
-              <span className={s.miniNeu} style={{ width: '27%' }} />
-              <span className={s.miniPos} style={{ width: '10%' }} />
-            </div>
-            <p className={s.miniLbl}>
-              63% negative · 27% neutral · 10% positive&nbsp; | &nbsp;56,677 reactions, clickable filters,
-              PlayStation Remote
-            </p>
-          </div>
-        </div>
-        <Link className={s.launch} to={DASH_ROUTE} target="_blank" rel="noopener">
-          Full View
-        </Link>
-      </div>
-
-      <Section title="Conclusion">
-        <p>The end of PlayStation discs post landed as a clear, around the world rejection. Of the 56,677 reactions:</p>
-        <ul>
-          <li>63% were negative reactions.</li>
-          <li>27% were neutral reactions.</li>
-          <li>10% were positive.</li>
-        </ul>
-        <p>
-          An average sentiment of -0.44 on a scale of [-1, +1]. The negative camp outnumbers the positive one by
-          more than 500%, in other words there were over six times as many negative reactions as positive ones.
-        </p>
-        <p>Most hype led by this tweet: "the final nail in the coffin of the company I once loved" at +22K likes.</p>
-      </Section>
-
-      <Section title="Takeaway">
-        <p>This project was my dive into social sentiment analysis, and it taught me a lot:</p>
-        <ul>
-          <li>Tweets collection.</li>
-          <li>Finding the right pre-trained AI model that is multilingual and tweet-tuned.</li>
-          <li>
-            The insight only lands if people can touch it. Pairing a Python pipeline with an interactive, on brand
-            dashboard turns a plain CSV into something a stakeholder will actually explore.
-          </li>
-        </ul>
-      </Section>
-
-      <Section title="Resources">
-        <div className={s.resCard}>
-          <p>Explore the interactive dashboard:</p>
-          <Link className={s.launch} to={DASH_ROUTE} target="_blank" rel="noopener">
-            Open the Interactive Dashboard
-          </Link>
-        </div>
-      </Section>
-    </ArticleLayout>
-  );
+  return <CaseStudy slug="playstation-disc-sentiment"
+    summary={['This independent project explores 56,677 collected public reactions to a PlayStation-related post about physical discs. Multilingual transformer-based sentiment classification assigns negative, neutral, and positive labels, then an interactive dashboard lets readers explore the conversation by language and day.', 'Negative labels account for 63.0% of the shipped dataset, compared with 10.2% positive and 26.8% neutral. These findings describe the collected conversation, not a representative survey of PlayStation customers or independent verification of a product-policy announcement.']}
+    data={['The supplied dashboard export contains 56,677 labeled reactions and day labels for Jul 1 and Jul 2. The original workflow describes collecting replies, quotes, and broader mentions, followed by deduplication and removal of empty content.', 'The public aggregate export does not preserve the complete acquisition query, collection log, or per-class model probabilities. Day labels describe the supplied export; they do not establish exhaustive coverage of the conversation.']}
+    dataVisual={<Shot src="/img/ps-tweet.webp" alt="PlayStation-related source post supplied with the sentiment project" w={840} h={621} caption="The supplied source post provides the collection context. The study analyzes responses to the post rather than independently verifying its policy claim." />}
+    approach={['Collect public reactions associated with the source post.', 'Prepare reaction text and metadata, using identifier-based deduplication in the original workflow.', 'Apply multilingual transformer-based sentiment classification.', 'Aggregate labeled reactions by day, language, and sentiment.', 'Present filters, distributions, and selected examples with explicit sampling limits.']}
+    design="A compact day/language/sentiment contingency table drives the interactive dashboard. Cross-filtering lets each chart show its own distribution within the other active filters. Net sentiment is the share of positive labels minus the share of negative labels; it is not an average of model confidence scores."
+    evaluation={<><p>The dashboard totals reconcile to the 56,677-record export. No independently annotated evaluation set is provided, so a classification-accuracy score is not claimed.</p><DataTable caption="Sentiment labels in the complete supplied export" headers={['Label', 'Reactions', 'Share']} rows={[
+      ['Negative', '35,707', '63.0%'], ['Neutral', '15,190', '26.8%'], ['Positive', '5,780', '10.2%'],
+    ]} /><p>The resulting net sentiment is approximately −0.53. The earlier probability-based average of −0.44 cannot be reconstructed from this label-only export and is not used as a dashboard statistic.</p></>}
+    evaluationVisual={<div className={s.cta}><div className={s.ctaInfo}><Marks /><div><p className={s.ctaTitle}>Interactive Sentiment Dashboard</p><div className={s.mini} aria-hidden="true"><span className={s.miniNeg} style={{ width: '63%' }} /><span className={s.miniNeu} style={{ width: '26.8%' }} /><span className={s.miniPos} style={{ width: '10.2%' }} /></div><p className={s.miniLbl}>56,677 reactions · sentiment, language, and day filters</p></div></div><Link className={s.launch} to="/projects/playstation-disc-sentiment/dashboard">Explore dashboard</Link></div>}
+    findings={['Negative labels substantially outnumber positive labels in this collected conversation.', 'English represents the largest labeled language group; language coverage is uneven.', 'The two supplied day groups contain different volumes, so proportions and absolute counts answer different questions.', 'Filtering improves exploration but cannot remove collection bias or establish customer-wide sentiment.']}
+    recommendation="Use the dashboard to explore themes and identify questions for qualitative review. Combine social listening with representative research before making customer or product decisions."
+    limitations={['Public reactions are not a representative sample of all PlayStation customers.', 'Bots, repeated content, sarcasm, ambiguous language, and classification errors may affect the result.', 'Language coverage and platform-selection bias limit generalization.', 'The aggregate export does not allow independent auditing of the collection query, deduplication, or model-probability calculations.']}
+    stack={['Python', 'CardiffNLP twitter-XLM-RoBERTa', 'Transformers', 'pandas', 'React', 'TypeScript']}
+    contribution="I developed the collection and sentiment-analysis workflow and connected the results to an interactive reporting experience. The central lesson was that a useful dashboard should make its units, filters, and limitations as easy to understand as its headline result."
+  />;
 }

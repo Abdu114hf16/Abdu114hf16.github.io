@@ -1,0 +1,13 @@
+import sharp from 'sharp';
+import { chromium, baseUrl } from './qa-tools.mjs';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1200, height: 1000 }, reducedMotion: 'reduce' });
+await page.goto(`${baseUrl}/projects/playstation-disc-sentiment/dashboard/`);
+await page.getByRole('heading', { name: 'Net Sentiment', exact: true }).waitFor();
+const panels = page.locator('main > div');
+const kpis = await panels.nth(0).boundingBox();
+const charts = await panels.nth(1).boundingBox();
+const capture = await page.screenshot({ clip: { x: kpis.x, y: kpis.y, width: kpis.width, height: charts.y + charts.height - kpis.y } });
+await sharp(capture).webp({ quality: 90 }).toFile(new URL('../public/img/ps-dashboard-overview.webp', import.meta.url).pathname);
+await browser.close();
+console.log('Captured actual dashboard KPIs, sentiment distribution and day charts.');
