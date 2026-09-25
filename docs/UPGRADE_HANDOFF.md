@@ -1,6 +1,6 @@
 # Portfolio revision handoff
 
-Status: local implementation and verification complete; production deployment approved by the owner.
+Status: production deployment complete and verified on the live custom domain.
 
 ## Scope
 
@@ -24,4 +24,4 @@ Status: local implementation and verification complete; production deployment ap
 
 The local production preview is <http://localhost:4175>. See `PORTFOLIO_UPGRADE_PLAN.md` for the execution record and `docs/VERIFICATION.md` for reproducible commands.
 
-Production deployment uses the existing GitHub Pages workflow triggered by `main`.
+Production commit `d9beba2` deployed through the existing GitHub Pages workflow in run `36165785529`. The live site at <https://alshammari.dev> passed 36 route/theme checks, 36 accessibility audits, and completeness checks for all 12 published project reports.
